@@ -1,0 +1,42 @@
+<form>
+    <div class="p-grid p-nogutter">
+        <div class="p-col-5 p-col-nogutter">
+            <div class="p-grid p-nogutter">
+                <!-- Production Stop Date -->
+                <div class="p-col-12 p-col-nogutter">
+                    <input type="checkbox" id="filterDateTime" class="k-checkbox"
+                        [(ngModel)]="filter.stoppageDate.isEnabled" [ngModelOptions]="modelOptions" />
+                    <label class=" k-checkbox-label" for="filterDateTime">Date Time</label>
+                </div>
+                <div class="p-col-12 p-col-nogutter">
+                    <app-time-filter [disabled]="!filter.stoppageDate.isEnabled"
+                        [(dateTimeFrom)]="filter.stoppageDate.value.from"
+                        [(dateTimeTo)]="filter.stoppageDate.value.to"></app-time-filter>
+                </div>
+            </div>
+        </div>
+        <div class="p-col-2 p-col-nogutter">
+            <div class="p-grid p-nogutter">
+                <!-- Shift ID -->
+                <div class="p-col-12 p-col-nogutter">
+                    <input type="checkbox" id="filterShiftId" class="k-checkbox" [(ngModel)]="filter.shiftId.isEnabled"
+                        [ngModelOptions]="modelOptions" />
+                    <label class="k-checkbox-label" for="filterShiftId">Shift ID</label>
+                </div>
+                <div class="p-col-12 p-col-nogutter">
+                    <kendo-dropdownlist [data]="shiftList" [textField]="'label'" [valueField]="'value'"
+                        [disabled]="!filter.shiftId.isEnabled" [(ngModel)]="filter.shiftId.value"
+                        [ngModelOptions]="modelOptions" [valuePrimitive]="true" (selectionChange)="onShiftSelectionChange($event)">
+                    </kendo-dropdownlist>
+                </div>
+                <!-- apply button -->
+                <div class="p-col-12 p-col-nogutter">
+                    <div kendoTooltip style="text-align: center; padding-top: 10px;">
+                        <button kendoButton type="button" title="Apply filter(s)"><i class="k-icon k-i-filter"
+                                (click)="applyFilters($event)"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

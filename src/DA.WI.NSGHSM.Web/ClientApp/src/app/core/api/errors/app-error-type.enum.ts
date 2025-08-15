@@ -1,0 +1,9 @@
+export enum AppErrorType {
+    NOT_FOUND,
+    ALREADY_IN,
+    BAD_REQUEST,
+    UNAUTHORIZED,
+    FORBIDDEN,
+    API_CALL_FAIL,
+    INTERNAL_SERVER_ERROR
+}

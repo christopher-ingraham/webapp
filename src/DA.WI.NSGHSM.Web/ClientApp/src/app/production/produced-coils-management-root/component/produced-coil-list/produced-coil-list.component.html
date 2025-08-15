@@ -1,0 +1,148 @@
+<div fxLayout="column" class="fx-full-height">
+    <div fxFlex class="fx-full-height-grid-container">
+        <div *ngIf="isMobile | async; then cardList else columnGrid"></div>
+        <ng-template #cardList>
+            <kendo-grid class="fx-full-height fx-full-width" [data]="data" [pageable]="true" [pageSize]="pageSize"
+                [skip]="dataRequest.page.skip" [loading]="isLoading" (pageChange)="onPageChange($event)"
+                (cellClick)="onRowClick($event)" [selectable]="selectableSettings" style="width: 98.5%;">
+                <kendo-grid-column title="{{'EXAMPLE.ITEMS|Items' | translate}}">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div fxLayout="column">
+                            <h4>
+                                <div kendoTooltip style="text-align: center; padding-top: 10px;"><a class="k-text-info"
+                                        title="View Produced Coil {{dataItem.outPieceId}}..."
+                                        (click)="onRowEdit(dataItem)">{{dataItem.pieceNo}}</a>
+                                </div>
+                            </h4>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Input Slab N°' | translate }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.inPieceId}}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Heat N°' | translate }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.heatId}}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Steel Grade ID' | translate }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.materialGradeId}}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Target Cold Width [mm]' | translate | uomLabel:'mm':'in' }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.targetColdWidth | uomValue:'mm':'in' }}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Exit Width [mm]' | translate | uomLabel:'mm':'in' }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.exitWidth | uomValue:'mm':'in' }}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Target Cold Thickness [mm]' | translate | uomLabel:'mm':'in' }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.targetColdThk | uomValue:'mm':'in' }}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Exit Thickness [mm]' | translate | uomLabel:'mm':'in' }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.exitThk | uomValue:'mm':'in' }}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Exit Temperature [°C]' | translate | uomLabel:'C':'F' }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.exitTemp | uomValue:'C':'F' }}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Calculated Weight [kg]' | translate | uomLabel:'kg':'lb' }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.calculatedWeight | uomValue:'kg':'lb' }}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Measured Weight [kg]' | translate | uomLabel:'kg':'lb'}}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.measuredWeight | uomValue:'kg':'lb' }}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'External Diameter [mm]' | translate | uomLabel:'mm':'in'}}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.outerDiameter | uomValue:'mm':'in' }}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Length [m]' | translate | uomLabel:'m':'ft'}}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.length | uomValue:'m':'ft' }}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Customer ID' | translate }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.customerId}}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Production Stop Date' | translate }}</div>
+                                <span fxFlexOffset="1em"
+                                    fxFlex="2 1 0">{{dataItem.productionStopDate | date:'dd/MM/yyyy hh:mm:ss'}}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Status' | translate }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.statusLabel}}</span>
+                            </div>
+                        </div>
+                    </ng-template>
+                </kendo-grid-column>
+            </kendo-grid>
+        </ng-template>
+        <ng-template #columnGrid>
+            <kendo-grid class="fx-full-height fx-full-width" [data]="data" [pageable]="true" [pageSize]="pageSize"
+                [skip]="dataRequest.page.skip" [loading]="isLoading" (pageChange)="onPageChange($event)"
+                [resizable]="true" (cellClick)="onRowClick($event)" [selectable]="selectableSettings" style="width: 98.5%;">
+                <kendo-grid-column field="outPieceId" title="{{'Produced Piece Id'| translate}}">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div kendoTooltip style="text-align: center; padding-top: 10px;"><a class="k-text-info"
+                                title="View Produced Coil {{dataItem.outPieceId}}..."
+                                (click)="onRowEdit(dataItem)">{{dataItem.outPieceId}}</a></div>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="inPieceId" title="{{'Input Slab N°' | translate}}">
+                </kendo-grid-column>
+                <kendo-grid-column field="heatId" title="{{'Heat N°' | translate}}">
+                </kendo-grid-column>
+                <kendo-grid-column field="materialGradeId" title="{{'Steel Grade ID' | translate}}">
+                </kendo-grid-column>
+                <kendo-grid-column field="targetColdWidth" title="{{'Target Cold Width [mm]' | translate | uomLabel:'mm':'in'}}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.targetColdWidth | uomValue:'mm':'in' }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="exitWidth" title="{{'Exit Width [mm]' | translate | uomLabel:'mm':'in'}}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.exitWidth | uomValue:'mm':'in' }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="targetColdThk" title="{{'Target Cold Thickness [mm]' | translate | uomLabel:'mm':'in'}}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.targetColdThk | uomValue:'mm':'in' }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="exitThk" title="{{'Exit Thickness [mm]' | translate | uomLabel:'mm':'in'}}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.exitThk | uomValue:'mm':'in' }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="exitTemp" title="{{'Exit Temperature [°C]' | translate | uomLabel:'!C':'F'}}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.exitTemp | uomValue:'C':'F' }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="calculatedWeight" title="{{'Calculated Weight [kg]' | translate | uomLabel:'kg':'lb'}}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.calculatedWeight | uomValue: 'kg':'lb'}}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="measuredWeight" title="{{'Measured Weight [kg]' | translate | uomLabel:'kg':'lb'}}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.measuredWeight | uomValue: 'kg':'lb'}}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="outerDiameter" title="{{'External Diameter [mm]' | translate | uomLabel:'mm':'in'}}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.outerDiameter | uomValue:'mm':'in' }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="length" title="{{'Length [m]' | translate | uomLabel:'m':'ft'}}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.length | uomValue:'m':'ft' }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="customerId" title="{{'Customer ID' | translate}}">
+                </kendo-grid-column>
+                <kendo-grid-column field="productionStopDate" title="{{'Production Stop Date' | translate}}">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{dataItem.productionStopDate | date:'dd/MM/yyyy hh:mm:ss'}}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="statusLabel" title="{{'Status' | translate}}">
+                </kendo-grid-column>
+            </kendo-grid>
+        </ng-template>
+    </div>
+</div>

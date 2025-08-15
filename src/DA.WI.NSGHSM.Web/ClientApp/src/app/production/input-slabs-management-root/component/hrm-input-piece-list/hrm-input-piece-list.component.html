@@ -1,0 +1,205 @@
+<div fxLayout="column" class="fx-full-height">
+    <div fxFlex class="fx-full-height-grid-container">
+        <div *ngIf="isMobile | async; then cardList else columnGrid"></div>
+        <ng-template #cardList>
+            <kendo-grid class="fx-full-height fx-full-width" [data]="data" [pageable]="true" [pageSize]="pageSize"
+                [skip]="dataRequest.page.skip" [loading]="isLoading" (pageChange)="onPageChange($event)"
+                (cellClick)="onRowClick($event)" [selectable]="selectableSettings" style="width: 98.5%;">
+                <kendo-grid-column title="{{'EXAMPLE.ITEMS|Items' | translate}}">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div fxLayout="column">
+                            <h4>
+                                <div kendoTooltip style="text-align: center; padding-top: 10px;"><a class="k-text-info"
+                                        title="View Input Slab {{dataItem.pieceNo}}..."
+                                        (click)="onRowEdit(dataItem)">{{dataItem.pieceNo}}</a>
+                                </div>
+                            </h4>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0" translate>EXAMPLE.HRMINPUTPIECE.FIELDS.HEATID|Heat Id</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.heatId}}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0" translate>EXAMPLE.HRMINPUTPIECE.FIELDS.JOBPIECESEQ|String Coil
+                                    Sequence</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.jobPieceSeq}}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0" translate>EXAMPLE.HRMINPUTPIECE.FIELDS.TRANSITIONLABEL|Transition
+                                </div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.transitionLabel}}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">
+                                    {{ 'EXAMPLE.HRMINPUTPIECE.FIELDS.THICKNESSHEAD|Head Thickness [mm]' | translate | uomLabel:'mm':'in' }}
+                                </div>
+                                <span fxFlexOffset="1em"
+                                    fxFlex="2 1 0">{{ dataItem.thicknessHead | uomValue:'mm':'in' }}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">
+                                    {{ 'EXAMPLE.HRMINPUTPIECE.FIELDS.THICKNESSTAIL|Tail Thickness [mm]' | translate | uomLabel:'mm':'in' }}
+                                </div>
+                                <span fxFlexOffset="1em"
+                                    fxFlex="2 1 0">{{ dataItem.thicknessTail | uomValue:'mm':'in'}}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">
+                                    {{ 'EXAMPLE.HRMINPUTPIECE.FIELDS.WIDTHHEAD|Head Width [mm]' | translate | uomLabel:'mm':'in' }}
+                                </div>
+                                <span fxFlexOffset="1em"
+                                    fxFlex="2 1 0">{{ dataItem.widthHead | uomValue:'mm':'in'}}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">
+                                    {{ 'EXAMPLE.HRMINPUTPIECE.FIELDS.WIDTHTAIL|Tail Width [mm]' | translate | uomLabel:'mm':'in' }}
+                                </div>
+                                <span fxFlexOffset="1em"
+                                    fxFlex="2 1 0">{{ dataItem.widthTail | uomValue:'mm':'in' }}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">
+                                    {{ 'EXAMPLE.HRMINPUTPIECE.FIELDS.LENGTH|Length [m]' | translate | uomLabel:'m':'ft' }}
+                                </div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{ dataItem.length | uomValue:'m':'ft' }}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0" translate>EXAMPLE.HRMINPUTPIECE.FIELDS.MATERIALGRADEID|Steel Grade
+                                    ID</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.materialGradeId}}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">
+                                    {{ 'EXAMPLE.HRMINPUTPIECE.FIELDS.TARGETTHICKNESS|Target Cold Thickness [mm]' | translate | uomLabel:'mm':'in' }}
+                                </div>
+                                <span fxFlexOffset="1em"
+                                    fxFlex="2 1 0">{{ dataItem.targetThickness | uomValue:'mm':'in' }}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">
+                                    {{ 'EXAMPLE.HRMINPUTPIECE.FIELDS.TARGETWIDTH|Target Cold Width [mm]' | translate | uomLabel:'mm':'in' }}
+                                </div>
+                                <span fxFlexOffset="1em"
+                                    fxFlex="2 1 0">{{ dataItem.targetWidth | uomValue:'mm':'in' }}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0" translate>EXAMPLE.HRMINPUTPIECE.FIELDS.ORDERNUMBER|Customer Order
+                                    N°</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.orderNumber}}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0" translate>EXAMPLE.HRMINPUTPIECE.FIELDS.ORDERPOSITION|Customer Line
+                                    N°</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.orderPosition}}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0" translate>EXAMPLE.HRMINPUTPIECE.FIELDS.CUSTOMERNAME|Customer Name
+                                </div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.customerName}}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0" translate>EXAMPLE.HRMINPUTPIECE.FIELDS.TRIALFLAGLABEL|Trial</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.trialFlagLabel}}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0" translate>EXAMPLE.HRMINPUTPIECE.FIELDS.STATUSLABEL|Status</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.statusLabel}}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0" translate>EXAMPLE.HRMINPUTPIECE.FIELDS.CREATIONDATETIME|Creation
+                                    Date Time</div>
+                                <span fxFlexOffset="1em"
+                                    fxFlex="2 1 0">{{dataItem.creationDatetime | date:'dd/MM/yyyy hh:mm:ss'}}</span>
+                            </div>
+                        </div>
+                    </ng-template>
+                </kendo-grid-column>
+            </kendo-grid>
+        </ng-template>
+        <ng-template #columnGrid>
+            <kendo-grid class="fx-full-height fx-full-width" [data]="data" [pageable]="true" [pageSize]="pageSize"
+                [skip]="dataRequest.page.skip" [loading]="isLoading" (pageChange)="onPageChange($event)"
+                [resizable]="true" (cellClick)="onRowClick($event)" [selectable]="selectableSettings" style="width: 98.5%;">
+                <kendo-grid-column field="pieceNo"
+                    title="{{ 'EXAMPLE.HRMINPUTPIECE.FIELDS.PIECENO|Piece N°' | translate }}">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div kendoTooltip style="text-align: center; padding-top: 10px;"><a class="k-text-info"
+                                title="View Input Slab {{dataItem.pieceNo}}..."
+                                (click)="onRowEdit(dataItem)">{{dataItem.pieceNo}}</a></div>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="heatId" title="{{'EXAMPLE.HRMINPUTPIECE.FIELDS.HEATID|Heat Id' | translate}}">
+                </kendo-grid-column>
+                <kendo-grid-column field="jobPieceSeq"
+                    title="{{'EXAMPLE.HRMINPUTPIECE.FIELDS.JOBPIECESEQ|String Coil Sequence' | translate}}">
+                </kendo-grid-column>
+                <kendo-grid-column field="transitionLabel"
+                    title="{{'EXAMPLE.HRMINPUTPIECE.FIELDS.TRANSITIONLABEL|Transition' | translate}}">
+                </kendo-grid-column>
+                <kendo-grid-column field="thicknessHead"
+                    title="{{'EXAMPLE.HRMINPUTPIECE.FIELDS.THICKNESSHEAD|Head Thickness [mm]' | translate | uomLabel:'mm':'in' }}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.thicknessHead | uomValue:'mm':'in' }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="thicknessTail"
+                    title="{{'EXAMPLE.HRMINPUTPIECE.FIELDS.THICKNESSTAIL|Tail Thickness [mm]' | translate | uomLabel:'mm':'in' }}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.thicknessTail | uomValue:'mm':'in' }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="widthHead"
+                    title="{{'EXAMPLE.HRMINPUTPIECE.FIELDS.WIDTHHEAD|Head Width [mm]' | translate | uomLabel:'mm':'in' }}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.widthHead | uomValue:'mm':'in' }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="widthTail"
+                    title="{{'EXAMPLE.HRMINPUTPIECE.FIELDS.WIDTHTAIL|Tail Width [mm]' | translate | uomLabel:'mm':'in' }}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.widthTail | uomValue:'mm':'in' }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="weight"
+                    title="{{'EXAMPLE.HRMINPUTPIECE.FIELDS.WEIGHT|Weight [kg]' | translate | uomLabel:'kg':'lb' }}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.weight | uomValue:'kg':'lb' }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="length"
+                    title="{{'EXAMPLE.HRMINPUTPIECE.FIELDS.LENGTH|Length [m]' | translate| uomLabel:'m':'ft' }}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.length | uomValue:'m':'ft' }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="materialGradeId"
+                    title="{{'EXAMPLE.HRMINPUTPIECE.FIELDS.MATERIALGRADEID|Steel Grade ID' | translate}}">
+                </kendo-grid-column>
+                <kendo-grid-column field="targetThickness"
+                    title="{{'EXAMPLE.HRMINPUTPIECE.FIELDS.TARGETTHICKNESS|Target Cold Thickness [mm]' | translate | uomLabel:'mm':'in' }}">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{ dataItem.targetThickness | uomValue:'mm':'in' }}</ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="targeWidth"
+                    title="{{'EXAMPLE.HRMINPUTPIECE.FIELDS.TARGETWIDTH|Target Cold Width [mm]' | translate | uomLabel:'mm':'in' }}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.targetWidth | uomValue:'mm':'in' }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="orderNumber"
+                    title="{{'EXAMPLE.HRMINPUTPIECE.FIELDS.ORDERNUMBER|Customer Order N°' | translate}}">
+                </kendo-grid-column>
+                <kendo-grid-column field="orderPosition"
+                    title="{{'EXAMPLE.HRMINPUTPIECE.FIELDS.ORDERPOSITION|Customer Line N°' | translate}}">
+                </kendo-grid-column>
+                <kendo-grid-column field="customerName"
+                    title="{{'EXAMPLE.HRMINPUTPIECE.FIELDS.CUSTOMERNAME|Customer Name' | translate}}">
+                </kendo-grid-column>
+                <kendo-grid-column field="trialFlagLabel"
+                    title="{{'EXAMPLE.HRMINPUTPIECE.FIELDS.TRIALFLAGLABEL|Trial' | translate}}">
+                </kendo-grid-column>
+                <kendo-grid-column field="statusLabel"
+                    title="{{'EXAMPLE.HRMINPUTPIECE.FIELDS.STATUSLABEL|Status' | translate}}">
+                </kendo-grid-column>
+                <kendo-grid-column field="creationDatetime"
+                    title="{{'EXAMPLE.HRMINPUTPIECE.FIELDS.CREATIONDATETIME|Creation Date Time' | translate}}">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{dataItem.creationDatetime | date:'dd/MM/yyyy hh:mm:ss'}}
+                    </ng-template>
+                </kendo-grid-column>
+            </kendo-grid>
+        </ng-template>
+    </div>
+</div>

@@ -1,0 +1,154 @@
+<form>
+    <div class="p-grid p-nogutter">
+        <div class="p-col-5 p-col-nogutter">
+            <div class="p-grid p-nogutter">
+                <!-- Production Stop Date -->
+                <div class="p-col-12 p-col-nogutter">
+                    <input type="checkbox" id="filterProductionStopDate" class="k-checkbox"
+                        [(ngModel)]="filter.productionStopDate.isEnabled" [ngModelOptions]="modelOptions" />
+                    <label class=" k-checkbox-label" for="filterProductionStopDate">Production Stop Date</label>
+                </div>
+                <div class="p-col-12 p-col-nogutter">
+                    <app-time-filter [disabled]="!filter.productionStopDate.isEnabled"
+                        [(dateTimeFrom)]="filter.productionStopDate.value.from"
+                        [(dateTimeTo)]="filter.productionStopDate.value.to"></app-time-filter>
+                </div>
+            </div>
+        </div>
+        <div class="p-col-2 p-col-nogutter">
+            <div class="p-grid p-nogutter">
+                <!-- Produced Piece ID -->
+                <div class="p-col-12 p-col-nogutter">
+                    <input type="checkbox" id="filterProducedPieceId" class="k-checkbox"
+                        [(ngModel)]="filter.producedPieceId.isEnabled" [ngModelOptions]="modelOptions" />
+                    <label class="k-checkbox-label" for="filterProducedPieceId">Produced Piece ID</label>
+                </div>
+                <div class="p-col-12 p-col-nogutter">
+                    <input kendoTextBox [disabled]="!filter.producedPieceId.isEnabled"
+                        [(ngModel)]="filter.producedPieceId.value" [ngModelOptions]="modelOptions" />
+                </div>
+                <!-- Input Slab N° -->
+                <div class="p-col-12 p-col-nogutter">
+                    <input type="checkbox" id="filterInputSlabNumber" class="k-checkbox"
+                        [(ngModel)]="filter.inputSlabNumber.isEnabled" [ngModelOptions]="modelOptions" />
+                    <label class="k-checkbox-label" for="filterInputSlabNumber">Input Slab N°</label>
+                </div>
+                <div class="p-col-12 p-col-nogutter">
+                    <input kendoTextBox [disabled]="!filter.inputSlabNumber.isEnabled"
+                        [(ngModel)]="filter.inputSlabNumber.value" [ngModelOptions]="modelOptions" />
+                </div>
+                <!-- Heat N° -->
+                <div class="p-col-12 p-col-nogutter">
+                    <input type="checkbox" id="filterHeatNumber" class="k-checkbox"
+                        [(ngModel)]="filter.heatNumber.isEnabled" [ngModelOptions]="modelOptions" />
+                    <label class="k-checkbox-label" for="filterHeatNumber">Heat N°</label>
+                </div>
+                <div class="p-col-12 p-col-nogutter">
+                    <input kendoTextBox [disabled]="!filter.heatNumber.isEnabled" [(ngModel)]="filter.heatNumber.value"
+                        [ngModelOptions]="modelOptions" />
+                </div>
+            </div>
+        </div>
+        <div class="p-col-2 p-col-nogutter">
+            <div class="p-grid p-nogutter">
+                <!-- Material Grade ID -->
+                <div class="p-col-12 p-col-nogutter">
+                    <input type="checkbox" id="filterMaterialGradeId" class="k-checkbox"
+                        [(ngModel)]="filter.materialGradeId.isEnabled" [ngModelOptions]="modelOptions" />
+                    <label class="k-checkbox-label" for="filterMaterialGradeId">Material Grade ID</label>
+                </div>
+                <div class="p-col-12 p-col-nogutter">
+                    <kendo-dropdownlist [data]="materialGradeIdList" [textField]="'label'" [valueField]="'value'"
+                        [disabled]="!filter.materialGradeId.isEnabled" [(ngModel)]="filter.materialGradeId.value"
+                        [ngModelOptions]="modelOptions" [valuePrimitive]="true">
+                    </kendo-dropdownlist>
+                </div>
+                <!-- Coil Status -->
+                <div class="p-col-12 p-col-nogutter">
+                    <input type="checkbox" id="filterCoilStatus" class="k-checkbox"
+                        [(ngModel)]="filter.coilStatus.isEnabled" [ngModelOptions]="modelOptions" />
+                    <label class="k-checkbox-label" for="filterCoilStatus">Coil Status</label>
+                </div>
+                <div class="p-col-12 p-col-nogutter">
+                    <kendo-dropdownlist [data]="coilStatusList" [textField]="'label'" [valueField]="'value'"
+                        [disabled]="!filter.coilStatus.isEnabled" [(ngModel)]="filter.coilStatus.value"
+                        [valuePrimitive]="true" [ngModelOptions]="modelOptions">
+                    </kendo-dropdownlist>
+                </div>
+                <!-- Shift ID -->
+                <div class="p-col-12 p-col-nogutter">
+                    <input type="checkbox" id="filterShiftId" class="k-checkbox" [(ngModel)]="filter.shiftId.isEnabled"
+                        [ngModelOptions]="modelOptions" />
+                    <label class="k-checkbox-label" for="filterShiftId">Shift ID</label>
+                </div>
+                <div class="p-col-12 p-col-nogutter">
+                    <kendo-dropdownlist [data]="shiftList" [textField]="'label'" [valueField]="'value'"
+                        [disabled]="!filter.shiftId.isEnabled" [(ngModel)]="filter.shiftId.value" [valuePrimitive]="true"
+                        [ngModelOptions]="modelOptions">
+                    </kendo-dropdownlist>
+                </div>
+            </div>
+        </div>
+        <div class="p-col-2 p-col-nogutter">
+            <div class="p-grid p-nogutter">
+                <!-- Exit Thickness -->
+                <div class="p-col-12 p-col-nogutter">
+                    <input type="checkbox" id="filterExitThickness" class="k-checkbox"
+                        [(ngModel)]="filter.exitThickness.isEnabled" [ngModelOptions]="modelOptions" />
+                    <label class="k-checkbox-label"
+                        for="filterExitThickness">{{ 'Exit Thickness [mm]' | translate | uomLabel:'mm':'in' }}</label>
+                </div>
+                <div class="p-col-12">
+                    <div class="p-grid p-nogutter">
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'From' | translate }}" fxFlex>
+                                <kendo-numerictextbox [(ngModel)]="filter.exitThickness.value.from"
+                                    [ngModelOptions]="modelOptions" [disabled]="!filter.exitThickness.isEnabled"
+                                    [format]="numberFormatOptions"></kendo-numerictextbox>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'To' | translate }}" fxFlex>
+                                <kendo-numerictextbox [(ngModel)]="filter.exitThickness.value.to"
+                                    [ngModelOptions]="modelOptions" [disabled]="!filter.exitThickness.isEnabled"
+                                    [format]="numberFormatOptions"></kendo-numerictextbox>
+                            </kendo-textbox-container>
+                        </div>
+                    </div>
+                </div>
+                <!-- Exit Width -->
+                <div class="p-col-12 p-col-nogutter">
+                    <input type="checkbox" id="filterExitWidth" class="k-checkbox"
+                        [(ngModel)]="filter.exitWidth.isEnabled" [ngModelOptions]="modelOptions" />
+                    <label class="k-checkbox-label"
+                        for="filterExitWidth">{{ 'Exit Width [mm]' | translate | uomLabel:'mm':'in' }}</label>
+                </div>
+                <div class="p-col-12">
+                    <div class="p-grid p-nogutter">
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'From' | translate }}" fxFlex>
+                                <kendo-numerictextbox [(ngModel)]="filter.exitWidth.value.from"
+                                    [ngModelOptions]="modelOptions" [disabled]="!filter.exitWidth.isEnabled"
+                                    [format]="numberFormatOptions"></kendo-numerictextbox>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'To' | translate }}" fxFlex>
+                                <kendo-numerictextbox [(ngModel)]="filter.exitWidth.value.to"
+                                    [ngModelOptions]="modelOptions" [disabled]="!filter.exitWidth.isEnabled"
+                                    [format]="numberFormatOptions"></kendo-numerictextbox>
+                            </kendo-textbox-container>
+                        </div>
+                    </div>
+                </div>
+                <!-- apply button -->
+                <div class="p-col-12 p-col-nogutter">
+                    <div kendoTooltip style="text-align: center; padding-top: 10px;">
+                        <button kendoButton type="button" title="Apply filter(s)"><i class="k-icon k-i-filter"
+                                (click)="applyFilters($event)"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

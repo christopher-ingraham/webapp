@@ -1,0 +1,483 @@
+<div *ngIf="form">
+    <form class="k-form" [formGroup]="form">
+
+        <div class="p-grid">
+
+            <div class="p-col-12">
+                <h3 translate>{{title}}</h3>
+            </div>
+            <div class="p-col-12">
+                <app-audit-info operatorLabel="{{'Operator' | translate }}" [operator]="auditOperator"
+                    revisionLabel="{{'Revision' | translate }}" [revision]="auditRevision"></app-audit-info>
+            </div>
+
+            <div class="p-col-12">
+
+                <fieldset>
+                    <legend>Essential Data</legend>
+                    <div class="p-grid">
+                        <div class="p-col-3">
+                            <kendo-textbox-container floatingLabel="{{'Practice ID' | translate }}" fxFlex>
+                                <input [readonly]="true" kendoTextBox id="field-id-practiceId"
+                                    formControlName="practiceId">
+                                <span *ngIf="isInError('practiceId')"
+                                    class="k-text-error">{{getErrors('practiceId')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-3">
+                            <kendo-textbox-container floatingLabel="{{'center ID' | translate }}" fxFlex>
+                                <input [readonly]="true" kendoTextBox id="field-id-centerId" formControlName="centerId">
+                                <span *ngIf="isInError('centerId')"
+                                    class="k-text-error">{{getErrors('centerId')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-3">
+                            <kendo-textbox-container floatingLabel="{{'Input Piece ID' | translate }}" fxFlex>
+                                <input [readonly]="true" kendoTextBox id="field-id-inPieceId"
+                                    formControlName="inPieceId">
+                                <span *ngIf="isInError('inPieceId')"
+                                    class="k-text-error">{{getErrors('inPieceId')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-3">
+                            <kendo-textbox-container floatingLabel="{{'Mill Mode' | translate }}" fxFlex>
+                                <kendo-numerictextbox [readonly]="true" [spinners]="false" id="field-id-millMode"
+                                    formControlName="millMode">
+                                </kendo-numerictextbox>
+                                <span *ngIf="isInError('millMode')"
+                                    class="k-text-error">{{getErrors('millMode')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Setup Header</legend>
+                    <div class="p-grid">
+                        <div class="p-col-3">
+                            <kendo-textbox-container floatingLabel="{{'Material Grade Id' | translate }}" fxFlex>
+                                <input [readonly]="true" kendoTextBox id="field-id-materialGradeId"
+                                    formControlName="materialGradeId">
+                                <span *ngIf="isInError('materialGradeId')"
+                                    class="k-text-error">{{getErrors('materialGradeId')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-3">
+                            <kendo-textbox-container floatingLabel="{{'Density [kg/m^3]' | translate }}" fxFlex>
+                                <kendo-numerictextbox [readonly]="true" [spinners]="false" id="field-id-density"
+                                    formControlName="density">
+                                </kendo-numerictextbox>
+                                <span *ngIf="isInError('density')" class="k-text-error">{{getErrors('density')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-3">
+                            <kendo-textbox-container
+                                floatingLabel="{{'Entry Width [mm]' | translate | uomLabel:'mm':'in'}}" fxFlex>
+                                <kendo-numerictextbox [readonly]="true" [spinners]="false" id="field-id-entryWdt"
+                                    formControlName="entryWdt">
+                                </kendo-numerictextbox>
+                                <span *ngIf="isInError('entryWdt')"
+                                    class="k-text-error">{{getErrors('entryWdt')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-3">
+                            <kendo-textbox-container
+                                floatingLabel="{{'Thickness [mm]' | translate | uomLabel:'mm':'in' }}" fxFlex>
+                                <kendo-numerictextbox [readonly]="true" [spinners]="false" id="field-id-transferBarThk"
+                                    formControlName="transferBarThk">
+                                </kendo-numerictextbox>
+                                <span *ngIf="isInError('transferBarThk')"
+                                    class="k-text-error">{{getErrors('transferBarThk')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-3">
+                            <kendo-textbox-container floatingLabel="{{'Grade Group ID' | translate }}" fxFlex>
+                                <input kendoTextBox id="field-id-gradeGroupLabel" formControlName="gradeGroupLabel">
+                                <span *ngIf="isInError('gradeGroupLabel')"
+                                    class="k-text-error">{{getErrors('gradeGroupLabel')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-3">
+                            <kendo-textbox-container floatingLabel="{{'Thermal Exp Coeff' | translate }}" fxFlex>
+                                <kendo-numerictextbox [readonly]="true" [spinners]="false" id="field-id-thermalExpCoeff"
+                                    formControlName="thermalExpCoeff">
+                                </kendo-numerictextbox>
+                                <span *ngIf="isInError('thermalExpCoeff')"
+                                    class="k-text-error">{{getErrors('thermalExpCoeff')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-3">
+                            <kendo-textbox-container
+                                floatingLabel="{{'Target Cold Width [mm]' | translate | uomLabel:'mm':'in' }}" fxFlex>
+                                <kendo-numerictextbox [readonly]="true" [spinners]="false" id="field-id-targetWdt"
+                                    formControlName="targetWdt">
+                                </kendo-numerictextbox>
+                                <span *ngIf="isInError('targetWdt')"
+                                    class="k-text-error">{{getErrors('targetWdt')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-3">
+                            <kendo-textbox-container floatingLabel="{{'Width [mm]' | translate | uomLabel:'mm':'in' }}"
+                                fxFlex>
+                                <kendo-numerictextbox [readonly]="true" [spinners]="false" id="field-id-transferBarWdt"
+                                    formControlName="transferBarWdt">
+                                </kendo-numerictextbox>
+                                <span *ngIf="isInError('transferBarWdt')"
+                                    class="k-text-error">{{getErrors('transferBarWdt')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-3"></div>
+                        <div class="p-col-3">
+                            <kendo-textbox-container
+                                floatingLabel="{{'Entry Length [m]' | translate | translate | uomLabel:'m':'ft'}}"
+                                fxFlex>
+                                <kendo-numerictextbox [readonly]="true" [spinners]="false" id="field-id-pieceLength"
+                                    formControlName="pieceLength">
+                                </kendo-numerictextbox>
+                                <span *ngIf="isInError('pieceLength')"
+                                    class="k-text-error">{{getErrors('pieceLength')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-3">
+                            <kendo-textbox-container
+                                floatingLabel="{{'Entry Thickness [mm]' | translate | uomLabel:'mm':'in' }}" fxFlex>
+                                <kendo-numerictextbox [readonly]="true" [spinners]="false" id="field-id-entryThk"
+                                    formControlName="entryThk">
+                                </kendo-numerictextbox>
+                                <span *ngIf="isInError('entryThk')"
+                                    class="k-text-error">{{getErrors('entryThk')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-3">
+                            <kendo-textbox-container floatingLabel="{{'Temperature' | translate }}" fxFlex>
+                                <kendo-numerictextbox [readonly]="true" [spinners]="false" id="field-id-transferBarTemp"
+                                    formControlName="transferBarTemp">
+                                </kendo-numerictextbox>
+                                <span *ngIf="isInError('transferBarTemp')"
+                                    class="k-text-error">{{getErrors('transferBarTemp')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-3">
+                            <kendo-textbox-container
+                                floatingLabel="{{'Entry Temperature [C]' | translate | uomLabel:'C':'F' }}" fxFlex>
+                                <kendo-numerictextbox [readonly]="true" [spinners]="false" id="field-id-entryTemp"
+                                    formControlName="entryTemp">
+                                </kendo-numerictextbox>
+                                <span *ngIf="isInError('entryTemp')"
+                                    class="k-text-error">{{getErrors('entryTemp')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-3">
+                            <kendo-textbox-container
+                                floatingLabel="{{'Entry Weigth [kg]' | translate | uomLabel:'kg':'lb' }}" fxFlex>
+                                <kendo-numerictextbox [readonly]="true" [spinners]="false" id="field-id-pieceWeight"
+                                    formControlName="pieceWeight">
+                                </kendo-numerictextbox>
+                                <span *ngIf="isInError('pieceWeight')"
+                                    class="k-text-error">{{getErrors('pieceWeight')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-3">
+                            <kendo-textbox-container
+                                floatingLabel="{{'Target Cold Thickness [mm]' | translate | uomLabel:'mm':'in' }}"
+                                fxFlex>
+                                <kendo-numerictextbox [readonly]="true" [spinners]="false" id="field-id-targetThk"
+                                    formControlName="targetThk">
+                                </kendo-numerictextbox>
+                                <span *ngIf="isInError('targetThk')"
+                                    class="k-text-error">{{getErrors('targetThk')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="p-col-12">
+                <kendo-tabstrip>
+                    <kendo-tabstrip-tab title="General Data" [selected]="true">
+
+                        <ng-template kendoTabContent>
+                            <div class="p-grid">
+                                <div class="p-col-12">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Stand No</th>
+                                                <th scope="col">F1</th>
+                                                <th scope="col">F2</th>
+                                                <th scope="col">F3</th>
+                                                <th scope="col">F4</th>
+                                                <th scope="col">F5</th>
+                                                <th scope="col">F6</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Enabled Stand</td>
+                                                <td>
+                                                    <kendo-combobox [readonly]="true" [data]="enabledDisabledCombo"
+                                                        [textField]="'label'" [valueField]="'value'"
+                                                        [valuePrimitive]="true" [allowCustom]="false"
+                                                        formControlName="enabledStandF1">
+                                                    </kendo-combobox>
+                                                </td>
+                                                <td>
+                                                    <kendo-combobox [readonly]="true" [data]="enabledDisabledCombo"
+                                                        [textField]="'label'" [valueField]="'value'"
+                                                        [valuePrimitive]="true" [allowCustom]="false"
+                                                        formControlName="enabledStandF2">
+                                                    </kendo-combobox>
+                                                </td>
+                                                <td>
+                                                    <kendo-combobox [readonly]="true" [data]="enabledDisabledCombo"
+                                                        [textField]="'label'" [valueField]="'value'"
+                                                        [valuePrimitive]="true" [allowCustom]="false"
+                                                        formControlName="enabledStandF3">
+                                                    </kendo-combobox>
+                                                </td>
+                                                <td>
+                                                    <kendo-combobox [readonly]="true" [data]="enabledDisabledCombo"
+                                                        [textField]="'label'" [valueField]="'value'"
+                                                        [valuePrimitive]="true" [allowCustom]="false"
+                                                        formControlName="enabledStandF4">
+                                                    </kendo-combobox>
+                                                </td>
+                                                <td>
+                                                    <kendo-combobox [readonly]="true" [data]="enabledDisabledCombo"
+                                                        [textField]="'label'" [valueField]="'value'"
+                                                        [valuePrimitive]="true" [allowCustom]="false"
+                                                        formControlName="enabledStandF5">
+                                                    </kendo-combobox>
+                                                </td>
+                                                <td>
+                                                    <kendo-combobox [readonly]="true" [data]="enabledDisabledCombo"
+                                                        [textField]="'label'" [valueField]="'value'"
+                                                        [valuePrimitive]="true" [allowCustom]="false"
+                                                        formControlName="enabledStandF6">
+                                                    </kendo-combobox>
+                                                </td>
+                                            </tr>
+                                            <tr *ngFor="let item of generalData">
+                                                <td style="width: 20%">{{item.label}}</td>
+                                                <td>
+                                                    <kendo-numerictextbox [readonly]="true" [format]="'n3'"
+                                                        [spinners]="false" [value]="item.F1">
+                                                    </kendo-numerictextbox>
+                                                </td>
+                                                <td>
+                                                    <kendo-numerictextbox [readonly]="true" [format]="'n3'"
+                                                        [spinners]="false" [value]="item.F2">
+                                                    </kendo-numerictextbox>
+                                                </td>
+                                                <td>
+                                                    <kendo-numerictextbox [readonly]="true" [format]="'n3'"
+                                                        [spinners]="false" [value]="item.F3">
+                                                    </kendo-numerictextbox>
+                                                </td>
+                                                <td>
+                                                    <kendo-numerictextbox [readonly]="true" [format]="'n3'"
+                                                        [spinners]="false" [value]="item.F4">
+                                                    </kendo-numerictextbox>
+                                                </td>
+                                                <td>
+                                                    <kendo-numerictextbox [readonly]="true" [format]="'n3'"
+                                                        [spinners]="false" [value]="item.F5">
+                                                    </kendo-numerictextbox>
+                                                </td>
+                                                <td>
+                                                    <kendo-numerictextbox [readonly]="true" [format]="'n3'"
+                                                        [spinners]="false" [value]="item.F6">
+                                                    </kendo-numerictextbox>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </ng-template>
+
+                    </kendo-tabstrip-tab>
+
+                    <kendo-tabstrip-tab title="Ancillary Setup">
+
+                        <ng-template kendoTabContent>
+                            <div class="p-grid">
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Descaler Mode' | translate }}" fxFlex>
+                                        <kendo-combobox [readonly]="true" [data]="enabledDisabledCombo"
+                                            [textField]="'label'" [valueField]="'value'" [valuePrimitive]="true"
+                                            [allowCustom]="false" formControlName="descalerMode">
+                                        </kendo-combobox>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Descaler Head Offset Delay' | translate }}" fxFlex>
+                                        <kendo-numerictextbox [readonly]="true" [spinners]="false"
+                                            id="field-id-descalerHeadOffset" formControlName="descalerHeadOffset">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('descalerHeadOffset')"
+                                            class="k-text-error">{{getErrors('descalerHeadOffset')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Intensive Cooling Head Offset' | translate }}" fxFlex>
+                                        <kendo-numerictextbox [readonly]="true" [spinners]="false"
+                                            id="field-id-icHeadOffset" formControlName="icHeadOffset">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('icHeadOffset')"
+                                            class="k-text-error">{{getErrors('icHeadOffset')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-12">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">F1</th>
+                                                <th scope="col">F2</th>
+                                                <th scope="col">F3</th>
+                                                <th scope="col">F4</th>
+                                                <th scope="col">F5</th>
+                                                <th scope="col">F6</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of ancillarySetup">
+                                                <td style="width: 20%">{{item.label}}</td>
+                                                <td>
+                                                    <kendo-numerictextbox [readonly]="true" [format]="'n3'"
+                                                        [spinners]="false" [value]="item.F1">
+                                                    </kendo-numerictextbox>
+                                                </td>
+                                                <td>
+                                                    <kendo-numerictextbox [readonly]="true" [format]="'n3'"
+                                                        [spinners]="false" [value]="item.F2">
+                                                    </kendo-numerictextbox>
+                                                </td>
+                                                <td>
+                                                    <kendo-numerictextbox [readonly]="true" [format]="'n3'"
+                                                        [spinners]="false" [value]="item.F3">
+                                                    </kendo-numerictextbox>
+                                                </td>
+                                                <td>
+                                                    <kendo-numerictextbox [readonly]="true" [format]="'n3'"
+                                                        [spinners]="false" [value]="item.F4">
+                                                    </kendo-numerictextbox>
+                                                </td>
+                                                <td>
+                                                    <kendo-numerictextbox [readonly]="true" [format]="'n3'"
+                                                        [spinners]="false" [value]="item.F5">
+                                                    </kendo-numerictextbox>
+                                                </td>
+                                                <td>
+                                                    <kendo-numerictextbox [readonly]="true" [format]="'n3'"
+                                                        [spinners]="false" [value]="item.F6">
+                                                    </kendo-numerictextbox>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </ng-template>
+
+                    </kendo-tabstrip-tab>
+
+                    <kendo-tabstrip-tab title="Reduction & Speed Setup">
+                        <ng-template kendoTabContent>
+                            <kendo-splitter orientation="vertical" style="height: 100%;">
+                                <kendo-splitter-pane [resizable]="false" [collapsible]="false" [scrollable]="false"
+                                    style="margin-bottom: 50px;">
+
+                                    <kendo-chart>
+                                        <kendo-chart-title text="Reduction"></kendo-chart-title>
+                                        <kendo-chart-category-axis>
+                                            <kendo-chart-category-axis-item
+                                                [categories]="['F1', 'F2', 'F3', 'F4', 'F5', 'F6']">
+                                            </kendo-chart-category-axis-item>
+                                        </kendo-chart-category-axis>
+                                        <kendo-chart-series>
+                                            <kendo-chart-series-item type="column" [data]="chartSeriesReduction">
+                                            </kendo-chart-series-item>
+                                        </kendo-chart-series>
+                                    </kendo-chart>
+
+                                </kendo-splitter-pane>
+                                <kendo-splitter-pane [resizable]="false" [collapsible]="false" [scrollable]="false">
+
+                                    <kendo-chart>
+                                        <kendo-chart-title text="Mill Speed"></kendo-chart-title>
+                                        <kendo-chart-category-axis>
+                                            <kendo-chart-category-axis-item
+                                                [categories]="['F1', 'F2', 'F3', 'F4', 'F5', 'F6']">
+                                            </kendo-chart-category-axis-item>
+                                        </kendo-chart-category-axis>
+                                        <kendo-chart-series>
+                                            <kendo-chart-series-item type="column" [data]="chartSeriesMillSpeed">
+                                            </kendo-chart-series-item>
+                                        </kendo-chart-series>
+                                    </kendo-chart>
+
+                                </kendo-splitter-pane>
+                            </kendo-splitter>
+                        </ng-template>
+                    </kendo-tabstrip-tab>
+
+                    <kendo-tabstrip-tab title="Force & Temperature">
+                        <ng-template kendoTabContent>
+                            <kendo-splitter orientation="vertical" style="height: 100%;">
+                                <kendo-splitter-pane [resizable]="false" [collapsible]="false" [scrollable]="false"
+                                    style="margin-bottom: 50px;">
+
+                                    <kendo-chart>
+                                        <kendo-chart-title text="Force"></kendo-chart-title>
+                                        <kendo-chart-category-axis>
+                                            <kendo-chart-category-axis-item-labels>
+                                            </kendo-chart-category-axis-item-labels>
+                                            <kendo-chart-category-axis-item
+                                                [categories]="['F1', 'F2', 'F3', 'F4', 'F5', 'F6']">
+                                            </kendo-chart-category-axis-item>
+                                        </kendo-chart-category-axis>
+                                        <kendo-chart-series>
+                                            <kendo-chart-series-item type="column" [data]="chartSeriesForce">
+                                            </kendo-chart-series-item>
+                                        </kendo-chart-series>
+                                    </kendo-chart>
+
+                                </kendo-splitter-pane>
+                                <kendo-splitter-pane [resizable]="false" [collapsible]="false" [scrollable]="false">
+
+
+                                    <kendo-chart>
+                                        <kendo-chart-title text="Temperature"></kendo-chart-title>
+                                        <kendo-chart-category-axis>
+                                            <kendo-chart-category-axis-item
+                                                [categories]="['F1', 'F2', 'F3', 'F4', 'F5', 'F6']">
+                                            </kendo-chart-category-axis-item>
+                                        </kendo-chart-category-axis>
+                                        <kendo-chart-series>
+                                            <kendo-chart-series-item type="column" [data]="chartSeriesTemperature">
+                                            </kendo-chart-series-item>
+                                        </kendo-chart-series>
+                                    </kendo-chart>
+
+                                </kendo-splitter-pane>
+                            </kendo-splitter>
+                        </ng-template>
+                    </kendo-tabstrip-tab>
+                </kendo-tabstrip>
+
+            </div>
+
+            <div class="p-col-12">
+                <button kendoButton (click)="onCancelClick()">Back</button>
+            </div>
+
+        </div>
+
+    </form>
+</div>
+
+<div kendoDialogContainer></div>

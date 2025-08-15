@@ -1,0 +1,224 @@
+<h2>Test page</h2>
+<hr />
+
+<kendo-panelbar>
+  <kendo-panelbar-item [title]="'Api ping'">
+    <ng-template kendoPanelBarContent>
+      <div>
+        <button kendoButton (click)="apiPing()">Go</button>
+        <pre>
+                <span *ngFor="let line of apiPingResult"><br/>{{line}}</span>
+              </pre>
+      </div>
+    </ng-template>
+  </kendo-panelbar-item>
+  <kendo-panelbar-item [title]="'Api GET users'">
+    <ng-template kendoPanelBarContent>
+      <div>
+        <button kendoButton (click)="apiGetUsers()">Go</button>
+        <pre>
+          <span *ngFor="let line of apiGetUsersResult"><br/>{{line}}</span>
+        </pre>
+      </div>
+    </ng-template>
+  </kendo-panelbar-item>
+  <kendo-panelbar-item [title]="'API POST user'">
+    <ng-template kendoPanelBarContent>
+      <div>
+        <kendo-textbox-container floatingLabel="User name">
+          <input kendoTextBox [(ngModel)]="apiPostUserName" />
+        </kendo-textbox-container>
+        <button kendoButton (click)="apiPostUser()" [disabled]="!(isCreateUserEnabled |async)">Go</button>
+        <pre>
+            <span *ngFor="let line of apiPostUserResult"><br/>{{line}}</span>
+        </pre>
+      </div>
+    </ng-template>
+  </kendo-panelbar-item>
+  <kendo-panelbar-item [title]="'Notifications'">
+    <ng-template kendoPanelBarContent>
+      <div>
+        <button kendoButton (click)="postNotification(NotificationEntryLevel.Info)">Info</button>
+        <button kendoButton (click)="postNotification(NotificationEntryLevel.Success)">Success</button>
+        <button kendoButton (click)="postNotification(NotificationEntryLevel.Warning)">Warning</button>
+        <button kendoButton (click)="postNotification(NotificationEntryLevel.Error)">Error</button>
+      </div>
+    </ng-template>
+  </kendo-panelbar-item>
+  <kendo-panelbar-item [title]="'Translations'">
+    <kendo-panelbar-item [title]="'Existing Translation'" [expanded]=true>
+      <ng-template kendoPanelBarContent>
+        Expected Output: This is the translated message
+        <table>
+          <thead>
+            <tr>
+              <td>Method</td>
+              <td>Output</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tr>
+            <td>pipe</td>
+            <td>
+              <span>{{'TEST.TRANSLATE_DEFAULT.TRANSLATION_FOUND|This message should not be visible' | translate}}</span>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>directive</td>
+            <td>
+              <span translate>TEST.TRANSLATE_DEFAULT.TRANSLATION_FOUND|This message should not be visible</span>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>service</td>
+            <td><span>{{translationFoundResult}}</span></td>
+            <td>
+              <button
+                (click)="reloadTranslationFound('TEST.TRANSLATE_DEFAULT.TRANSLATION_FOUND|This message should not be visible')">reload</button>
+            </td>
+          </tr>
+        </table>
+      </ng-template>
+    </kendo-panelbar-item>
+    <kendo-panelbar-item [title]="'Existing Translation With Parameter'" [expanded]=true>
+      <ng-template kendoPanelBarContent>
+        Expected Output: This is the translated message, with parameters: {{"{value: 123}"}}
+        <table>
+          <thead>
+            <tr>
+              <td>Method</td>
+              <td>Output</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tr>
+            <td>pipe</td>
+            <td>
+              <span>{{'TEST.TRANSLATE_DEFAULT.TRANSLATION_FOUND_WITH_PARAM|This message should not be visible' | translate: {value: '123'} }}</span>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>directive</td>
+            <td>
+              <span translate
+                [translateParams]="{value: '123'}">TEST.TRANSLATE_DEFAULT.TRANSLATION_FOUND_WITH_PARAM|This message
+                should not be visible</span>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>service</td>
+            <td><span>{{translationWithParameterFoundResult}}</span></td>
+            <td>
+              <button
+                (click)="reloadTranslationWithParameterFound('TEST.TRANSLATE_DEFAULT.TRANSLATION_FOUND_WITH_PARAM|This message should not be visible', {value: 123})">reload</button>
+            </td>
+          </tr>
+        </table>
+      </ng-template>
+    </kendo-panelbar-item>
+    <kendo-panelbar-item [title]="'Missing Translation'" [expanded]=true>
+      <ng-template kendoPanelBarContent>
+        Expected Output: This is the default message
+        <table>
+          <thead>
+            <tr>
+              <td>Method</td>
+              <td>Output</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tr>
+            <td>pipe</td>
+            <td>
+              <span>{{'TEST.TRANSLATE_DEFAULT.TRANSLATION_NOT_FOUND|This is the default message' | translate}}</span>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>directive</td>
+            <td>
+              <span translate>TEST.TRANSLATE_DEFAULT.TRANSLATION_NOT_FOUND|This is the default message</span>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>service</td>
+            <td><span>{{translationNotFoundResult}}</span></td>
+            <td>
+              <button
+                (click)="reloadTranslationNotFound('TEST.TRANSLATE_DEFAULT.TRANSLATION_NOT_FOUND|This is the default message')">reload</button>
+            </td>
+          </tr>
+        </table>
+      </ng-template>
+    </kendo-panelbar-item>
+    <kendo-panelbar-item [title]="'Missing Translation With Parameter'" [expanded]=true>
+      <ng-template kendoPanelBarContent>
+        Expected Output: This is the default message with {{"{value: 123}"}} value
+        <table>
+          <thead>
+            <tr>
+              <td>Method</td>
+              <td>Output</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tr>
+            <td>pipe</td>
+            <td>
+              <span>{{'TEST.TRANSLATE_DEFAULT.TRANSLATION_NOT_FOUND_WITH_PARAM|This is the default message with {value: [[value]]} parameter' | translate: {value: '123'} }}</span>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>directive</td>
+            <td>
+              <span translate
+                [translateParams]="{value: '123'}">TEST.TRANSLATE_DEFAULT.TRANSLATION_NOT_FOUND_WITH_PARAM|This is the
+                default message with {{"{value: [[value]]}"}} parameter</span>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>service</td>
+            <td><span>{{translationWithParameterNotFoundResult}}</span></td>
+            <td>
+              <button
+                (click)="reloadTranslationWithParameterNotFound('TEST.TRANSLATE_DEFAULT.TRANSLATION_NOT_FOUND_WITH_PARAM|This is the default message with {value: [[value]]} parameter', {value: 123})">reload</button>
+            </td>
+          </tr>
+        </table>
+      </ng-template>
+    </kendo-panelbar-item>
+  </kendo-panelbar-item>
+  <kendo-panelbar-item [title]="'Locale'">
+    <ng-template kendoPanelBarContent>
+      <div class="example-config">
+        <label>
+          Locale
+          <kendo-dropdownlist [data]="availableLocales" textField="code" valueField="code" [value]="currentLocale"
+            (valueChange)="onLocaleChange($event)">
+          </kendo-dropdownlist>
+        </label>
+      </div>
+
+      <kendo-calendar></kendo-calendar>
+
+      <h3>Numbers</h3>
+      <ul>
+        <li>{{ number | localeKendoNumber:'c' }}</li>
+        <li>{{ intlService.formatNumber(number, 'c') }}</li>
+      </ul>
+
+      <h3>Dates</h3>
+      <ul>
+        <li>{{ date | localeKendoDate }}</li>
+        <li>{{ intlService.formatDate(date, 'd') }}</li>
+      </ul>
+    </ng-template>
+  </kendo-panelbar-item>
+</kendo-panelbar>

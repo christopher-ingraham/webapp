@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DA.WI.NSGHSM.Core\DA.WI.NSGHSM.Core.csproj" />
+    <ProjectReference Include="..\DA.WI.NSGHSM.Dto\DA.WI.NSGHSM.Dto.csproj" />
+    <ProjectReference Include="..\DA.WI.NSGHSM.IRepo\DA.WI.NSGHSM.IRepo.csproj" />
+    <ProjectReference Include="..\DA.WI.NSGHSM.Repo\DA.WI.NSGHSM.Repo.csproj" />
+    <PackageReference Include="System.Reactive" Version="4.3.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DA.MW.Broker">
+      <HintPath>..\Assemblies\DAMWLib\DA.MW.Broker.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DA.MW.Broker.Common">
+      <HintPath>..\Assemblies\DAMWLib\DA.MW.Broker.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DA.MW.Broker.Rabbit">
+      <HintPath>..\Assemblies\DAMWLib\Rabbit\DA.MW.Broker.Rabbit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

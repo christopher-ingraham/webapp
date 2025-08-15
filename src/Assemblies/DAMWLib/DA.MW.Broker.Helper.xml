@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DA.MW.Broker.Helper</name>
+    </assembly>
+    <members>
+        <member name="T:DA.MW.Broker.Helper.BrokerClientHelper">
+            <summary>
+            Helper level implementation of the Broker client. This library will be instantiated and
+            returned as an object of type IBrokerClientHelper by BrokerClientHelperFactory.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Helper.BrokerClientHelper.#ctor(DA.MW.Broker.IBrokerClient,DA.MW.Broker.BrokerQueueParams)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Helper.BrokerClientHelper" /> class.
+            </summary>
+            <param name="brokerClient">The broker client.</param>
+            <param name="brokerQueueParams">The broker queue parameters.</param>
+        </member>
+        <member name="M:DA.MW.Broker.Helper.BrokerClientHelper.Subscribe(System.Collections.Generic.List{System.String},System.Action{DA.MW.Broker.Common.IBrokerMessage})">
+            <summary>
+            Adds the subscription details.
+            </summary>
+            <param name="BindingKeys">The binding keys.</param>
+            <param name="Callback">The callback.</param>
+        </member>
+        <member name="M:DA.MW.Broker.Helper.BrokerClientHelper.Unsubscribe(System.Collections.Generic.List{System.String},System.Action{DA.MW.Broker.Common.IBrokerMessage})">
+            <summary>
+            Removes the subscription details.
+            </summary>
+            <param name="BindingKeys">The binding keys.</param>
+            <param name="Callback">The callback.</param>
+        </member>
+        <member name="M:DA.MW.Broker.Helper.BrokerClientHelper.MessageReceivedCallBack(DA.MW.Broker.Common.IBrokerMessage)">
+            <summary>
+            The Main call back that will handle all the subscriptions
+            </summary>
+            <param name="receivedMessage">The received message.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Helper.BrokerClientHelper.SendMessage(DA.MW.Broker.BrokerMessageParams)">
+            <summary>
+            This method sends the message using BrokerClient object
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Helper.BrokerClientHelper.GetConnectionInformation">
+            <summary>
+            Gets the connection information core using BrokerClient object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Helper.BrokerClientHelper.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Helper.BrokerClientHelperFactory">
+            <summary>
+            This factory class allows you to create an instance of the specified high-level broker
+            in a 'configuration' object, checking if the corresponding assembly is present
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Helper.BrokerClientHelperFactory.CreateBrokerClientHelper(DA.MW.Broker.BrokerClientFactoryParams,DA.MW.Broker.BrokerQueueParams)">
+            <summary>
+            Use this function to create an instance of the client Helper that must be
+            used to comunicate with the broker node of type <paramref name="bcfParams" />
+            </summary>
+            <param name="bcfParams">The Broker Client Factory parameters.</param>
+            <param name="brokerQueueParams">The broker queue parameters.</param>
+            <returns>
+            An instance of the broker client
+            </returns>
+        </member>
+        <member name="T:DA.MW.Broker.Helper.IBrokerClientHelper">
+            <summary>
+            This is the Broker.Helper specific methods
+            
+            High level interface for a library that can be used to interact with brokers.
+            This interface groups some methods that can be used to interact with a generic
+            broker even without knowing low level implementation details.
+            All the methods are thread safe.
+            After the dispose of library all library methods are no safe to invoke.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Helper.IBrokerClientHelper.Subscribe(System.Collections.Generic.List{System.String},System.Action{DA.MW.Broker.Common.IBrokerMessage})">
+            <summary>
+            This method asks the broker to create a resource that will receive all those
+            </summary>
+            <param name="BindingKeys">The binding keys.</param>
+            <param name="Callback">The callback.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Helper.IBrokerClientHelper.Unsubscribe(System.Collections.Generic.List{System.String},System.Action{DA.MW.Broker.Common.IBrokerMessage})">
+            <summary>
+            This method asks the broker to cancel a subscription
+            </summary>
+            <param name="BindingKeys">The binding keys.</param>
+            <param name="Callback">The callback.</param>
+        </member>
+        <member name="M:DA.MW.Broker.Helper.IBrokerClientHelper.SendMessage(DA.MW.Broker.BrokerMessageParams)">
+            <summary>
+            This method sends the message
+            </summary>
+            <param name="brokerMessageParams">The broker message parameters.</param>
+            <returns>
+            True if the message is added, false otherwise
+            </returns>
+        </member>
+        <member name="M:DA.MW.Broker.Helper.IBrokerClientHelper.GetConnectionInformation">
+            <summary>
+            Gets the connection information core.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DA.MW.Broker.Helper.IBrokerClientHelperFactory">
+            <summary>
+            This interface defines the factory of a broker client.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Helper.IBrokerClientHelperFactory.CreateBrokerClientHelper(DA.MW.Broker.BrokerClientFactoryParams,DA.MW.Broker.BrokerQueueParams)">
+            <summary>
+            Use this function to create an instance of the client that must be
+            used to comunicate with the broker node of type <paramref name="brokerClientFactoryParams" />
+            </summary>
+            <param name="brokerClientFactoryParams">The broker client factory parameters.</param>
+            <param name="brokerQueueParams">The broker queue parameters.</param>
+            <returns>
+            An instance of the broker client
+            </returns>
+        </member>
+    </members>
+</doc>

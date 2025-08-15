@@ -1,0 +1,1203 @@
+{
+    "$schema": "../../../../node_modules/crud-schematics/src/crud-module/schema.json",
+    "api": {
+        "url": "production/HrmInputPiece",
+        "list": "list"
+    },
+    "entity": "hrmInputPiece",
+    "fields": [
+        {
+            "name": "pieceSeq",
+            "label": "Piece Sequence",
+            "type": "number"
+        },
+        {
+            "name": "heatNo",
+            "label": "Heat N°",
+            "type": "number"
+        },
+        {
+            "name": "heatSeq",
+            "label": "Heat Sequence",
+            "type": "number"
+        },
+        {
+            "name": "heatPieceSeq",
+            "label": "Heat Piece Sequence",
+            "type": "number"
+        },
+        {
+            "name": "sourceCodeId",
+            "label": "Source Process",
+            "type": "number"
+        },
+        {
+            "name": "destCodeId",
+            "label": "Destination Process",
+            "type": "number"
+        },
+        {
+            "name": "entryTemp",
+            "label": "Entry Temp",
+            "type": "number"
+        },
+        {
+            "name": "useMeasWidth",
+            "label": "Use Measured Width",
+            "type": "number"
+        },
+        {
+            "name": "measuredWidthHead",
+            "label": "Meas Head Width [mm]",
+            "type": "number"
+        },
+        {
+            "name": "measuredWidthTail",
+            "label": "Meas Tail Width [mm]",
+            "type": "number"
+        },
+        {
+            "name": "useMeasTemp",
+            "label": "Use Measured Temperature",
+            "type": "number"
+        },
+        {
+            "name": "measuredTemp",
+            "label": "Measured Temperature [°C]",
+            "type": "number"
+        },
+        {
+            "name": "furnaceDischargeTemp",
+            "label": "Furnace Exit Temperature",
+            "type": "number"
+        },
+        {
+            "name": "targetExitTemp",
+            "label": "Target Exit Temperature",
+            "type": "number"
+        },
+        {
+            "name": "targetExitTempNtol",
+            "label": "targetExitTempNtol",
+            "type": "number"
+        },
+        {
+            "name": "targetExitTempPtol",
+            "label": "targetExitTempPtol",
+            "type": "number"
+        },
+        {
+            "name": "targetExitTempFmCustomerTol",
+            "label": "targetExitTempFmCustomerTol",
+            "type": "number"
+        },
+        {
+            "name": "targetTempDC",
+            "label": "targetTempDC",
+            "type": "number"
+        },
+        {
+            "name": "targetTempDCNtol",
+            "label": "targetTempDCNtol",
+            "type": "number"
+        },
+        {
+            "name": "targetTempDCPtol",
+            "label": "targetTempDCPtol",
+            "type": "number"
+        },
+        {
+            "name": "targetTempDCCustomerTol",
+            "label": "targetTempDCCustomerTol",
+            "type": "number"
+        },
+        {
+            "name": "targetProfile",
+            "label": "Target Profile [mm]",
+            "type": "number"
+        },
+        {
+            "name": "targetProfileNtol",
+            "label": "targetProfileNtol",
+            "type": "number"
+        },
+        {
+            "name": "targetProfilePtol",
+            "label": "targetProfilePtol",
+            "type": "number"
+        },
+        {
+            "name": "targetProfileCustomerTol",
+            "label": "targetProfileCustomerTol",
+            "type": "number"
+        },
+        {
+            "name": "targetFlatness",
+            "label": "Target Flatness [l-Units]",
+            "type": "number"
+        },
+        {
+            "name": "targetExitTempResultUpper",
+            "label": "Min Exit temperature",
+            "type": "number"
+        },
+        {
+            "name": "targetFlatnessNtol",
+            "label": "targetFlatnessNtol",
+            "type": "number"
+        },
+        {
+            "name": "targetFlatnessPtol",
+            "label": "targetFlatnessPtol",
+            "type": "number"
+        },
+        {
+            "name": "targetFlatnessCustomerTol",
+            "label": "targetFlatnessCustomerTol",
+            "type": "number"
+        },
+        {
+            "name": "targetThickness",
+            "label": "targetThickness",
+            "type": "number"
+        },
+        {
+            "name": "targetThicknessNtol",
+            "label": "targetThicknessNtol",
+            "type": "number"
+        },
+        {
+            "name": "targetThicknessPtol",
+            "label": "targetThicknessPtol",
+            "type": "number"
+        },
+        {
+            "name": "targetWidth",
+            "label": "targetWidth",
+            "type": "number"
+        },
+        {
+            "name": "targetWidthNtol",
+            "label": "targetWidthNtol",
+            "type": "number"
+        },
+        {
+            "name": "targetPTargetWidthPTOLROFILE",
+            "label": "targetPTargetWidthPTOLROFILE",
+            "type": "number"
+        },
+        {
+            "name": "targetWeight",
+            "label": "targetWeight",
+            "type": "number"
+        },
+        {
+            "name": "targetWeightNtol",
+            "label": "targetWeightNtol",
+            "type": "number"
+        },
+        {
+            "name": "targetWeightPtol",
+            "label": "targetWeightPtol",
+            "type": "number"
+        },
+        {
+            "name": "materialSpecId",
+            "label": "Material Specification Code",
+            "type": "string"
+        },
+        {
+            "name": "remark",
+            "label": "Note",
+            "type": "string"
+        },
+        {
+            "name": "alloySpecCode",
+            "label": "alloySpecCode",
+            "type": "string"
+        },
+        {
+            "name": "alloySpecVersion",
+            "label": "alloySpecVersion",
+            "type": "number"
+        },
+        {
+            "name": "trialNo",
+            "label": "Trial N°",
+            "type": "string"
+        },
+        {
+            "name": "customerId",
+            "label": "Customer ID",
+            "type": "string"
+        },
+        {
+            "name": "customerContactName",
+            "label": "Contact Name",
+            "type": "string"
+        },
+        {
+            "name": "endUse",
+            "label": "End Use",
+            "type": "string"
+        },
+        {
+            "name": "enduseSurfaceRating",
+            "label": "End Use Surface",
+            "type": "number"
+        },
+        {
+            "name": "carrierMode",
+            "label": "Carrier Mode",
+            "type": "string"
+        },
+        {
+            "name": "areaType",
+            "label": "Area Type",
+            "type": "string"
+        },
+        {
+            "name": "pieceNo",
+            "label": "Piece N°",
+            "type": "number"
+        },
+        {
+            "name": "pieceId",
+            "label": "Slab N°",
+            "type": "string",
+            "isId": true,
+            "readonly": true
+        },
+        {
+            "name": "heatId",
+            "label": "Heat N°",
+            "type": "string"
+        },
+        {
+            "name": "jobId",
+            "label": "String N°",
+            "type": "string"
+        },
+        {
+            "name": "jobPieceSeq",
+            "label": "String Coil Sequence",
+            "type": "number"
+        },
+        {
+            "name": "transition",
+            "label": "Transition ID",
+            "type": "number"
+        },
+        {
+            "name": "transitionLabel",
+            "label": "Transition",
+            "type": "string"
+        },
+        {
+            "name": "thickness",
+            "label": "Thickness",
+            "type": "number"
+        },
+        {
+            "name": "thicknessHead",
+            "label": "Head Thickness [mm]",
+            "type": "number"
+        },
+        {
+            "name": "thicknessTail",
+            "label": "Tail Thickness [mm]",
+            "type": "number"
+        },
+        {
+            "name": "width",
+            "label": "Width",
+            "type": "number"
+        },
+        {
+            "name": "widthHead",
+            "label": "Head Width [mm]",
+            "type": "number"
+        },
+        {
+            "name": "widthTail",
+            "label": "Tail Width [mm]",
+            "type": "number"
+        },
+        {
+            "name": "weight",
+            "label": "Weight [kg]",
+            "type": "number"
+        },
+        {
+            "name": "length",
+            "label": "Length [m]",
+            "type": "number"
+        },
+        {
+            "name": "materialGradeId",
+            "label": "Steel Grade ID",
+            "type": "string"
+        },
+        {
+            "name": "gradeGroupId",
+            "label": "Grade Group Id",
+            "type": "string"
+        },
+        {
+            "name": "gradeGroupLabel",
+            "label": "Grade Group",
+            "type": "string"
+        },
+        {
+            "name": "targetColdThickness",
+            "label": "Target Cold Thickness [mm]",
+            "type": "number"
+        },
+        {
+            "name": "targetColdWidth",
+            "label": "Target Cold Width [mm]",
+            "type": "number"
+        },
+        {
+            "name": "targetInternalDiameter",
+            "label": "Target Internal Diameter",
+            "type": "number"
+        },
+        {
+            "name": "orderNumber",
+            "label": "Customer Order N°",
+            "type": "string"
+        },
+        {
+            "name": "orderPosition",
+            "label": "Order Line N°",
+            "type": "string"
+        },
+        {
+            "name": "customerName",
+            "label": "Customer Name",
+            "type": "string"
+        },
+        {
+            "name": "trialFlag",
+            "label": "Trial Flag",
+            "type": "number"
+        },
+        {
+            "name": "trialFlagLabel",
+            "label": "Trial",
+            "type": "string",
+            "readonly": true
+        },
+        {
+            "name": "status",
+            "label": "Status Id",
+            "type": "number",
+            "readonly": true
+        },
+        {
+            "name": "statusLabel",
+            "label": "Piece Status",
+            "type": "string",
+            "readonly": true
+        },
+        {
+            "name": "creationDatetime",
+            "label": "Creation Date Time",
+            "type": "Date",
+            "readonly": true
+        },
+        {
+            "name": "operator",
+            "label": "Operator",
+            "type": "string",
+            "readonly": true
+        },
+        {
+            "name": "revision",
+            "label": "Revision",
+            "type": "Date",
+            "readonly": true
+        }
+    ],
+    "filter": [
+        "statusLabel", "operator", "customerName"
+    ],
+    "grid": [{
+        "label": "Default",
+        "name": "default",
+        "columns": [{
+                "field": "pieceNo",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                },
+                "isLink": true
+            },
+            {
+                "field": "heatId",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "jobPieceSeq",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "transitionLabel",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                },
+                "readonly": true
+            },
+            {
+                "field": "thicknessHead",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "thicknessTail",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "widthHead",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "widthTail",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "length",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "materialGradeId",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "targetColdThickness",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "targetColdWidth",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "orderNumber",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "orderPosition",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "customerName",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "trialFlagLabel",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "statusLabel",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "creationDatetime",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            }
+        ]
+    }],
+    "tabs": [
+        {
+            "label": "[TOP]",
+            "rows": [
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "revision",
+                    "columns": 6,
+                    "controlType": "inputDate"
+                }
+            ]
+        },
+        {
+            "label": "[HEAD]",
+            "rows": [
+                {
+                    "field": "pieceId",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "statusLabel",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "jobId",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "heatId",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "orderNumber",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "heatSeq",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "orderPosition",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "transitionLabel",
+                    "columns": 6,
+                    "controlType": "inputText"
+                }
+            ]
+        },
+        {
+            "label": "Input Piece Data",
+            "rows": [
+                {
+                    "field": "thicknessHead",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "length",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+
+                {
+                    "field": "thicknessTail",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "weight",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+
+                {
+                    "field": "thickness",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "useMeasWidth",
+                    "columns": 6,
+                    "controlType": "inputCheck"
+                },
+
+                {
+                    "field": "widthHead",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "measuredWidthHead",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+
+                {
+                    "field": "widthTail",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "measuredWidthTail",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+
+                {
+                    "field": "width",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "useMeasTemp",
+                    "columns": 6,
+                    "controlType": "inputCheck"
+                },
+
+                {
+                    "field": "entryTemp",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "measuredTemp",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+
+                {
+                    "field": "sourceCodeId",
+                    "columns": 12,
+                    "controlType": "inputNumber"
+                },
+
+                {
+                    "field": "remark",
+                    "columns": 12,
+                    "controlType": "inputText"
+                }
+            ]
+        },
+        {
+            "label": "Steel Design Data",
+            "rows": [
+                {
+                    "field": "materialGradeId",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "gradeGroupLabel",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "furnaceDischargeTemp",
+                    "columns": 12,
+                    "controlType": "inputNumber"
+                },
+
+                {
+                    "field": "targetExitTemp",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "targetExitTempNtol",
+                    "columns": 3,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "targetExitTempPtol",
+                    "columns": 3,
+                    "controlType": "inputNumber"
+                },
+
+                {
+                    "field": "targetExitTempFmCustomerTol",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "targetTempDC",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+
+                {
+                    "field": "targetTempDCNtol",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "targetTempDCPtol",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+
+                {
+                    "field": "targetTempDCCustomerTol",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+
+                {
+                    "field": "targetProfile",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "targetProfileNtol",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+
+                {
+                    "field": "targetProfilePtol",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "targetProfileCustomerTol",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+
+                {
+                    "field": "targetFlatness",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "targetFlatnessNtol",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+
+                {
+                    "field": "targetFlatnessPtol",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "targetFlatnessCustomerTol",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                }                
+            ]
+        },
+        {
+            "label": "Customer Order Data",
+            "rows": [
+                {
+                    "field": "materialSpecId",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "trialFlag",
+                    "columns": 6,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "trialFlagLabel",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "targetColdThickness",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "targetThicknessNtol",
+                    "columns": 3,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "targetThicknessPtol",
+                    "columns": 3,
+                    "controlType": "inputNumber"
+                },
+
+                {
+                    "field": "targetColdWidth",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "targetWidthNtol",
+                    "columns": 3,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "targetPTargetWidthPTOLROFILE",
+                    "columns": 3,
+                    "controlType": "inputNumber"
+                },
+
+                {
+                    "field": "targetWeight",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "targetWeightNtol",
+                    "columns": 3,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "targetWeightPtol",
+                    "columns": 3,
+                    "controlType": "inputNumber"
+                },
+
+                {
+                    "field": "customerId",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "customerContactName",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "endUse",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "areaType",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "customerName",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "destCodeId",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "carrierMode",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "enduseSurfaceRating",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "targetInternalDiameter",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                }
+            ]
+        },
+        {
+            "label": "Chemical Composition",
+            "rows": [
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 6,
+                    "controlType": "inputText"
+                }
+            ]
+        },
+        {
+            "label": "Identification",
+            "rows": [{
+                    "field": "pieceNo",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "pieceId",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "heatId",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "jobId",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "jobPieceSeq",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "transition",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "transitionLabel",
+                    "columns": 6,
+                    "controlType": "inputText"
+                }
+            ]
+        },
+        {
+            "label": "Grade",
+            "rows": [{
+                    "field": "materialGradeId",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "gradeGroupId",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "gradeGroupLabel",
+                    "columns": 6,
+                    "controlType": "inputText"
+                }
+            ]
+        },
+        {
+            "label": "Target",
+            "rows": [{
+                    "field": "targetColdThickness",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "targetColdWidth",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "targetInternalDiameter",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                }
+            ]
+        }
+    ],
+    "title": "HrmInputPiece",
+    "widgetSet": "kendo-ui"
+}

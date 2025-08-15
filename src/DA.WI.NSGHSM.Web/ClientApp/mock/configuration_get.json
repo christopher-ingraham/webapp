@@ -1,0 +1,14 @@
+{
+    "apiUrl": "http://localhost:4200",
+    "stsUrl": "http://localhost:4200",
+    "stsClient": {
+        "clientId": "NSGHSM-spa",
+        "redirectUrl": "",
+        "postLogoutRedirectUri": "",
+        "responseType": "id_token token",
+        "scope": "openid profile NSGHSM-api",
+        "silentRenew": true,
+        "silentRenewUrl": "",
+        "oAuthTokenValidationTimeOut": "30"
+    }
+}

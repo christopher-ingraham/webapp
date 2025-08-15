@@ -1,0 +1,605 @@
+{
+	"info": {
+		"_postman_id": "70c79fe7-465b-4032-916a-0de5a928f3eb",
+		"name": "Report",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET RepHmPiece list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5011/report/RepHmPiece/list?page.take=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"RepHmPiece",
+						"list"
+					],
+					"query": [
+						{
+							"key": "page.take",
+							"value": "10"
+						},
+						{
+							"key": "filter.StartDate",
+							"value": "2018-10-27T23:00:00.000Z",
+							"disabled": true
+						},
+						{
+							"key": "filter.EndDate",
+							"value": "2019-01-27T23:00:00.000Z",
+							"disabled": true
+						},
+						{
+							"key": "filter.SearchOutputCoil",
+							"value": "GH_GABI-",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET HrmInputPiece list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5011/report/HrmInputPiece/list?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"HrmInputPiece",
+						"list"
+					],
+					"query": [
+						{
+							"key": "filter.OutPieceArea",
+							"value": "AM",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET HrmJob list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5011/report/HrmJob/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"HrmJob",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET RepHmPieceStat list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5011/report/RepHmPieceStat/list?page.take=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"RepHmPieceStat",
+						"list"
+					],
+					"query": [
+						{
+							"key": "page.take",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Aux Value list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5011/report/AuxValue/list?filter.VariableId=EX_INT_DIAMETER",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"AuxValue",
+						"list"
+					],
+					"query": [
+						{
+							"key": "page.take",
+							"value": "10",
+							"disabled": true
+						},
+						{
+							"key": "filter.VariableId",
+							"value": "EX_INT_DIAMETER"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET HrmJob by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5011/report/HrmJob/657657",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"HrmJob",
+						"657657"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET HrmInputPiece by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5011/report/HrmInputPiece/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"HrmInputPiece",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Sample ID by Heat_No",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5011/report/HrmAnalysisData/list?filter.HeatNovalue=HEAT_NO",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"HrmAnalysisData",
+						"list"
+					],
+					"query": [
+						{
+							"key": "filter.HeatNovalue",
+							"value": "HEAT_NO"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Tdb Process Code by CodeType (1 or 2)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5011/report/TdbProcessCode/list?filter.CodeType=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"TdbProcessCode",
+						"list"
+					],
+					"query": [
+						{
+							"key": "filter.CodeType",
+							"value": "1"
+						},
+						{
+							"key": "filter.CodeType",
+							"value": "2",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Hrm Heat list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5011/report/HrmHeat/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"HrmHeat",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Tdb Material Grade list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5011/report/TdbMaterialGrade/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"TdbMaterialGrade",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Grade Group list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5011/report/TdbGradeGroup/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"TdbGradeGroup",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Aux Value by VALUE_ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5011/report/AuxValue/areatype",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"AuxValue",
+						"areatype"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Tdb Alloy Spec list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5011/report/TdbAlloySpec/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"TdbAlloySpec",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Tdb Alloy by Alloy_Code",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5011/report/TdbAlloy/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"TdbAlloy",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Tdb Alloy Spec by Alloy Spec CNT",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5011/report/TdbAlloySpec/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"TdbAlloySpec",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST new HrmJob",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Job_Id\": \"566577\",\n\t\"Job_seq\": 7,\n\t\"Remark\": \"fghfgh\",\n\t\"Status\": 5,\n\t\"Order_Start_Date\": \"2018-10-24T15:51:30\",\n\t\"Operator\": \"Administrator\",\n\t\"Revision\": \"2019-02-24T15:51:30\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5011/report/HrmJob/new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"HrmJob",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST new HrmInputPiece",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"piece_No\": 13,\r\n    \"piece_Id\": \"P7455778\",\r\n    \"job_Id\": \"2019102401\",\r\n    \"job_Piece_Seq\": 8,\r\n    \"transition\": 77,\r\n    \"thickness\": 32,\r\n    \"thickness_Head\": 23,\r\n    \"thickness_Tail\": 10,\r\n    \"width\": 454,\r\n    \"width_Head\": 5434,\r\n    \"width_Tail\": 453,\r\n    \"weight\": 20000,\r\n    \"length\": 203,\r\n    \"material_Grade_Id\": \"STEEL_1\",\r\n    \"target_Cold_Thickness\": 33,\r\n    \"target_Cold_Width\": 23,\r\n    \"Target_Internal_Diameter\": 34,\r\n    \"status\": 10,\r\n    \"Dest_Code_Id\": 2,\r\n    \"Source_Code_Id\": 5,\r\n    \"Heat_No\": 1,\r\n    \"creation_Datatime\": \"0001-01-01T00:00:00\",\r\n    \"operator\": \"Administrator\",\r\n    \"revision\": \"2019-10-24T15:51:30\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5011/report/HrmInputPiece/new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"HrmInputPiece",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE HrmJob by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5011/report/HrmJob/566577",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"HrmJob",
+						"566577"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE HrmInputPiece by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5011/report/HrmInputPiece/P7455778",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"HrmInputPiece",
+						"P7455778"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE HrmJob ",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Job_seq\": 67,\n\t\"Remark\": \"gfhfdh\",\n\t\"Status\": 1,\n\t\"Order_Start_Date\": \"2018-10-24T15:51:30\",\n\t\"Operator\": \"Administrator\",\n\t\"Revision\": \"2019-02-24T15:51:30\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5011/report/HrmJob/986909606",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"HrmJob",
+						"986909606"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE HrmInputPiece",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\r\n\t\"piece_No\": 14,\r\n    \"job_Id\": \"2019102401\",\r\n    \"job_Piece_Seq\": 3,\r\n    \"thickness\": 11,\r\n    \"thickness_Head\": 5,\r\n    \"thickness_Tail\": 4,\r\n    \"width\": 343,\r\n    \"width_Head\": 222,\r\n    \"width_Tail\": 221,\r\n    \"weight\": 333,\r\n    \"length\": 111,\r\n    \"material_Grade_Id\": \"STEEL_1\",\r\n    \"target_Cold_Thickness\": 0,\r\n    \"target_Cold_Width\": 0,\r\n    \"Target_Internal_Diameter\": 34,\r\n    \"status\": 10,\r\n    \"Dest_Code_Id\": 2,\r\n    \"Source_Code_Id\": 5,\r\n    \"Heat_No\": 1,\r\n    \"creation_Datatime\": \"0001-01-01T00:00:00\",\r\n    \"operator\": \"Administrator\",\r\n    \"revision\": \"2019-10-24T15:51:30\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5011/report/HrmInputPiece/P7455778",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5011",
+					"path": [
+						"report",
+						"HrmInputPiece",
+						"P7455778"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

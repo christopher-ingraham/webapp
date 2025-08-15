@@ -1,0 +1,256 @@
+{
+    "$schema": "../../../../node_modules/crud-schematics/src/crud-module/schema.json",
+    "api": {
+        "url": "production/RepHmSetup",
+        "list": "list"
+    },
+    "entity": "usedSetup",
+    "fields": [
+        {
+            "name": "operator",
+            "label": "Operator",
+            "type": "string"
+        },
+        {
+            "name": "revision",
+            "label": "Revision",
+            "type": "Date"
+        },
+        {
+            "name": "practiceId",
+            "label": "Practice ID",
+            "type": "string"
+        },
+        {
+            "name": "centerId",
+            "label": "center ID",
+            "type": "string"
+        },
+        {
+            "name": "inPieceId",
+            "label": "Input Piece ID",
+            "type": "string"
+        },
+        {
+            "name": "millMode",
+            "label": "Mill Mode",
+            "type": "number"
+        },
+
+
+        {
+            "name": "materialGradeId",
+            "label": "Material Grade Id",
+            "type": "string"
+        },
+        {
+            "name": "gradeGroupLabel",
+            "label": "Grade Group ID",
+            "type": "string"
+        },
+        {
+            "name": "entryTemp",
+            "label": "Entry Temperature [°C]",
+            "type": "number"
+        },
+        {
+            "name": "density",
+            "label": "Density [Kg/m^3]",
+            "type": "number"
+        },
+        {
+            "name": "thermalExpCoeff",
+            "label": "Thermal Exp Coeff",
+            "type": "number"
+        },
+        {
+            "name": "pieceLength",
+            "label": "Entry Length [m]",
+            "type": "number"
+        },
+        {
+            "name": "pieceWeight",
+            "label": "Entry Weigth [Kg]",
+            "type": "number"
+        },
+        {
+            "name": "entryWdt",
+            "label": "Entry Width [mm]",
+            "type": "number"
+        },
+        {
+            "name": "targetWdt",
+            "label": "Target Cold Width [mm]",
+            "type": "number"
+        },
+        {
+            "name": "entryThk",
+            "label": "Entry Thickness [mm]",
+            "type": "number"
+        },
+        {
+            "name": "targetThk",
+            "label": "Target Cold Thickness [mm]",
+            "type": "number"
+        },
+        {
+            "name": "transferBarThk",
+            "label": "Thickness [mm]",
+            "type": "number"
+        },
+        {
+            "name": "transferBarWdt",
+            "label": "Width [mm]",
+            "type": "number"
+        },
+        {
+            "name": "transferBarTemp",
+            "label": "Temperature",
+            "type": "number"
+        }
+
+    ],
+    "filter": [],
+    "grid": [],
+    "tabs": [
+        {
+            "label": "[TOP]",
+            "rows": [
+            {
+                "field": "operator",
+                "columns": 6,
+                "controlType": "inputText"
+            },
+            {
+                "field": "revision",
+                "columns": 6,
+                "controlType": "inputDate"
+            }
+        ]},
+        {
+            "label": "[HEAD]",
+            "rows": [
+            {
+                "field": "practiceId",
+                "columns": 3,
+                "controlType": "inputText"
+            },
+            {
+                "field": "centerId",
+                "columns": 3,
+                "controlType": "inputText"
+            },
+            {
+                "field": "inPieceId",
+                "columns": 3,
+                "controlType": "inputText"
+            },
+            {
+                "field": "millMode",
+                "columns": 3,
+                "controlType": "inputNumber"
+            }
+        ]},
+        {
+            "label": "[SETUPHEADER]",
+            "rows": [
+            {
+                "field": "materialGradeId",
+                "columns": 3,
+                "controlType": "inputText"
+            },
+            {
+                "field": "density",
+                "columns": 3,
+                "controlType": "inputNumber"
+            },
+            {
+                "field": "entryWdt",
+                "columns": 3,
+                "controlType": "inputNumber"
+            },
+            {
+                "field": "transferBarThk",
+                "columns": 3,
+                "controlType": "inputNumber"
+            },
+            {
+                "field": "gradeGroupLabel",
+                "columns": 3,
+                "controlType": "inputText"
+            },
+            {
+                "field": "thermalExpCoeff",
+                "columns": 3,
+                "controlType": "inputNumber"
+            },
+            {
+                "field": "targetWdt",
+                "columns": 3,
+                "controlType": "inputNumber"
+            },
+            {
+                "field": "transferBarWdt",
+                "columns": 3,
+                "controlType": "inputNumber"
+            },
+            {
+                "field": "pieceLength",
+                "columns": 3,
+                "controlType": "inputNumber"
+            },
+            {
+                "field": "pieceLength",
+                "columns": 3,
+                "controlType": "inputNumber"
+            },
+            {
+                "field": "entryThk",
+                "columns": 3,
+                "controlType": "inputNumber"
+            },
+            {
+                "field": "transferBarTemp",
+                "columns": 3,
+                "controlType": "inputNumber"
+            },
+            {
+                "field": "entryTemp",
+                "columns": 3,
+                "controlType": "inputNumber"
+            },
+
+            {
+                "field": "pieceWeight",
+                "columns": 3,
+                "controlType": "inputNumber"
+            },
+
+            {
+                "field": "targetThk",
+                "columns": 3,
+                "controlType": "inputNumber"
+            }
+
+
+        ]},
+        {
+            "label": "General Data",
+            "rows": []
+        },
+        {
+            "label": "Ancillary Setup",
+            "rows": []
+        },
+        {
+            "label": "Reduction & Speed Setup",
+            "rows": []
+        },
+        {
+            "label": "Force & Temperature",
+            "rows": []
+        }
+    ],
+    "title": "UsedSetup",
+    "widgetSet": "kendo-ui"
+}

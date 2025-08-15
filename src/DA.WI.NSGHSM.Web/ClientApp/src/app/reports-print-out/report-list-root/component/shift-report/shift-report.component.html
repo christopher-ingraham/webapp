@@ -1,0 +1,128 @@
+<div fxLayout="column" class="fx-full-height">
+    <div fxFlex class="fx-full-height-grid-container">
+        <div *ngIf="isMobile | async; then cardList else columnGrid"></div>
+        <ng-template #cardList>
+            <kendo-grid class="fx-full-height fx-full-width" [data]="data" [pageable]="true" [pageSize]="pageSize"
+                [skip]="dataRequest.page.skip" [loading]="isLoading" (pageChange)="onPageChange($event)"
+                (cellClick)="onRowClick($event)" [selectable]="selectableSettings">
+                <kendo-grid-column title="{{'EXAMPLE.ITEMS|Items' | translate}}">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div fxLayout="column">
+
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Shift Start Date' | translate }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{ dataItem.shiftStartDate | date:'dd/MM/yyyy hh:mm:ss' }}</span>
+                            </div>
+
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Shift End Date' | translate }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{ dataItem.shiftEndDate | date:'dd/MM/yyyy hh:mm:ss' }}</span>
+                            </div>
+
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Shift ID' | translate }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{ dataItem.shiftLabel }}</span>
+                            </div>
+
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Crew ID' | translate }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{ dataItem.crewLabel }}</span>
+                            </div>
+
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Fiscal Month Start' | translate }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{ dataItem.fiscalMonthStart | date:'dd/MM/yyyy' }}</span>
+                            </div>
+
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Fiscal Month Stop' | translate }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{ dataItem.fiscalMonthStop | date:'dd/MM/yyyy' }}</span>
+                            </div>
+
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Shift Slabs Weight [kg]' | translate | uomLabel:'kg':'lb' }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{ dataItem.shiftSlabsWeight | uomValue:'kg':'lb' }}</span>
+                            </div>
+
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Shift Coils Weight [kg]' | translate | uomLabel:'kg':'lb' }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{ dataItem.shiftCoilsWeight | uomValue:'kg':'lb' }}</span>
+                            </div>
+
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Optimal Weight [kg]' | translate | uomLabel:'kg':'lb' }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{ dataItem.optimalWeight | uomValue:'kg':'lb' }}</span>
+                            </div>
+
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0" translate>{{ 'Shift Utilization [%]' | translate }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{ dataItem.shiftUtilization }}</span>
+                            </div>
+
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Last Piece N°' | translate }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{ dataItem.lastPieceNumber }}</span>
+                            </div>
+
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0">{{ 'Shift Number of Coils' | translate }}</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{ dataItem.shiftNumberOfCoils }}</span>
+                            </div>
+
+                        </div>
+                    </ng-template>
+                </kendo-grid-column>
+            </kendo-grid>
+        </ng-template>
+        <ng-template #columnGrid>
+            <kendo-grid class="fx-full-height fx-full-width" [data]="data" [pageable]="true" [pageSize]="pageSize"
+                [skip]="dataRequest.page.skip" [loading]="isLoading" (pageChange)="onPageChange($event)"
+                [resizable]="true" (cellClick)="onRowClick($event)" [selectable]="selectableSettings">
+
+                <kendo-grid-column field="shiftStartDate" title="{{ 'Shift Start Date' | translate }}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.shiftStartDate | date:'dd/MM/yyyy hh:mm:ss' }}</ng-template>
+                </kendo-grid-column>
+
+                <kendo-grid-column field="shiftEndDate" title="{{ 'Shift End Date' | translate }}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.shiftEndDate | date:'dd/MM/yyyy hh:mm:ss' }}</ng-template>
+                </kendo-grid-column>
+
+                <kendo-grid-column field="shiftLabel" title="{{ 'Shift ID' | translate }}"></kendo-grid-column>
+
+                <kendo-grid-column field="crewLabel" title="{{ 'Crew ID' | translate }}"></kendo-grid-column>
+
+                <kendo-grid-column field="fiscalMonthStart" title="{{ 'Fiscal Month Start' | translate }}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.fiscalMonthStart | date:'dd/MM/yyyy' }}</ng-template>
+                </kendo-grid-column>
+
+                <kendo-grid-column field="fiscalMonthStop" title="{{ 'Fiscal Month Stop' | translate }}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.fiscalMonthStop | date:'dd/MM/yyyy' }}</ng-template>
+                </kendo-grid-column>
+
+                <kendo-grid-column field="shiftSlabsWeight" title="{{ 'Shift Slabs Weight [kg]' | translate | uomLabel:'kg':'lb' }}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.shiftSlabsWeight | uomValue:'kg':'lb' }}</ng-template>
+                </kendo-grid-column>
+
+                <kendo-grid-column field="shiftCoilsWeight"title="{{ 'Shift Coils Weight [kg]' | translate | uomLabel:'kg':'lb' }}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.shiftCoilsWeight | uomValue:'kg':'lb' }}</ng-template>
+                </kendo-grid-column>
+
+                <kendo-grid-column field="optimalWeight" title="{{ 'Optimal Weight [kg]' | translate | uomLabel:'kg':'lb' }}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.optimalWeight | uomValue:'kg':'lb' }}</ng-template>
+                </kendo-grid-column>
+
+                <kendo-grid-column field="shiftUtilization" title="{{ 'Shift Utilization [%]' | translate }}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.shiftUtilization }}</ng-template>
+                </kendo-grid-column>
+
+                <kendo-grid-column field="lastPieceNumber" title="{{ 'Last Piece N°' | translate }}">
+                    <ng-template kendoGridCellTemplate let-dataItem>{{ dataItem.lastPieceNumber }}</ng-template>
+                </kendo-grid-column>
+
+                <kendo-grid-column field="shiftNumberOfCoils" title="{{ 'Shift Number of Coils' | translate }}">
+                </kendo-grid-column>
+
+            </kendo-grid>
+        </ng-template>
+    </div>
+</div>

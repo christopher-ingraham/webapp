@@ -1,0 +1,730 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DA.MW.Broker.Dispatcher</name>
+    </assembly>
+    <members>
+        <member name="T:DA.MW.Broker.Dispatcher.DspConstants">
+            <summary>
+            Dispatcher Constants
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.DspProtocolHeader">
+            <summary>
+            Protocol header
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspProtocolHeader.ph_sync_number">
+            unsigned char[]
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspProtocolHeader.ph_len">
+            unsigned int
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspProtocolHeader.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Dispatcher.DspProtocolHeader"/> struct.
+            </summary>
+            <param name="ph_len">Length of the ph.</param>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.DspApplicationHeader">
+            <summary>
+            Application header
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspApplicationHeader.domain">
+            char[]
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspApplicationHeader.group">
+            char[]
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspApplicationHeader.code">
+            char[]
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspApplicationHeader.area_id">
+            int
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspApplicationHeader.station_code">
+            int
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspApplicationHeader.source">
+            char[]
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspApplicationHeader.plc_id">
+            char[]
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspApplicationHeader.plc_op">
+            byte
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspApplicationHeader.reply_id">
+            int
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspApplicationHeader.reply_result">
+            byte
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspApplicationHeader.timestamp">
+            double
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspApplicationHeader.mask">
+            int
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspApplicationHeader.icon">
+            byte
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspApplicationHeader.sender">
+            int
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspApplicationHeader.recipient">
+            int
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspApplicationHeader.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Dispatcher.DspApplicationHeader"/> struct.
+            </summary>
+            <param name="code">The code.</param>
+        </member>
+        <member name="P:DA.MW.Broker.Dispatcher.DspApplicationHeader.plcIdInt">
+            <summary>
+            Gets the PLC identifier int.
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.DspCliRec">
+            <summary>
+            Client Introduction
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspCliRec.id">
+            int
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspCliRec.host">
+            char[21]
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspCliRec.domain">
+            char[21]
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspCliRec.area_id">
+            int
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspCliRec.station_code">
+            int
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspCliRec.process_name">
+            char[21]
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspCliRec.last_sent_msg_time">
+            double
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspCliRec.last_received_msg_time">
+            double
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspCliRec.connection_time">
+            double
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspCliRec.recv_messages">
+            unsigned short
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspCliRec.sent_messages">
+            unsigned short
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspCliRec.recv_bytes">
+            unsigned int
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspCliRec.sent_bytes">
+            unsigned int
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspCliRec.snd_msg_in_queue">
+            unsigned short
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspCliRec.flags">
+            unsigned short
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspCliRec.subscribed_groups">
+            char[210]
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspCliRec.reserved">
+            char[20]
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspCliRec.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Dispatcher.DspCliRec"/> struct.
+            </summary>
+            <param name="id">The identifier.</param>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.DspWdgRec">
+            <summary>
+            Client Wdg Rec
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspWdgRec.rcv_msg_in_queue">
+            unsigned short
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspWdgRec.snd_msg_in_queue">
+            unsigned short
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspWdgRec.max_recv_queue_len">
+            unsigned short
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspWdgRec.max_send_queue_len">
+            unsigned short
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspWdgRec.flags">
+            unsigned short
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspWdgRec.reserved">
+            char[10]
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.DspUtils">
+            <summary>
+            Utility function ti serialize / deserialize messages
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspUtils.DeserializeStruct``1(System.Byte[],System.Int32)">
+            <summary>
+            Given a byte array and a struct type, deserializes byte array and return struct
+            </summary>
+            <typeparam name="T">struct type</typeparam>
+            <param name="data">byte array</param>
+            <param name="startIndex">offset in byte array</param>
+            <returns>deserialized struct</returns>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspUtils.SerializeStruct``1(``0)">
+            <summary>
+            Given a struct, serializes it to a byte array
+            </summary>
+            <typeparam name="T">struct type</typeparam>
+            <param name="msg">struct value</param>
+            <returns>return serialized struct</returns>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspUtils.SerializeStructToXML``1(``0)">
+            <summary>
+            Serializes the structure to XML.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="msg">The MSG.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspUtils.DeserializeStructFromXML``1(System.String)">
+            <summary>
+            Deserializes the structure from XML.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Xml">The XML.</param>
+            <returns></returns>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.DspMessage">
+            <summary>
+            Generic class for Dispatcher Messages
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Dispatcher.DspMessage"/> class.
+            NOTE: (Paolo Canzian) It has been added and made public just to be able to test
+            the system. The whole structure is to be redesigned.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspMessage.#ctor(System.String)">
+            <summary>
+            Base Constructor
+            </summary>
+            <param name="msgCode"> Message Code Number </param>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspMessage.#ctor(DA.MW.Broker.Dispatcher.DspProtocolHeader,DA.MW.Broker.Dispatcher.DspApplicationHeader)">
+            <summary>
+            Constructor that builds a message from Protocol and Application Header
+            </summary>
+            <param name="dspProtocolHeader">Protocol header</param>
+            <param name="dspApplicationHeader">Application Header</param>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspMessage.getMsgCode">
+            <summary>
+            Return Message Code
+            </summary>
+            <returns>Message COde</returns>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspMessage.toByteArray">
+            <summary>
+            Serializes message to byte array, which can be sent over network
+            </summary>
+            <returns>serialized message</returns>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.DspMessagePayload`1">
+            <summary>
+            This class represents a Dispatcher message with non-null body (payload)
+            </summary>
+            <typeparam name="T">payload type</typeparam>
+        </member>
+        <member name="P:DA.MW.Broker.Dispatcher.DspMessagePayload`1.payload">
+            <summary>
+            Gets or sets the payload.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspMessagePayload`1.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="msgCode">Message code</param>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspMessagePayload`1.toByteArray">
+            <summary>
+            Serializes message to byte array, which can be sent over network
+            </summary>
+            <returns>serialized message</returns>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspMessagePayload`1.#ctor(DA.MW.Broker.Dispatcher.DspProtocolHeader,DA.MW.Broker.Dispatcher.DspApplicationHeader,`0)">
+            <summary>
+            Constructor that builds a Message from Protocol Header, Application Header and payload
+            </summary>
+            <param name="dspProtocolHeader"></param>
+            <param name="dspApplicationHeader"></param>
+            <param name="payload"></param>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.DspMessageKeepAlive">
+            <summary>
+            Keepalive Message
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.DspMessageCliIntro">
+            <summary>
+            Client Intro Message
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.DspMessageDisableTimeout">
+            <summary>
+            Disable Timeout Message
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.DspMessageWatchdog">
+            <summary>
+            Watchdog Message
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.DspMessageTest">
+            <summary>
+            Test Message
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.DspMessageGroupSubscription">
+            <summary>
+            Group Subscription Message
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.DspMessageFactory">
+            <summary>
+            Class that builds Dispatcher messages starting from network data (Protocol Header, 
+            Application Header and payload byte array). As the same instance is shared between multiple threads,
+            it is immutable, so it becomes automatically thread-safe.
+            
+            </summary>
+            
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspMessageFactory.newDspMessage(DA.MW.Broker.Dispatcher.DspProtocolHeader,DA.MW.Broker.Dispatcher.DspApplicationHeader,System.Byte[])">
+            <summary>
+            This method builds the message for common message types. Usually can be overrided for each module, 
+            in order to add additional message types. This factory method is used for deserializing messages that
+            arrive through dispatcher.
+            </summary>
+            <param name="dspProtocolHeader">Protocol Header</param>
+            <param name="dspApplicationHeader">Application Header </param>
+            <param name="bytePayload">Byte array (can be null)</param>
+            <returns>Dispatcher message</returns>
+            
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspMessageFactory.newDspMessage(System.String)">
+            <summary>
+            This method builds the message for common message types. Usually can be overrided for each module, 
+            in order to add additional message types. This factory method is used for messages to be sent through
+            dispatcher.
+            </summary>
+            <param name="msgCode">Message Code</param>
+            <returns>Dispatcher message</returns>
+            
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.DspSocket">
+            <summary>
+            This class extends TaggedSocket to implement Dispatcher protolo handling
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.DspSocket.DspStatus">
+            <summary>
+            Dispatcher Status
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.DspSocket.MsgStatus">
+            <summary>
+            Protocol status
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspSocket.dspProtocolHeader">
+            <summary>
+            Protocol Header
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.DspSocket.dspApplicationHeader">
+            <summary>
+            Application Header
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Dispatcher.DspSocket.dspMessageFactory">
+            <summary>
+            Dispatcher Message Factory used to "build" proper message classes from data received from the network
+            </summary>
+        </member>
+        <member name="E:DA.MW.Broker.Dispatcher.DspSocket.evtNewMsg">
+            <summary>
+            Event raised when a new message has been received
+            </summary>
+        </member>
+        <member name="E:DA.MW.Broker.Dispatcher.DspSocket.evtIntroduced">
+            <summary>
+            Occurs when [evt introduced].
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Dispatcher.DspSocket.ClientData">
+            <summary>
+            Gets or sets the client data.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspSocket.#ctor(System.String,System.Int32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="host">Dispatcher host</param>
+            <param name="port">Dispatcher Port</param>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspSocket.Disconnect">
+            <summary>
+            Disconnects this instance.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspSocket.DspConnected">
+            <summary>
+            This callback is called when socket connection has been successfully established 
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspSocket.DspReceived">
+            <summary>
+            This callback is called when some data has been received (and expected bytes has reached 0) 
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspSocket.SendKeepalive">
+            <summary>
+            This method sends keepalive message, and is called on timer expiration
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspSocket.DspTimerExpired">
+            <summary>
+            Method called on timer expiration
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspSocket.OnNewMessage">
+            <summary>
+            This method is called when a new message arrives
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.DspSocketData">
+            <summary>
+            Class keeping the client connection data
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Dispatcher.DspSocketData.Domain">
+            <summary>
+            Gets or sets the domain.
+            </summary>
+            <value>
+            The domain.
+            </value>
+        </member>
+        <member name="P:DA.MW.Broker.Dispatcher.DspSocketData.AreaId">
+            <summary>
+            Gets or sets the area id.
+            </summary>
+            <value>
+            The area id.
+            </value>
+        </member>
+        <member name="P:DA.MW.Broker.Dispatcher.DspSocketData.StationCode">
+            <summary>
+            Gets or sets the station code.
+            </summary>
+            <value>
+            The station code.
+            </value>
+        </member>
+        <member name="P:DA.MW.Broker.Dispatcher.DspSocketData.ProcessName">
+            <summary>
+            Gets or sets the name of the process.
+            </summary>
+            <value>
+            The name of the process.
+            </value>
+        </member>
+        <member name="P:DA.MW.Broker.Dispatcher.DspSocketData.IsTimeoutDisabled">
+            <summary>
+            Gets or sets a value indicating whether this instance is timeout disabled.
+            </summary>
+            <value>
+            	<c>true</c> if this instance is timeout disabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:DA.MW.Broker.Dispatcher.DspSocketData.SubscribedGroups">
+            <summary>
+            Gets or sets the subscribed groups.
+            </summary>
+            <value>
+            The subscribed groups.
+            </value>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.DspSocketData.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Dispatcher.DspSocketData"/> class.
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.SocketManagerMsg">
+            <summary>
+            This class represent an internal message that is sent to the SocketManager. As the SocketManager runs in its own thread,
+            the only way to interact with it is through internal messages sent over a thread-safe BlockingQueue.
+            </summary>
+            
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.SocketManagerMsg.MsgType">
+            <summary>
+            Messages can be for write to a socket, or to Shutdown
+            </summary>
+            
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.SocketManagerMsg.#ctor(DA.MW.Broker.Dispatcher.SocketManagerMsg.MsgType,DA.MW.Broker.Dispatcher.TaggedSocket,System.Byte[])">
+            <summary>
+            The constructor builds the messages
+            </summary>
+            <param name="msgType">Type of message</param>
+            <param name="taggedSocket">For write messages, the TaggedSocket to use to Send the byte buffer</param>
+            <param name="buffer">For write messages, the byte array to be sent</param>
+            
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.SocketManager">
+            <summary>
+            The SocketManager has a collection of TaggedSockets (both client and server) which can be used to make or receive connections.
+            A TaggedSocket is a socket with additional info and methods (protocol parsing routines, timers, etc). SocketManager is
+            single-threaded and is based around Socket.Select system call, in which sockets are monitored for reading, writing and error.
+            Select syscall waits until an event occours (socket ready for reading, for example) or timeout expires.
+            </summary>
+            
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.SocketManager.msgQueue">
+            <summary>
+            This thread-safe internal messagequeue contains all the activities that SocketManager is requires to perform 
+            (mainly write and shutdown) 
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Dispatcher.SocketManager.useSelfConnection">
+            <summary>
+            In order to wakeup from select call without waiting for timeout expire, SocketManager can optionally use 
+            an internal connection (selfConnection) made by two internal sockets:
+            - a server socket which listens to a free port on localhost
+            - a client socket which connects to the server "self" socket
+            When a byte is written to the internal client socket (<seealso cref="M:DA.MW.Broker.Dispatcher.SocketManager.wakeup"/>), the select method exits immediately and 
+            processes internal message queue
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.SocketManager.selfClientSocket">
+            <summary>
+            internal client socket;
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.SocketManager.selfServerSocket">
+            <summary>
+            internal server socket
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.SocketManager.socketDictionary">
+            <summary>
+            This dictionary holds all the sockets (client and server) managed by socket manager
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Dispatcher.SocketManager.timeout">
+            <summary>
+            This parameters represents select timeout
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.SocketManager.looping">
+            <summary>
+            if false, SocketManager terminates
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.SocketManager.socketCheckThread">
+            <summary>
+            The thread that will check the socket connection and data
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.SocketManager.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.SocketManager.Shutdown">
+            <summary>
+            Closes all the active connections and then stops the socket checking thread.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.SocketManager.addSocket(DA.MW.Broker.Dispatcher.TaggedSocket)">
+            <summary>
+            Adds a TaggedSocket to the SocketManager
+            </summary>
+            <param name="ts">TaggedSocket to be added</param>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.SocketManager.RemoveSocket(DA.MW.Broker.Dispatcher.TaggedSocket)">
+            <summary>
+            Removes the socket.
+            </summary>
+            <param name="ts">The ts.</param>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.SocketManager.checkServerConnections">
+            <summary>
+            This method checks for server connections to be alive and listening
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.SocketManager.wakeup">
+            <summary>
+            This method writes a byte to the internal connection to wakeup from select syscall
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.SocketManager.Send(DA.MW.Broker.Dispatcher.TaggedSocket,System.Byte[])">
+            <summary>
+            This method is used to write to a socket, normally is called by another thread. Internally calls
+            wakeup method.
+            </summary>
+            <param name="ts">Socket to be used for writing</param>
+            <param name="buffer">byte array to write</param>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.SocketManager.shutdown">
+            <summary>
+            Shuts down socket manager (usualyy called by another thread)
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.SocketManager.flushQueue">
+            <summary>
+            This method examine internal message queue and performs actions.
+            </summary>
+            
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.SocketManager.loop">
+            <summary>
+            This is SocketManager main loop, built around select syscall
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.TaggedSocket">
+            <summary>
+            This class represents a TCP socket with additional information and methods. 
+            Normally it is stored in a SocketManager object.
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.TaggedSocket.Type">
+            <summary>
+            Socket Type
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.TaggedSocket.Status">
+            <summary>
+            Socket status
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.TaggedSocket.idCounter">
+            <summary>
+            Progressive counter that identifies socket
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.TaggedSocket._readbuffer">
+            <summary>
+            socket read buffer
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Dispatcher.TaggedSocket.expectedBytes">
+            <summary>
+            socket expected bytes
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Dispatcher.TaggedSocket.host">
+            <summary>
+            Socket endpoint info
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Dispatcher.TaggedSocket.socket">
+            <summary>
+            Underlying system socket object
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Dispatcher.TaggedSocket.writeBufferList">
+            <summary>
+            list of buffer to be written
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Dispatcher.TaggedSocket.timerMillisec">
+            <summary>
+            Timer expiration in milliseconds (0 means no timer)
+            </summary>
+        </member>
+        <member name="E:DA.MW.Broker.Dispatcher.TaggedSocket.evtConnected">
+            <summary>
+            Events
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.TaggedSocket.OnTimer">
+            <summary>
+            Called to check whether the alive message is to be sent.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.TaggedSocket.newSocket">
+            <summary>
+            internal method that creates a new underlying socket
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.TaggedSocket.newAcceptedTaggedSocket(System.Net.Sockets.Socket)">
+            <summary>
+            Factory method that builds a new TaggedSocket when a connection is accepted. Usually needs to be overrided.
+            </summary>
+            <param name="sc">Underlying socket</param>
+            <returns>Newly created tagged socket</returns>
+            
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.TaggedSocket.#ctor(System.String,System.Int32,System.Int32,DA.MW.Broker.Dispatcher.TaggedSocket.Type)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="host"></param>
+            <param name="port"></param>
+            <param name="tag"></param>
+            <param name="type"></param>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.TaggedSocket.#ctor(System.Net.Sockets.Socket,System.Int32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="s"></param>
+            <param name="tag"></param>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.TaggedSocket.closeAndReuse">
+            <summary>
+            Close and reuse socket
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.TaggedSocket.readBuffer">
+            <summary>
+            Method called when some data is available for reading
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.TaggedSocket.addToWriteBuffer(System.Byte[])">
+            <summary>
+            Adds data for writing
+            </summary>
+            <param name="b"></param>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.TaggedSocket.checkError">
+            <summary>
+            Check socket for error
+            </summary>
+            <returns>true if some error condition has occoured</returns>
+        </member>
+    </members>
+</doc>

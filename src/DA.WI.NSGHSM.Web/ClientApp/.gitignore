@@ -1,0 +1,60 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/dist-server
+/tmp
+/out-tsc
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Schematics-generated files
+src/app/production/crud-hrm-input-piece/**/*.html
+src/app/production/crud-hrm-input-piece/**/*.ts
+src/app/production/crud-hrm-input-piece/**/*.scss
+
+# Schematics-generated files
+src/app/production/crud-hrm-job/**/*.html
+src/app/production/crud-hrm-job/**/*.ts
+src/app/production/crud-hrm-job/**/*.scss
+
+# Schematics-generated files
+src/app/production/crud-produced-coil/**/*.html
+src/app/production/crud-produced-coil/**/*.ts
+src/app/production/crud-produced-coil/**/*.scss
+
+# Schematics-generated files
+src/app/production/crud-used-setup/**/*.html
+src/app/production/crud-used-setup/**/*.ts
+src/app/production/crud-used-setup/**/*.scss

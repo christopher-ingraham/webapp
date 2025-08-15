@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.60.6" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DA.WI.NSGHSM.Core\DA.WI.NSGHSM.Core.csproj" />
+    <ProjectReference Include="..\DA.WI.NSGHSM.Dto\DA.WI.NSGHSM.Dto.csproj" />
+    <ProjectReference Include="..\DA.WI.NSGHSM.Repo\DA.WI.NSGHSM.Repo.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DA.DB.Utils">
+      <HintPath>..\Assemblies\DA.DB.Utils.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Example\DataSources\sqlite.example_Test.init.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Example\DataSources\sqlserver.example_Test.init.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

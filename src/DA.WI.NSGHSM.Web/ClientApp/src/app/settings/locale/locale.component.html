@@ -1,0 +1,16 @@
+<form class="k-form">
+
+    <label class="k-form-field">
+        <span>Available Locales:</span>
+        <kendo-dropdownlist [data]="availableLocales" textField="description" valueField="code" [value]="currentLocale"
+            (valueChange)="onLocaleChange($event)">
+        </kendo-dropdownlist>
+    </label>
+
+    <label class="k-form-field">
+        <span>Available System of Units:</span>
+        <kendo-dropdownlist [data]="availableSystemOfUnits" textField="label" valueField="id"
+            [value]="currentSystemOfUnits" (valueChange)="onSystemOfUnitsChange($event)"></kendo-dropdownlist>
+    </label>
+
+</form>

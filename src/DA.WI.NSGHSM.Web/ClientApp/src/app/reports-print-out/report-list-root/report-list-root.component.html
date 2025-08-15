@@ -1,0 +1,46 @@
+<kendo-splitter orientation="vertical" style="height: 100%;">
+    <!-- Report Filters  -->
+    <kendo-splitter-pane [resizable]="false" [collapsible]="true" [scrollable]="false" size="250px" min="250px"
+        max="200px">
+        <fieldset *ngIf="initialized" [ngSwitch]="reportId">
+            <legend (click)="applyFilters($event)" kendoTooltip><span title="Apply filter(s)">Filters</span></legend>
+            <app-coil-general-report-filters *ngSwitchCase="'0'" [filters]="rootFilters"></app-coil-general-report-filters>
+            <app-time-oriented-report-filters *ngSwitchCase="'1'" [filters]="rootFilters"></app-time-oriented-report-filters>
+            <app-shift-report-filters *ngSwitchCase="'2'" [filters]="rootFilters"></app-shift-report-filters>
+            <app-cobble-report-filters *ngSwitchCase="'3'" [filters]="rootFilters"></app-cobble-report-filters>
+            <app-stoppage-report-filters *ngSwitchCase="'4'" [filters]="rootFilters"></app-stoppage-report-filters>
+            <app-practice-report-filters *ngSwitchCase="'5'" [filters]="rootFilters"></app-practice-report-filters>
+        </fieldset>
+    </kendo-splitter-pane>
+    <!--  Report List  -->
+    <kendo-splitter-pane [resizable]="true" [scrollable]="false" min="300px">
+        <fieldset>
+            <legend>Report</legend>
+            <div class="p-grid p-nogutter">
+                <div class="p-col-12 p-col-nogutter">
+                    <app-action-toolbar printVisible="true" (printClicked)="reportPrint($event)"
+                        [printDisabled]="!reportSelection.isSelected" refreshVisible="true" (refreshClicked)="reportRefresh($event)"
+                        exportAllVisible="true" 
+                        [exportAllDisabled]="exportAllDisabled">
+                    </app-action-toolbar>
+                </div>
+                <div class="p-col-12 p-col-nogutter">
+                    <ng-template ngFor let-r [ngForOf]="reportList" let-i="index">
+                        <input type="radio" name="tmp" id="{{r.htmlId}}" value="{{r.id}}" [(ngModel)]="reportId"
+                            kendoRadioButton /><label class="k-radio-label" for="{{r.htmlId}}">{{r.label}}</label>&nbsp;
+                    </ng-template>
+                </div>
+                <div class="p-col-12 p-col-nogutter" *ngIf="initialized" [ngSwitch]="reportId">
+                    <app-coil-general-report *ngSwitchCase="'0'" [filters]="rootFilters" [row]="reportSelection" [printer]="printReport"></app-coil-general-report>
+                    <app-time-oriented-report *ngSwitchCase="'1'" [filters]="rootFilters" [row]="reportSelection" [printer]="printReport"></app-time-oriented-report>
+                    <app-shift-report *ngSwitchCase="'2'" [filters]="rootFilters" [row]="reportSelection" [printer]="printReport"></app-shift-report>
+                    <app-cobble-report *ngSwitchCase="'3'" [filters]="rootFilters" [row]="reportSelection" [printer]="printReport"></app-cobble-report>
+                    <app-stoppage-report *ngSwitchCase="'4'" [filters]="rootFilters" [row]="reportSelection" [printer]="printReport"></app-stoppage-report>
+                    <app-practice-report *ngSwitchCase="'5'" [filters]="rootFilters" [row]="reportSelection" [printer]="printReport"></app-practice-report>
+                </div>
+            </div>
+        </fieldset>
+    </kendo-splitter-pane>
+</kendo-splitter>
+
+<div kendoDialogContainer></div>

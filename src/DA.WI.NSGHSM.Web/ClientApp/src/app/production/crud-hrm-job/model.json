@@ -1,0 +1,127 @@
+{
+    "$schema": "../../../../node_modules/crud-schematics/src/crud-module/schema.json",
+    "api": {
+        "url": "production/HrmJob",
+        "list": "list"
+    },
+    "entity": "hrmJob",
+    "fields": [{
+            "name": "jobId",
+            "label": "String N°",
+            "type": "number",
+            "isId": true,
+            "readonly": true
+        },
+        {
+            "name": "jobSeq",
+            "label": "String Sequence",
+            "type": "number"
+        }, {
+            "name": "remark",
+            "label": "Remark",
+            "type": "string"
+        },
+        {
+            "name": "status",
+            "label": "Status",
+            "type": "number"
+        },
+        {
+            "name": "statusLabel",
+            "label": "Status",
+            "type": "string"
+        },
+        {
+            "name": "orderStartDate",
+            "label": "Order Start Date",
+            "type": "Date"
+        },
+        {
+            "name": "operator",
+            "label": "Operator",
+            "type": "string"
+        },
+        {
+            "name": "revision",
+            "label": "Revision",
+            "type": "Date"
+        }
+    ],
+    "filter": [
+        "statusLabel", "remark"
+    ],
+    "grid": [{
+        "label": "Default",
+        "name": "default",
+        "columns": [{
+            "field": "jobSeq",
+            "sortable": true,
+            "filter": {
+                "enabled": true
+            },
+            "isLink": true
+        }, {
+            "field": "jobId",
+            "sortable": true,
+            "filter": {
+                "enabled": true
+            },
+            "isLink": true
+        }, {
+            "field": "statusLabel",
+            "sortable": true,
+            "filter": {
+                "enabled": true
+            }
+        }, {
+            "field": "remark",
+            "sortable": true,
+            "filter": {
+                "enabled": true
+            }
+        }, {
+            "field": "orderStartDate",
+            "sortable": true,
+            "filter": {
+                "enabled": true
+            }
+        }]
+    }],
+    "tabs": [{
+        "label": "Identification",
+        "rows": [{
+            "field": "jobId",
+            "columns": 6,
+            "controlType": "inputNumber"
+        }, {
+            "field": "jobSeq",
+            "columns": 6,
+            "controlType": "inputNumber"
+        }, {
+            "field": "statusLabel",
+            "columnd": 12,
+            "controlType": "inputText"
+        }]
+    }, {
+        "label": "Details",
+        "rows": [{
+            "field": "orderStartDate",
+            "columns": 6,
+            "controlType": "inputDate"
+        }, {
+            "field": "operator",
+            "columns": 6,
+            "controlType": "inputText"
+        }, {
+            "field": "revision",
+            "columns": 6,
+            "controlType": "inputDate"
+        }, {
+            "field": "remark",
+            "columns": 12,
+            "controlType": "inputText"
+        }]
+    }],
+    "title": "HrmJob",
+    "widgetSet": "kendo-ui"
+}

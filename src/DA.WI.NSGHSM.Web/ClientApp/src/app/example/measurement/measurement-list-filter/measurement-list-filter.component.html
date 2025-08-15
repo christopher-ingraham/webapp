@@ -1,0 +1,25 @@
+<form class="k-form" [formGroup]="form">
+    <div fxLayout="row wrap">
+      <kendo-autocomplete *ngIf="showCityFilter" 
+        formControlName="cityName"
+        [data]="cities" 
+        [valueField]="'name'"
+        [filterable]="true"
+        (filterChange)="onFilterChange($event)"
+        placeholder="{{'EXAMPLE.MEASUREMENT.FIELDS.CITYNAME|City Name' | translate}}"
+        fxFlex>
+      </kendo-autocomplete>
+      <kendo-datepicker
+          formControlName="from"
+          placeholder="{{'EXAMPLE.MEASUREMENT.FIELDS.FROM|From' | translate}}"
+          fxFlexOffset="1em"
+          fxFlex>
+      </kendo-datepicker>
+       <kendo-datepicker
+          formControlName="to"
+          placeholder="{{'EXAMPLE.MEASUREMENT.FIELDS.TO|To' | translate}}"
+          fxFlexOffset="1em"
+          fxFlex>
+      </kendo-datepicker>
+    </div> 
+  </form>

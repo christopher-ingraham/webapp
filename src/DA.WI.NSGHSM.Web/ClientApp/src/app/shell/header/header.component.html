@@ -1,0 +1,14 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+    <ng-content></ng-content>
+    <div fxFlex="1 0 auto">
+        <kendo-toolbar>
+            <app-toolbar-item class="app-toolbar-item-full-width">
+                <div class="app-header-logo" fxLayout="row" fxLayoutAlign="space-between center">
+                    <img src="assets/images/da-logo.png" alt="DA Logo" fxHide.xs>
+                    <h3>{{applicationInfo?.title}}</h3>
+                    <img src="assets/images/customer-logo.svg" alt="Customer Logo" fxHide.xs>
+                </div>
+            </app-toolbar-item>
+        </kendo-toolbar>
+    </div>
+</div>

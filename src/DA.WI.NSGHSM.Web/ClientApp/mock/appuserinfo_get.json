@@ -1,0 +1,241 @@
+{
+    "application": {
+        "title": "NSGAL HSM - WebApp",
+        "name": "NSGHSM",
+        "description": "no overwrite",
+        "customer": "_CustomerName_",
+        "copyright": "test copyright",
+        "locales": {
+            "en-GB": {
+                "description": "English - Great Britain",
+                "isDefault": false
+            },
+            "en-US": {
+                "description": "English - United States",
+                "isDefault": true
+            },
+            "it-IT": {
+                "description": "Italiano - Italia",
+                "isDefault": false
+            }
+        },
+        "version": "1.0.0.0",
+        "templateVersion": "1.0.0.0",
+        "environment": "Development",
+        "footer": {
+            "textKey": "SHELL.FOOTER.TEXT",
+            "isVisible": true
+        },
+        "menu": [
+            {
+                "key": "SHELL.SIDEBAR.HOME",
+                "default": "Home",
+                "icon": "",
+                "path": "/",
+                "roles": [
+                    "Admin",
+                    "User",
+                    "Developer"
+                ],
+                "children": null
+            },
+            {
+                "key": "SHELL.SIDEBAR.MILLSTATUS",
+                "default": "Mill Status",
+                "icon": null,
+                "path": "",
+                "roles": [
+                    "Admin",
+                    "User",
+                    "Developer"
+                ],
+                "children": [
+                    {
+                        "key": "SHELL.SIDEBAR.MILLSTATUS.ROUGHINGMILL",
+                        "default": "Roughing Mill",
+                        "icon": null,
+                        "path": "/mill-status/roughing-mill",
+                        "roles": [
+                            "Developer"
+                        ],
+                        "children": null
+                    },
+                    {
+                        "key": "SHELL.SIDEBAR.MILLSTATUS.FINISHINGMILL",
+                        "default": "Finishing Mill",
+                        "icon": null,
+                        "path": "/mill-status/finishing-mill",
+                        "roles": [
+                            "Developer"
+                        ],
+                        "children": null
+                    },
+                    {
+                        "key": "SHELL.SIDEBAR.MILLSTATUS.COOLINGDOWNCOILERS",
+                        "default": "Cooling / Downcoilers",
+                        "icon": null,
+                        "path": "/mill-status/cooling-downcoilers",
+                        "roles": [
+                            "Developer"
+                        ],
+                        "children": null
+                    }
+
+                ]
+            },
+            {
+                "key": "SHELL.SIDEBAR.PRODUCTIONFUNCTIONS",
+                "default": "Production Functions",
+                "icon": null,
+                "path": "",
+                "roles": [
+                    "Admin",
+                    "User",
+                    "Developer"
+                ],
+                "children": [
+                    {
+                        "key": "SHELL.SIDEBAR.PRODUCTIONFUNCTIONS.STRINGSLIST",
+                        "default": "Strings List",
+                        "icon": null,
+                        "path": "/production/strings-list-management",
+                        "roles": [
+                            "Developer"
+                        ],
+                        "children": null
+                    },
+                    {
+                        "key": "SHELL.SIDEBAR.PRODUCTIONFUNCTIONS.INPUTSLABS",
+                        "default": "Input Slabs",
+                        "icon": null,
+                        "path": "/production/input-slabs-management",
+                        "roles": [
+                            "Developer"
+                        ],
+                        "children": null
+                    },
+                    {
+                        "key": "SHELL.SIDEBAR.PRODUCTIONFUNCTIONS.PRODUCEDCOILS",
+                        "default": "Produced Coils",
+                        "icon": null,
+                        "path": "/production/produced-coils-management",
+                        "roles": [
+                            "Developer"
+                        ],
+                        "children": null
+                    }
+
+                ]
+            },
+
+            {
+                "key": "SHELL.SIDEBAR.QUALITYCONTROLSYSTEM",
+                "default": "Quality Control System",
+                "icon": null,
+                "path": "",
+                "roles": [
+                    "Admin",
+                    "User",
+                    "Developer"
+                ],
+                "children": [
+                    {
+                        "key": "SHELL.SIDEBAR.QUALITYCONTROLSYSTEM.MAINSIGNALS",
+                        "default": "Main Signals",
+                        "icon": null,
+                        "path": "/qcs/main-signals",
+                        "roles": [
+                            "Developer"
+                        ],
+                        "children": null
+                    },
+                    {
+                        "key": "SHELL.SIDEBAR.QUALITYCONTROLSYSTEM.TRENDSVIEW",
+                        "default": "Trends View",
+                        "icon": null,
+                        "path": "/qcs/trends-view",
+                        "roles": [
+                            "Developer"
+                        ],
+                        "children": null
+                    },
+                    {
+                        "key": "SHELL.SIDEBAR.QUALITYCONTROLSYSTEM.MAPSVIEW",
+                        "default": "Maps View",
+                        "icon": null,
+                        "path": "/qcs/maps-view",
+                        "roles": [
+                            "Developer"
+                        ],
+                        "children": null
+                    }
+
+                ]
+            },
+
+            {
+                "key": "SHELL.SIDEBAR.REPORTSPRINTOUT",
+                "default": "Reports Print Out",
+                "icon": null,
+                "path": "",
+                "roles": [
+                    "Admin",
+                    "User",
+                    "Developer"
+                ],
+                "children": [
+                    {
+                        "key": "SHELL.SIDEBAR.REPORTSPRINTOUT.PIECEGENERAL",
+                        "default": "Report List",
+                        "icon": null,
+                        "path": "/reports-print-out/report-list",
+                        "roles": [
+                            "Developer"
+                        ],
+                        "children": null
+                    }
+                ]
+            },
+
+            {
+                "key": "SHELL.SIDEBAR.SETTINGS",
+                "default": "Settings",
+                "icon": "cog",
+                "path": "/settings",
+                "roles": [
+                    "Admin",
+                    "User",
+                    "Developer"
+                ],
+                "children": null
+            },
+            {
+                "key": "SHELL.SIDEBAR.DIAGNOSTICS",
+                "default": "Diagnostic",
+                "icon": "wrench",
+                "path": "",
+                "roles": [
+                    "Developer"
+                ],
+                "children": [
+                    {
+                        "key": "SHELL.SIDEBAR.TEST",
+                        "default": "Test",
+                        "icon": null,
+                        "path": "/test",
+                        "roles": [
+                            "Developer"
+                        ],
+                        "children": null
+                    }
+                ]
+            }
+        ]
+    },
+    "user": {
+        "userName": "admin",
+        "roles": [
+            "All"
+        ]
+    }
+}

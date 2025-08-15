@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DA.MW.Broker.Dispatcher.Helper</name>
+    </assembly>
+    <members>
+        <member name="T:DA.MW.Broker.Dispatcher.Helper.DSPBrokerMessage">
+            <summary>
+            This class exposed to the client the header and body of the message only
+            Nothing more is needed with Dispatcher Service
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Dispatcher.Helper.DSPBrokerMessage.Header">
+            <summary>
+            DA Header used within Dispatcher
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Dispatcher.Helper.DSPBrokerMessage.Body">
+            <summary>
+            Buffer that contains the raw data of the message
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.Helper.DSPBrokerMessageFactory">
+            <summary>
+            Factory for middleware message 
+            This is used to override the Message class within DSP to ensure that the message you are subscribed to
+            will be picked up, converted and sent back to you.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.Helper.DSPBrokerMessageFactory.newDspMessage(DA.MW.Broker.Dispatcher.DspProtocolHeader,DA.MW.Broker.Dispatcher.DspApplicationHeader,System.Byte[])">
+            <summary>
+            Overridden method that generates BrokerClient related message(s)
+            or the generic byte array message from Dispatcher
+            </summary>
+            <param name="dspProtocolHeader">Protocol Header</param>
+            <param name="dspApplicationHeader">Application Header</param>
+            <param name="bytePayload">Paylod received from network</param>
+            <returns>Proper DspMessage or null if message code is unknown</returns>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.Helper.DSPClientFactory">
+            <summary>
+            This factory creates instances of DSPHelper that is the broker client
+            for DA.MW.Broker.Dispatcher (Dispatcher) nodes.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.Helper.DSPClientFactory.CreateBrokerClient(DA.MW.Broker.BrokerClientFactoryParams)">
+            <summary>
+            Use this function to create an instance of the client that must be
+            used to comunicate with the broker node of type <paramref name="bcfParams" />
+            </summary>
+            <param name="bcfParams">The BCF parameters.</param>
+            <returns>
+            An instance of the broker client
+            </returns>
+            <exception cref="T:System.ArgumentException">The type of parameter of name '{nameof(brokerClientFactoryParams.Logger)}' is not '{typeof(Logger).Name}</exception>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.Helper.DSPHelper">
+            <summary>
+            High-level implementation of the client for DCA Dispatcher. This library will be instantiated and
+            returned as an object of type IBrokerClient by BrokerClientFactory (using DSPClientFactory).
+            In this way there will be no reference to the Dispatcher MQ broker in the application, 
+            except in the configuration object.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Dispatcher.Helper.DSPHelper.Environment">
+            <summary>
+            This class contains some environment variables
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.Helper.DSPHelper.#ctor(NLog.Logger,DA.MW.Broker.Common.Entities.AppEnvironment,System.Threading.Tasks.TaskScheduler,System.Action,System.Action,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Dispatcher.Helper.DSPHelper" /> class.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="dspEnv">The DSP env.</param>
+            <param name="taskScheduler">The task scheduler.</param>
+            <param name="EventConnectionEstablished">The event connection established.</param>
+            <param name="EventConnectionLost">The event connection lost.</param>
+            <param name="EventConnectionReattempt">The event connection reattempt.</param>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.Helper.DSPHelper.CreateQueue(DA.MW.Broker.BrokerQueueParams,System.Func{DA.MW.Broker.Common.IBrokerMessage,DA.MW.Broker.Common.IBrokerMessageAck})">
+            <summary>
+            This method asks the broker to create a queue object with the passed Arguments.
+            The queue is the resource where messages are received and stored until a
+            client receives them or the queue is deleted.
+            This is used to store the Callback method that you want for the linked Queue
+            </summary>
+            <param name="brokerQueueParams">Structure of all variables that can be utilised by any provider</param>
+            <param name="Callback">The callback.</param>
+            <returns>
+            An object that map locally the queue resource of the broker
+            </returns>
+            <exception cref="T:System.InvalidOperationException">The queue with name {brokerQueueParams.Name}</exception>
+            <exception cref="T:System.ArgumentNullException">The parameter named '{nameof(queueCallback)}' is null</exception>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.Helper.DSPHelper.DeleteQueue(DA.MW.Broker.BrokerQueue)">
+            <summary>
+            This method asks the broker to delete the queue and all subscriptions linked to queue
+            </summary>
+            <param name="queue">The queue that you want to delete</param>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.Helper.DSPHelper.SendMessage(DA.MW.Broker.BrokerMessageParams)">
+            <summary>
+            This method adds the message in a Dispatcher Socket queue 
+            </summary>
+            <param name="brokerMessageParams">The broker message parameters.</param>
+            <returns>
+            True if the message is added, false otherwise
+            </returns>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.Helper.DSPHelper.Subscribe(DA.MW.Broker.BrokerQueue,System.Collections.Generic.List{System.String})">
+            <summary>
+            This method asks the broker to create a resource that will receive all those
+            </summary>
+            <param name="queue">The queue.</param>
+            <param name="BindingKeys">The binding keys.</param>
+            <exception cref="T:System.InvalidOperationException">The subscription value of {item} is already linked to {subscriptions[item]}</exception>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.Helper.DSPHelper.Unsubscribe(DA.MW.Broker.BrokerQueue,System.Collections.Generic.List{System.String})">
+            <summary>
+            This method asks the broker to cancel a subscription
+            </summary>
+            <param name="queue">The queue.</param>
+            <param name="BindingKeys">The binding keys.</param>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.Helper.DSPHelper.GetConnectionInformation">
+            <summary>
+            Gets the connection information.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.Helper.DSPHelper.AckMessage(DA.MW.Broker.Common.IBrokerMessageAck,System.Boolean)">
+            <summary>
+            This method is not required for DSP.
+            Only here as it is required for the Interface
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.Helper.DSPHelper.InitMessageDataFlow">
+            <summary>
+            Initializes the Task data flow for received messages.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.Helper.DSPHelper.ManageReceivedMessageAsync(DA.MW.Broker.Dispatcher.DspMessage)">
+            <summary>
+            Manages the received message received from Socket event asynchronous.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.Helper.DSPHelper.ParseMessageHeader(DA.MW.Broker.Dispatcher.DspMessage)">
+            <summary>
+            Parses the message header.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.Helper.DSPHelper.HandleMessage(DA.MW.Broker.Dispatcher.Helper.DSPBrokerMessage)">
+            <summary>
+            Processes the message by calling the main callback.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.Helper.DSPHelper.DisableDispatcherTimeout">
+            <summary>
+            Disables the dispatcher timeout.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.Helper.DSPHelper.GetBrokerQueue(DA.MW.Broker.Dispatcher.Helper.DSPBrokerMessage)">
+            <summary>
+            Ensure to get the correct broker queue, for this message to be processed by
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.Helper.DSPHelper.MainCallback(System.Object)">
+            <summary>
+            Main callback that will invoke the users callback set for this queue/message.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.Helper.DSPHelper.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:DA.MW.Broker.Dispatcher.Helper.DSPUtil">
+            <summary>
+            DSP Specific Util class
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.Helper.DSPUtil.DspApplicationHeaderToMsgInfoHeader(DA.MW.Broker.Dispatcher.DspApplicationHeader)">
+            <summary>
+            DSP Application header to MSG information header.
+            Used this to communicate between Broker and DSP
+            </summary>
+            <param name="msgHeader">The MSG header.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Dispatcher.Helper.DSPUtil.MsgInfoHeaderToDspApplicationHeader(DA.MW.Broker.Common.Protocol.MsgHeader)">
+            <summary>
+            MSG information header to DSP application header.
+            Used this to communicate between Broker and DSP
+            </summary>
+            <param name="msgInfoHeader">The MSG information header.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

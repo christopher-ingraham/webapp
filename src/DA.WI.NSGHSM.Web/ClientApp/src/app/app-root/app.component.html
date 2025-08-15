@@ -1,0 +1,11 @@
+<div *ngIf="!isInitialized">
+    <div *ngFor="let stateMessage of initStateMessages">
+        {{stateMessage}}
+    </div>
+</div>
+<div *ngIf="!!initErrorMessage" class="k-alert-error">
+    {{initErrorMessage}}
+</div>
+<app-shell *ngIf="isInitialized"></app-shell>
+
+

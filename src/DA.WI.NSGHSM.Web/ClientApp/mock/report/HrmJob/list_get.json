@@ -1,0 +1,13 @@
+{
+    "data": [{
+        "job_Id": "ID001",
+        "job_Seq": 1,
+        "remark": "This is just a remark",
+        "status": 1,
+        "status_Label": "1: UNKNOWN",
+        "order_Start_Date": "2019-11-22T14:26:23.460Z",
+        "operator": "Administrator",
+        "revision": "2019-11-22T14:26:23.460Z"
+    }],
+    "total": 1
+}

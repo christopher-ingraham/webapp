@@ -1,0 +1,47 @@
+{
+    "/configuration": {
+        "target": "http://localhost:3000",
+        "secure": false
+
+    },
+    "/.well-known/openid-configuration": {
+        "target": "http://localhost:3000",
+        "secure": false
+    },
+    "/connect/authorize": {
+        "target": "http://localhost:3000",
+        "secure": false
+    },
+    "/appuserinfo": {
+        "target": "http://localhost:3000",
+        "secure": false
+    },
+    "/locale": {
+        "target": "http://localhost:3000",
+        "secure": false
+    },
+    "/example": {
+        "target": "http://localhost:5011",
+        "secure": false
+    },
+    "/report": {
+        "target": "http://localhost:5011",
+        "secure": false
+    },
+    "/qcs": {
+        "target": "http://localhost:5011",
+        "secure": false
+    },
+    "/production": {
+        "target": "http://localhost:5011",
+        "secure": false
+    },
+    "/auxvalue": {
+        "target": "http://localhost:5011",
+        "secure": false
+    },
+    "/plantoverview": {
+        "target": "http://localhost:5011",
+        "secure": false
+    }
+}

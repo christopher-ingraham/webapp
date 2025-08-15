@@ -1,0 +1,112 @@
+{
+    "$schema": "../../../../node_modules/crud-schematics/src/crud-module/schema.json",
+    "api": {
+        "url": "example/test-entity"
+    },
+    "entity": "testEntity",
+    "fields": [{
+            "name": "id",
+            "label": "Id",
+            "type": "number",
+            "isId": true,
+            "readonly": true
+        },
+        {
+            "name": "name",
+            "label": "Nome",
+            "type": "string",
+            "validation": {
+                "serverSideEnabled": true,
+                "clientSide": {
+                    "enabled": true,
+                    "constraint": [{
+                            "type": "required",
+                            "args": true,
+                            "description": "Entity name is required."
+                        },
+                        {
+                            "type": "minLength",
+                            "args": 4,
+                            "description": "Entity name must be at least 4 characters long."
+                        }
+                    ]
+                }
+            }
+        }, {
+            "name": "surname",
+            "label": "Cognome",
+            "type": "string"
+        },
+        {
+            "name": "age",
+            "label": "Età",
+            "type": "number"
+        },
+        {
+            "name": "birthDate",
+            "label": "Data di nascita",
+            "type": "Date"
+        }
+    ],
+    "filter": [
+        "name"
+    ],
+    "grid": [{
+        "label": "Identification",
+        "name": "name",
+        "columns": [{
+            "field": "name",
+            "sortable": true,
+            "filter": {
+                "enabled": true
+            },
+            "isLink": true
+        }, {
+            "field": "surname",
+            "sortable": true,
+            "filter": {
+                "enabled": true
+            },
+            "isLink": true
+        }, {
+            "field": "age",
+            "sortable": true,
+            "filter": {
+                "enabled": true
+            }
+        }, {
+            "field": "birthDate",
+            "sortable": true,
+            "filter": {
+                "enabled": true
+            }
+        }]
+    }],
+    "tabs": [{
+        "label": "Identification",
+        "rows": [{
+            "field": "name",
+            "columns": 6,
+            "controlType": "inputText"
+        }, {
+            "field": "surname",
+            "columns": 6,
+            "controlType": "inputText"
+        }]
+    }, {
+        "label": "Birth",
+        "rows": [
+            {
+                "field": "age",
+                "columns": 6,
+                "controlType": "inputNumber"
+            }, {
+                "field": "birthDate",
+                "columns": 6,
+                "controlType": "inputDate"
+            }
+        ]
+    }],
+    "title": "TestEntity",
+    "widgetSet": "kendo-ui"
+}

@@ -1,0 +1,462 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DA.MW.Broker</name>
+    </assembly>
+    <members>
+        <member name="T:DA.MW.Broker.BrokerClientFactory">
+            <summary>
+            This factory class allows you to create an instance of the specified high-level broker
+            in a 'configuration' object, checking if the corresponding assembly is present
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.BrokerClientFactory.CreateBrokerClient(DA.MW.Broker.BrokerClientFactoryParams)">
+            <summary>
+            Use this function to create an instance of the client that must be
+            used to comunicate with the broker node of type <paramref name="bcfParams" />
+            </summary>
+            <param name="bcfParams">The BCF parameters.</param>
+            <returns>
+            An instance of the broker client
+            </returns>
+            <exception cref="T:System.InvalidOperationException">No assembly found that can create a broker client factory for the broker specified '{bcfParams.AppEnvironment.BrokerName}</exception>
+            <exception cref="T:System.InvalidOperationException">No assembly found that can create a broker client factory for the broker specified '{brokerClientFactoryParams.App_Environment.BrokerName}</exception>
+        </member>
+        <member name="T:DA.MW.Broker.BrokerClientFactoryParams">
+            <summary>
+            This class is to be used to pass all required data so the BrokerClient can be created
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.BrokerClientFactoryParams.#ctor(DA.MW.Broker.Common.Entities.ConfigurationParams,System.Threading.Tasks.TaskScheduler)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.BrokerClientFactoryParams" /> class.
+            </summary>
+            <param name="brokerConfigParams">The broker configuration parameters.</param>
+            <param name="taskScheduler">The task scheduler.</param>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerClientFactoryParams.DllLookupPath">
+            <summary>
+            Gets or sets the DLL lookup path.
+            Only set this if you want the Broker to search for dispatcher in a seperate path to Main App
+            If the DLL's will be placed in the Main App path, or sub path, the Broker Client can find them
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerClientFactoryParams.Logger">
+            <summary>
+            This value is not required.  
+            Only load this if you want your logger passed around (type of NLog)
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerClientFactoryParams.EventConnectionEstablished">
+            <summary>
+            Gets or sets the event connection established.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerClientFactoryParams.EventConnectionLost">
+            <summary>
+            Gets or sets the event connection lost.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerClientFactoryParams.EventConnectionReattempt">
+            <summary>
+            Gets or sets the event connection reattempt.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerClientFactoryParams.TaskScheduler">
+            <summary>
+            This value is required.  
+            You need to manage your own threading.  Please ensure you are aware of this.
+            NOTE: If you do create multiple concurrent threads, you may affect the order of messages received.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerClientFactoryParams.AppEnvironment">
+            <summary>
+            This value is required, but loaded internally.  
+            The config loader will build this from the Config Param object passed in
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.BrokerMessageParams">
+            <summary>
+            This class is used to send the Message details
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerMessageParams.Header">
+            <summary>
+            Gets or sets the Message header value.
+            Only Load this if it is required
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerMessageParams.Body">
+            <summary>
+            Gets or sets the Message body/ the actual message that you wish to send
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerMessageParams.RoutingKey">
+            <summary>
+            Gets or sets the routing key.
+            This is used to tell the Messaging client where and how to queue this message
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerMessageParams.IsPersistent">
+            <summary>
+            Gets or sets a value indicating whether this instance is persistent.
+            Is the message kept incase of failure or not
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerMessageParams.SendType">
+            <summary>
+            Gets or sets the type of the send.
+            The send type defines what type of send you want to do.
+            AddToPublicationQueue
+            SendNow
+            SendNowOrAddToPublicationQueue
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.MessageSendType">
+            <summary>
+            This is used to define the send type you wish to use when using the message send method
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.MessageSendType.AddToPublicationQueue">
+            <summary>
+            Add to publication queue
+            This is the default and the one that is recommended to use
+            Add the message to the publication queue, the message will be published asynchronously.
+            This is the most efficient function that has the highest value of messages per second sent.
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.MessageSendType.SendNow">
+            <summary>
+            The sending of the message is done in a way that is independent of the existence of other messages already present in the sending queue.
+            The message is sent synchronously. This is the least efficient send method.
+            If the sending of the message fails in the application domain, an exception is launched that identifies the problem.
+            The typical use case is when I do not care about the exact order of sending messages and I have a maximum of 100 messages / second.
+            Other case is I have the send queue with 10,000 messages in the queue and I have an important message to send as soon as possible.
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.MessageSendType.SendNowOrAddToPublicationQueue">
+            <summary>
+            If there are no messages in the queue, the message is sent synchronously.
+            If the synchronous sending fails due to missing connection problems, the message is put in the queue,
+            if the cause of the failure is not connected to the connection, it throws the exception.
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.BrokerQueue">
+            <summary>
+            This class map the queue resource of a broker.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.BrokerQueue.#ctor(System.String,System.Boolean,System.Func{DA.MW.Broker.Common.IBrokerMessage,DA.MW.Broker.Common.IBrokerMessageAck},System.Object,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.BrokerQueue" /> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="autoAck">if set to <c>true</c> [automatic ack].</param>
+            <param name="queueCallback">The queue callback.</param>
+            <param name="clientQueueImpl">The client queue implementation object.</param>
+            <param name="clientConsumerImpl">The client consumer implementation.</param>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerQueue.Name">
+            <summary>
+            The name of the queue, it must be unique
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerQueue.AutoAck">
+            <summary>
+            If is set to true indicates that the message received on the app that
+            come from this queue should be automatically acked as soon as the are
+            received by the library from the broker.
+            If is set to false indicates that is the app responsability to send
+            back a valid <see cref="P:DA.MW.Broker.BrokerQueue.AutoAck" /> on the message received callback.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerQueue.ClientCallback">
+            <summary>
+            This value is required 
+            Load the Callback Function that the dispatcher will call
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerQueue.ClientQueueImpl">
+            <summary>
+            Dispatcher queue.
+            This is used to add a layer of abstraction from the Messaging Client object to the Broker object,
+            but to allow the neccessary Messaging Client data to be passed back to the broker.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerQueue.ClientConsumerImpl">
+            <summary>
+            Consumer Implementation
+            This is used to add a layer of abstraction from the Messaging Client object to the Broker object,
+            but to allow the necessary Messaging Client data to be passed back to and from the broker.
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.BrokerQueueParams">
+            <summary>
+            Collection of parameters that can be specified for a queue
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.BrokerQueueParams.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.BrokerQueueParams"/> class.
+            </summary>
+            <param name="queueName">Name of the queue.</param>
+            <exception cref="T:System.ArgumentNullException">
+            The parameter named '{nameof(queueName)}
+            or
+            The parameter named '{nameof(queueCallback)}
+            </exception>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerQueueParams.Name">
+            <summary>
+            Gets or sets the Queue name.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerQueueParams.AutoAck">
+            <summary>
+            Indicating whether the message will be automatically acknowledge, regardless of reply value.
+            Value is defaulted to false 
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerQueueParams.Durable">
+            <summary>
+            Gets or sets a value indicating whether the queue is durable.
+            When Messaging Client quits or crashes it will forget the queues and messages unless you tell it not to.
+            The queue will survive a broker restart
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerQueueParams.AutoDelete">
+            <summary>
+            Gets or sets a value indicating whether [automatic delete].
+            Queue that has had at least one consumer is deleted when last consumer unsubscribes
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerQueueParams.Exclusive">
+            <summary>
+            Gets or sets a value indicating whether this Queue is exclusive.
+            Used by only one connection and the queue will be deleted when that connection closes
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerQueueParams.CreationArgs">
+            <summary>
+            Gets or sets the creation arguments.
+            Optional; used by plugins and broker-specific features such as message TTL, queue length limit, etc
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerQueueParams.PrefetchCount">
+            <summary>
+            This value is not required.  
+            will default to 500 if not loaded
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.BrokerQueueParams.TaskScheduler">
+            <summary>
+            This value is not required.  
+            If you pass this in, you need to manage your own threading.
+            If you leave as null, the Broker Client will manage the thread to use
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.BrokerUtils">
+            <summary>
+            Broker Util class
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.BrokerUtils.Deserialize``1(System.Byte[])">
+            <summary>
+            JSON Deserialize the specified message body into <typeparamref name="T"/>
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.BrokerUtils.SerializeToBinary(System.Object)">
+            <summary>
+            Serializes to binary.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.BrokerUtils.SerializeToJson(System.Object)">
+            <summary>
+            Serializes to json.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.BrokerUtils.ConvertStringToBinary(System.String)">
+            <summary>Converts the string to binary.</summary>
+            <param name="str">The string.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.BrokerUtils.ConvertBinaryToString(System.Byte[])">
+            <summary>Converts the binary to string.</summary>
+            <param name="body">The body.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.BrokerUtils.CreateMessageAck(DA.MW.Broker.Common.IBrokerMessage,DA.MW.Broker.Common.Entities.AcknowledgementType)">
+            <summary>
+            Creates the message ack.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="ack">The ack.</param>
+            <returns>IBrokerMessageAck</returns>
+        </member>
+        <member name="M:DA.MW.Broker.BrokerUtils.GetQueueName(DA.MW.Broker.Common.IBrokerMessage)">
+            <summary>
+            Gets the name of the Message queue.
+            </summary>
+            <param name="message">The message.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.BrokerUtils.GetMessageRoutingKeys(DA.MW.Broker.Common.IBrokerMessage)">
+            <summary>
+            Gets the message routing keys.
+            </summary>
+            <param name="message">The message.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">The parameter named '{nameof(message)}</exception>
+        </member>
+        <member name="M:DA.MW.Broker.BrokerUtils.GetBasicTaskScheduler">
+            <summary>
+            Creates a new simple basic Single Queue Exclusive Task Scheduler.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DA.MW.Broker.IBrokerClient">
+            <summary>
+            High level interface for a library that can be used to interact with brokers.
+            This interface groups some methods that can be used to interact with a generic
+            broker even without knowing low level implementation details.
+            All the methods are thread safe.
+            After the dispose of library all library methods are no safe to invoke.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.IBrokerClient.Environment">
+            <summary>
+            This class contains some environment variables
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.IBrokerClient.CreateQueue(DA.MW.Broker.BrokerQueueParams,System.Func{DA.MW.Broker.Common.IBrokerMessage,DA.MW.Broker.Common.IBrokerMessageAck})">
+            <summary>
+            This method asks the broker to create a queue with the passed Arguments.
+            The queue is the resource where messages are received and stored until a
+            client receives them or the queue is deleted.
+            </summary>
+            <param name="brokerQueueParams">Structure of all variables that can be utilised by any provider</param>
+            <param name="Callback">The callback.</param>
+            <returns>An object that map locally the queue resource of the broker</returns>  
+        </member>
+        <member name="M:DA.MW.Broker.IBrokerClient.DeleteQueue(DA.MW.Broker.BrokerQueue)">
+            <summary>
+            This method asks the broker to delete the queue.
+            This method is idempotent.
+            </summary>
+            <param name="queue">The queue that you want to delete</param>
+        </member>
+        <member name="M:DA.MW.Broker.IBrokerClient.Subscribe(DA.MW.Broker.BrokerQueue,System.Collections.Generic.List{System.String})">
+            <summary>
+            This method asks the broker to create a resource that will receive all those
+            </summary>
+            <param name="queue">The queue.</param>
+            <param name="BindingKeys">The binding keys.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.IBrokerClient.Unsubscribe(DA.MW.Broker.BrokerQueue,System.Collections.Generic.List{System.String})">
+            <summary>
+            This method asks the broker to cancel a subscription
+            </summary>
+            <param name="queue">The queue.</param>
+            <param name="BindingKeys">The binding keys.</param>
+        </member>
+        <member name="M:DA.MW.Broker.IBrokerClient.SendMessage(DA.MW.Broker.BrokerMessageParams)">
+            <summary>
+            This method sends the message
+            </summary>
+            <param name="brokerMessageParams">The broker message parameters.</param>
+            <returns>
+            True if the message is added, false otherwise
+            </returns>
+        </member>
+        <member name="M:DA.MW.Broker.IBrokerClient.AckMessage(DA.MW.Broker.Common.IBrokerMessageAck,System.Boolean)">
+            <summary>
+            This method ask the broker to acks one or more messages.
+            </summary>
+            <param name="messageAck">Type of acking to request</param>
+            <param name="multiple">If true acks all the messages from that queue with id equal or less than that of the message passed,
+            if false acks only the message passed</param>
+        </member>
+        <member name="M:DA.MW.Broker.IBrokerClient.GetConnectionInformation">
+            <summary>
+            Gets the connection information core.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DA.MW.Broker.IBrokerClientFactory">
+            <summary>
+            This interface defines the factory of a broker client.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.IBrokerClientFactory.CreateBrokerClient(DA.MW.Broker.BrokerClientFactoryParams)">
+            <summary>
+            Use this function to create an instance of the client that must be
+            used to comunicate with the broker node of type <paramref name="brokerClientFactoryParams" />
+            </summary>
+            <param name="brokerClientFactoryParams">The broker client factory parameters.</param>
+            <returns>
+            An instance of the broker client
+            </returns>
+        </member>
+        <member name="T:DA.MW.Broker.IPlugInClientFactory">
+            <summary>
+            This interface defines the factory of a broker client.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.IPlugInClientFactory.CreateBrokerClient(DA.MW.Broker.BrokerClientFactoryParams)">
+            <summary>
+            Use this function to create an instance of the client that must be
+            used to comunicate with the broker node of type <paramref name="brokerClientFactoryParams" />
+            </summary>
+            <param name="brokerClientFactoryParams">The broker client factory parameters.</param>
+            <returns>
+            An instance of the broker client
+            </returns>
+        </member>
+        <member name="T:DA.MW.Broker.PluginManager.IPlugInMetadataContract">
+            <summary>
+            Interface to define the plug-in metadata properties
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.PluginManager.IPlugInMetadataContract.Name">
+            <summary>
+            The plug-in name.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.PluginManager.IPlugInMetadataContract.Description">
+            <summary>
+            The plug-in description.
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.PluginManager.PlugInLoader`2">
+            <summary>
+            This class allow you to get a list of plug-ins implementing your contract
+            </summary>
+            <typeparam name="P"></typeparam>
+            <typeparam name="M"></typeparam>
+        </member>
+        <member name="M:DA.MW.Broker.PluginManager.PlugInLoader`2.GetPlugInList(System.String,System.String)">
+            <summary>Gets the plug in list.</summary>
+            <param name="plugInPath">The plug in path.</param>
+            <param name="dllName">Name of the DLL.</param>
+            <returns></returns>
+        </member>
+        <member name="T:DA.MW.Broker.PluginManager.PlugInMetadataAttribute">
+            <summary>
+            Attribute to decorate every plug-in
+            </summary>
+            <seealso cref="T:DA.MW.Broker.PluginManager.IPlugInMetadataContract" />
+            <seealso cref="T:System.Attribute" />
+        </member>
+        <member name="P:DA.MW.Broker.PluginManager.PlugInMetadataAttribute.Name">
+            <summary>
+            The plug-in name.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.PluginManager.PlugInMetadataAttribute.Description">
+            <summary>
+            The plug-in description.
+            </summary>
+        </member>
+    </members>
+</doc>

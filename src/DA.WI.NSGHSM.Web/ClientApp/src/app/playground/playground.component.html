@@ -1,0 +1,61 @@
+<div class="p-grid">
+
+    <div class="p-col-12">
+        <h1>Playground</h1>
+    </div>
+
+    <div class="p-col-12">
+        <a href="https://www.telerik.com/kendo-angular-ui/components/dateinputs/" target="_blank">
+            <pre>app-time-filter</pre></a>
+        <app-time-filter [(dateTimeFrom)]="dtFrom" [(dateTimeTo)]="dtTo" [thisShift]="thisShift"
+            [lastShift]="lastShift"></app-time-filter>
+        <hr>
+        <table>
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>FROM</td>
+                    <td><code>{{ dtFrom | date:'full' }}</code></td>
+                </tr>
+                <tr>
+                    <td>TO</td>
+                    <td><code>{{ dtTo | date:'full' }}</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="p-col-12">
+        <a href="https://www.telerik.com/kendo-angular-ui/components/toolbar/" target="_blank">
+            <pre>app-action-toolbar</pre></a>
+        <app-action-toolbar newVisible="true" (newClicked)="toolbarButtonClicked($event, 'new')" viewVisible="true"
+            (viewClicked)="toolbarButtonClicked($event, 'view')"></app-action-toolbar>
+    </div>
+
+    <div class="p-col-12">
+        <h3>Test <code>BaseApiService.lookup&gt;TId&lt;()</code></h3>
+        <div class="p-grid">
+            <div class="p-col-6">
+                <button kendoButton (click)="lookupHrmInputPiece($event)">Lookup HrmInputPiece</button>
+            </div>
+            <div class="p-col-6">
+                <kendo-textbox-container floatingLabel="HrmInputPiece Lookup List" fxFlex>
+                    <kendo-combobox [data]="hrmInputPieceLookupList" [textField]="'label'" [valueField]="'value'"
+                        [valuePrimitive]="true" [allowCustom]="false"></kendo-combobox>
+                </kendo-textbox-container>
+            </div>
+            <div class="p-col-6">
+                <!--empty-->
+            </div>
+            <div class="p-col-6">
+                <p>ComboBox item count: {{hrmInputPieceLookupList.length}}</p>
+            </div>
+        </div>
+    </div>
+
+</div>

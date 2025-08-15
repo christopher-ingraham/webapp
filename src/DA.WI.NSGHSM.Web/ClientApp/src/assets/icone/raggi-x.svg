@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Raggi-x" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="50px" height="65px" viewBox="77 79.5 50 65" enable-background="new 77 79.5 50 65" xml:space="preserve">
+<polygon id="triangolo" fill="#FFFFFF" points="94.406,92.595 109.594,92.595 102,84.26 "/>
+<g id="cerchio">
+	<path fill="#FFFFFF" d="M102,103.74c9.389,0,17,7.611,17,17s-7.611,17-17,17s-17-7.611-17-17S92.612,103.74,102,103.74 M102,100.74
+		c-11.028,0-20,8.972-20,20s8.972,20,20,20s20-8.972,20-20S113.028,100.74,102,100.74L102,100.74z"/>
+</g>
+<path id="centrale" fill="#FFC000" d="M102,116.74c-2.205,0-4,1.794-4,4s1.795,4,4,4s4-1.794,4-4S104.205,116.74,102,116.74z"/>
+<path id="top-sx" fill="#FFC000" d="M88.006,120.718l0.023,0.016l6.975,0.006c0.003-2.588,1.42-4.847,3.516-6.056l-3.483-6.063
+	C90.849,111.037,88.016,115.548,88.006,120.718z"/>
+<path id="top-dx" fill="#FFC000" d="M116,120.718l-0.023,0.016l-6.975,0.006c-0.002-2.588-1.42-4.847-3.516-6.056l3.484-6.063
+	C113.158,111.037,115.99,115.548,116,120.718z"/>
+<path id="bottom" fill="#FFC000" d="M95.006,132.886l-0.002-0.028l3.482-6.043c2.242,1.292,4.908,1.193,7.002-0.018l3.508,6.049
+	C104.811,135.265,99.489,135.462,95.006,132.886z"/>
+</svg>

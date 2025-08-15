@@ -1,0 +1,335 @@
+<table *ngIf="data" width="100%" border="0px" cellspacing="0" cellpadding="0">
+    <tr>
+        <td class="intensive"><img class="icona term before" src="assets/icone/termometro.svg" />
+            <app-intensive [data]="data.intensiveData[0]" *ngIf="data"></app-intensive>
+        </td>
+        <td class="intensive">
+            <app-intensive [data]="data.intensiveData[1]" *ngIf="data"></app-intensive>
+        </td>
+        <td class="intensive">
+            <app-intensive [data]="data.intensiveData[2]" *ngIf="data"></app-intensive>
+        </td>
+        <td class="normal">
+            <app-normal [data]="data.normalData[0]" *ngIf="data"></app-normal>
+        </td>
+        <td class="normal">
+            <app-normal [data]="data.normalData[1]" *ngIf="data"></app-normal>
+        </td>
+        <td class="normal"><img class="icona term before" src="assets/icone/termometro.svg" />
+            <app-normal [data]="data.normalData[2]" *ngIf="data"></app-normal>
+        </td>
+        <td class="normal">
+            <app-normal [data]="data.normalData[3]" *ngIf="data"></app-normal>
+        </td>
+        <td class="normal">
+            <app-normal [data]="data.normalData[4]" *ngIf="data"></app-normal>
+        </td>
+        <td class="normal">
+            <app-normal [data]="data.normalData[5]" *ngIf="data"></app-normal>
+        </td>
+        <td class="trimming">
+            <app-trimming [data]="data.trimmingData[0]" *ngIf="data"></app-trimming>
+        </td>
+
+        <td class="trimming">
+            <app-trimming [data]="data.trimmingData[1]" *ngIf="data"></app-trimming>
+        </td>
+        <td class="rolls-small"><img class="icona term after" src="assets/icone/termometro.svg" />
+            <app-rolls-small [data]="data.rollssmallData" *ngIf="data"></app-rolls-small>
+        </td>
+        <td class="downcoiler">
+            <app-downcoiler [data]="data.downcoilerData[0]" *ngIf="data"></app-downcoiler>
+        </td>
+        <td class="downcoiler">
+            <app-downcoiler [data]="data.downcoilerData[1]" *ngIf="data"></app-downcoiler>
+        </td>
+    </tr>
+</table>
+
+
+
+<table class="dati-macchina" style="float: right;" *ngIf="data" width="35%" border="0" cellspacing="0" cellpadding="0">
+    <tr class="topid">
+        <td class="vuoto"></td>
+        <td colspan="2" class="vuoto sopra"></td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td colspan="2" class="sopra">DC1</td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td colspan="2" class="sopra">DC2</td>
+        <td class="vuoto"></td>
+    </tr>
+    <tr class="tb-head">
+        <td class="vuoto"></td>
+        <td class="label">DOWNCOILER DATA</td>
+        <td class="unit">UNIT</td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td class="setup">SETUP</td>
+        <td class="actual">ACTUAL</td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td class="setup">SETUP</td>
+        <td class="actual">ACTUAL</td>
+        <td class="vuoto"></td>
+    </tr>
+    <tr>
+        <td class="vuoto"></td>
+        <td class="label">Piece ID</td>
+        <td class="unit">n°</td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td class="setup"></td>
+        <td class="actual">{{data.downcoilerData[0].actualData.pieceId}}</td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td class="setup"></td>
+        <td class="actual">{{data.downcoilerData[1].actualData.pieceId}}</td>
+        <td class="vuoto"></td>
+    </tr>
+    <tr>
+        <td class="vuoto"></td>
+        <td class="label">Internal Diameter</td>
+        <td class="unit">{{ 'mm' | uomLabel:'!mm':'in' }}</td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td class="setup">{{data.downcoilerData[0].setupData.trgInnerDiameter | uomValue:'mm':'in' }}</td>
+        <td class="actual">{{data.downcoilerData[0].actualData.internalDiameter | uomValue:'mm':'in' }}</td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td class="setup">{{data.downcoilerData[1].setupData.trgInnerDiameter | uomValue:'mm':'in' }}</td>
+        <td class="actual">{{data.downcoilerData[1].actualData.internalDiameter | uomValue:'mm':'in' }}</td>
+        <td class="vuoto"></td>
+    </tr>
+    <tr>
+        <td class="vuoto"></td>
+        <td class="label">External Diameter</td>
+        <td class="unit">{{ 'mm' | uomLabel:'!mm':'in' }}</td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td class="setup"></td>
+        <td class="actual">{{data.downcoilerData[0].actualData.externalDiameter | uomValue:'mm':'in' }}</td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td class="setup"></td>
+        <td class="actual">{{data.downcoilerData[1].actualData.externalDiameter | uomValue:'mm':'in' }}</td>
+        <td class="vuoto"></td>
+    </tr>
+    <tr>
+        <td class="vuoto"></td>
+        <td class="label">Specific Tension</td>
+        <td class="unit">{{ 'MPa' | uomLabel:'!MPa':'psi' }}</td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td class="setup">{{data.downcoilerData[0].setupData.exitTension | uomValue:'MPa':'psi' }}</td>
+        <td class="actual">{{data.downcoilerData[0].actualData.specificTensions | uomValue:'MPa':'psi' }}</td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td class="setup">{{data.downcoilerData[1].setupData.exitTension | uomValue:'MPa':'psi' }}</td>
+        <td class="actual">{{data.downcoilerData[1].actualData.specificTensions | uomValue:'MPa':'psi' }}</td>
+        <td class="vuoto"></td>
+    </tr>
+    <tr>
+        <td class="vuoto"></td>
+        <td class="label">Strip Speed</td>
+        <td class="unit">{{ 'm/s' | uomLabel:'!m/s':'fpm' }}</td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td class="setup">{{data.downcoilerData[0].setupData.millSpeed | uomValue:'m/s':'fpm'}}</td>
+        <td class="actual">{{data.downcoilerData[0].actualData.stripSpeed | uomValue:'m/s':'fpm'}}</td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td class="setup">{{data.downcoilerData[1].setupData.millSpeed | uomValue:'m/s':'fpm'}}</td>
+        <td class="actual">{{data.downcoilerData[1].actualData.stripSpeed | uomValue:'m/s':'fpm'}}</td>
+        <td class="vuoto"></td>
+    </tr>
+</table>
+<br />
+<div class="tb-sep"></div>
+<br />
+
+<div style="float: left; width: 32%; display:table">
+    <table class="dati-macchina ingresso" *ngIf="data" border="0" cellspacing="0" cellpadding="0">
+        <tr class="tb-head">
+            <td class="vuoto"></td>
+            <td class="label">ENTRY PYROMETER</td>
+            <td class="unit">UNIT</td>
+            <td class="vuoto"></td>
+            <td class="vuoto"></td>
+            <td class="setup">SETUP</td>
+            <td class="actual">ACTUAL</td>
+            <td class="vuoto"></td>
+        </tr>
+        <tr>
+            <td class="vuoto"></td>
+            <td class="label">Entry Temperature (Spot 1)</td>
+            <td class="unit">{{ '°C' | uomLabel:'!C':'F' }}</td>
+            <td class="vuoto"></td>
+            <td class="vuoto"></td>
+            <td class="setup" rowspan="3" style="vertical-align : middle;text-align:center;">
+                {{data.entryPyrometerData.setupData.targetTemp | uomValue:'C':'F' }}</td>
+            <td class="actual" [ngStyle]="{'border': getColor(data.entryPyrometerData.actualData.entryTemp1Status, data.intensiveData[0].bottomStatus.mis)}">{{data.entryPyrometerData.actualData.entryTemp1 | uomValue:'C':'F' }}</td>
+            <td class="vuoto"></td>
+        </tr>
+        <tr>
+            <td class="vuoto"></td>
+            <td class="label">Entry Temperature (Spot 2)</td>
+            <td class="unit">{{ '°C' | uomLabel:'!C':'F' }}</td>
+            <td class="vuoto"></td>
+            <td class="vuoto"></td>
+            <td class="actual" [ngStyle]="{'border': getColor(data.entryPyrometerData.actualData.entryTemp2Status, data.intensiveData[0].bottomStatus.mis)}">{{data.entryPyrometerData.actualData.entryTemp2 | uomValue:'C':'F' }}</td>
+            <td class="vuoto"></td>
+        </tr>
+        <tr>
+            <td class="vuoto"></td>
+            <td class="label">Entry Temperature (Spot 3)</td>
+            <td class="unit">{{ '°C' | uomLabel:'!C':'F' }}</td>
+            <td class="vuoto"></td>
+            <td class="vuoto"></td>
+            <td class="actual" [ngStyle]="{'border': getColor(data.entryPyrometerData.actualData.entryTemp3Status, data.intensiveData[0].bottomStatus.mis)}">{{data.entryPyrometerData.actualData.entryTemp3 | uomValue:'C':'F' }}</td>
+            <td class="vuoto"></td>
+        </tr>
+    </table>
+
+    <table class="dati-macchina ingresso" *ngIf="data" width="32%" border="0" cellspacing="0" cellpadding="0">
+        <tr class="tb-head">
+            <td class="vuoto"></td>
+            <td class="label">INTERMEDIATE PYROMETER</td>
+            <td class="unit">UNIT</td>
+            <td class="vuoto"></td>
+            <td class="vuoto"></td>
+            <td class="setup">SETUP</td>
+            <td class="actual">ACTUAL</td>
+            <td class="vuoto"></td>
+        </tr>
+        <tr>
+            <td class="vuoto"></td>
+            <td class="label">Intermediate Temperature (Spot 1)</td>
+            <td class="unit">{{ '°C' | uomLabel:'!C':'F' }}</td>
+            <td class="vuoto"></td>
+            <td class="vuoto"></td>
+            <td class="setup" rowspan="3" style="vertical-align : middle;text-align:center;">
+                {{data.intPyrometerData.setupData.targetTemp | uomValue:'C':'F' }}</td>
+            <td class="actual" [ngStyle]="{'border': getColor(data.intPyrometerData.actualData.intTemp1Status, data.normalData[2].bottomStatus.mis)}">{{data.intPyrometerData.actualData.intTemp1 | uomValue:'C':'F' }}</td>
+            <td class="vuoto"></td>
+        </tr>
+        <tr>
+            <td class="vuoto"></td>
+            <td class="label">Intermediate Temperature (Spot 2)</td>
+            <td class="unit">{{ '°C' | uomLabel:'!C':'F' }}</td>
+            <td class="vuoto"></td>
+            <td class="vuoto"></td>
+            <td class="actual" [ngStyle]="{'border': getColor(data.intPyrometerData.actualData.intTemp2Status, data.normalData[2].bottomStatus.mis)}">{{data.intPyrometerData.actualData.intTemp2 | uomValue:'C':'F' }}</td>
+            <td class="vuoto"></td>
+        </tr>
+        <tr>
+            <td class="vuoto"></td>
+            <td class="label">Intermediate Temperature (Spot 3)</td>
+            <td class="unit">{{ '°C' | uomLabel:'!C':'F' }}</td>
+            <td class="vuoto"></td>
+            <td class="vuoto"></td>
+            <td class="actual" [ngStyle]="{'border': getColor(data.intPyrometerData.actualData.intTemp3Status, data.normalData[2].bottomStatus.mis)}">{{data.intPyrometerData.actualData.intTemp3 | uomValue:'C':'F' }}</td>
+            <td class="vuoto"></td>
+        </tr>
+    </table>
+</div>
+
+
+<table class="dati-macchina uscita" *ngIf="data" width="32%" border="0" cellspacing="0" cellpadding="0">
+    <tr class="tb-head">
+        <td class="vuoto"></td>
+        <td class="label" width="32%">EXIT PYROMETERS</td>
+        <td class="unit" width="11.2%">UNIT</td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td class="setup">SETUP</td>
+        <td class="actual">ACTUAL</td>
+        <td class="vuoto"></td>
+    </tr>
+    <tr>
+        <td class="vuoto"></td>
+        <td class="label">Exit Temperature (Low Range – Spot 1)</td>
+        <td class="unit">{{ '°C' | uomLabel:'!C':'F' }}</td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td class="setup" rowspan="3" style="vertical-align : middle;text-align:center;">
+            {{data.exitPyrometerData.setupData.targetTemp | uomValue:'C':'F' }}</td>
+        <td class="actual" [ngStyle]="{'border': getColor(data.exitPyrometerData.actualData.exitTemp1LRStatus, data.rollssmallData.status.mis)}">{{data.exitPyrometerData.actualData.exitTemp1LR | uomValue:'C':'F' }}</td>
+        <td class="vuoto"></td>
+    </tr>
+    <tr>
+        <td class="vuoto"></td>
+        <td class="label">Exit Temperature (Low Range – Spot 2)</td>
+        <td class="unit">{{ '°C' | uomLabel:'!C':'F' }}</td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td class="actual" [ngStyle]="{'border': getColor(data.exitPyrometerData.actualData.exitTemp2LRStatus, data.rollssmallData.status.mis)}">{{data.exitPyrometerData.actualData.exitTemp2LR | uomValue:'C':'F' }}</td>
+        <td class="vuoto"></td>
+    </tr>
+    <tr>
+        <td class="vuoto"></td>
+        <td class="label">Exit Temperature (Low Range – Spot 3)</td>
+        <td class="unit">{{ '°C' | uomLabel:'!C':'F' }}</td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td class="actual" [ngStyle]="{'border': getColor(data.exitPyrometerData.actualData.exitTemp3LRStatus, data.rollssmallData.status.mis)}">{{data.exitPyrometerData.actualData.exitTemp3LR | uomValue:'C':'F' }}</td>
+        <td class="vuoto"></td>
+    </tr>
+    <tr>
+        <td class="vuoto"></td>
+        <td class="label">Exit Temperature (High Range – Spot 1)</td>
+        <td class="unit">{{ '°C' | uomLabel:'!C':'F' }}</td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td class="setup" rowspan="3" style="vertical-align : middle;text-align:center;">
+            {{data.exitPyrometerData.setupData.targetTemp | uomValue:'C':'F' }}</td>
+        <td class="actual" [ngStyle]="{'border': getColor(data.exitPyrometerData.actualData.exitTemp1HRStatus, data.rollssmallData.status.mis)}">{{data.exitPyrometerData.actualData.exitTemp1HR | uomValue:'C':'F' }}</td>
+        <td class="vuoto"></td>
+    </tr>
+    <tr>
+        <td class="vuoto"></td>
+        <td class="label">Exit Temperature (High Range – Spot 2)</td>
+        <td class="unit">{{ '°C' | uomLabel:'!C':'F' }}</td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td class="actual" [ngStyle]="{'border': getColor(data.exitPyrometerData.actualData.exitTemp2HRStatus, data.rollssmallData.status.mis)}">{{data.exitPyrometerData.actualData.exitTemp2HR | uomValue:'C':'F' }}</td>
+        <td class="vuoto"></td>
+    </tr>
+    <tr>
+        <td class="vuoto"></td>
+        <td class="label">Exit Temperature (High Range – Spot 3)</td>
+        <td class="unit">{{ '°C' | uomLabel:'!C':'F' }}</td>
+        <td class="vuoto"></td>
+        <td class="vuoto"></td>
+        <td class="actual" [ngStyle]="{'border': getColor(data.exitPyrometerData.actualData.exitTemp3HRStatus, data.rollssmallData.status.mis)}">{{data.exitPyrometerData.actualData.exitTemp3HR | uomValue:'C':'F' }}</td>
+        <td class="vuoto"></td>
+    </tr>
+</table>
+
+<table class="dati-macchina mezzo" *ngIf="data" border="0" cellspacing="0" cellpadding="0">
+    <thead class="trackingDC">
+        <tr class="tb-head">
+            <td class="vuoto"></td>
+            <td class="label">PIECE TRACKING</td>
+            <td class="vuoto"></td>
+            <td class="vuoto"></td>
+            <td class="pieceId">PIECE ID</td>
+            <td class="furnaceTime">FURNACE TIME [s]</td>
+            <td class="vuoto"></td>
+        </tr>
+    </thead>
+    <tbody class="trackingDC">
+        <ng-container *ngFor="let generalData of data.generalData">
+            <tr>
+                <td class="vuoto"></td>
+                <td class="label"><strong>{{generalData.positionLabel}}</strong></td>
+                <td class="vuoto"></td>
+                <td class="vuoto"></td>
+                <td class="pieceId"><strong>{{generalData.pieceId}}</strong></td>
+                <td class="furnaceTime"><strong>{{generalData.furnaceTime}}</strong></td>
+                <td class="vuoto"></td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>

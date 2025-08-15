@@ -1,0 +1,4 @@
+<div *ngFor="let city of cities">
+  <h4>{{city.name}}</h4>
+  <app-dashboard-city [city-id]="city.id"></app-dashboard-city>
+</div>

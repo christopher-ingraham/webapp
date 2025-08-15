@@ -1,0 +1,933 @@
+<div *ngIf="form">
+    <form class="k-form" [formGroup]="form">
+        <div class="p-grid p-nogutter">
+            <div class="p-col-12">
+                <h3 translate>{{title}}</h3>
+            </div>
+
+            <div class="p-col-12">
+                <app-audit-info operatorLabel="{{'Operator' | translate }}" [operator]="auditOperator"
+                    revisionLabel="{{'Revision' | translate }}" [revision]="auditRevision"></app-audit-info>
+            </div>
+
+            <div class="p-col-12">
+                <fieldset>
+                    <legend>Input Slab</legend>
+                    <div class="p-grid p-nogutter">
+                        <!--row-1-->
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Slab N°' | translate }}" fxFlex>
+                                <input kendoTextBox formControlName="pieceId">
+                                <span *ngIf="isInError('pieceId')" class="k-text-error">{{getErrors('pieceId')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Piece Status' | translate }}" fxFlex>
+                                <kendo-combobox [data]="statusList | async" [textField]="'label'" [valueField]="'value'"
+                                    [valuePrimitive]="true" [allowCustom]="false" formControlName="status">
+                                </kendo-combobox>
+                                <span *ngIf="isInError('status')" class="k-text-error">{{getErrors('status')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <!--row-2-->
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'String N°' | translate }}" fxFlex>
+                                <input *ngIf="isEdit" kendoTextBox formControlName="jobId">
+                                <kendo-combobox *ngIf="isNew" [data]="jobList | async" [textField]="'label'"
+                                    [valueField]="'value'" [valuePrimitive]="true" [allowCustom]="false"
+                                    formControlName="jobId"></kendo-combobox>
+                                <span *ngIf="isInError('jobId')" class="k-text-error">{{getErrors('jobId')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'String Coil' | translate }}" fxFlex>
+                                <input kendoTextBox formControlName="jobPieceSeq">
+                                <span *ngIf="isInError('jobPieceSeq')"
+                                    class="k-text-error">{{getErrors('jobPieceSeq')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <!--row-3-->
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Heat N°' | translate }}" fxFlex>
+                                <kendo-combobox [data]="heatList | async" [textField]="'label'" [valueField]="'value'"
+                                    [valuePrimitive]="true" [allowCustom]="false" formControlName="heatNo">
+                                </kendo-combobox>
+                                <span *ngIf="isInError('heatNo')" class="k-text-error">{{getErrors('heatNo')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Customer Order N°' | translate }}" fxFlex>
+                                <input kendoTextBox formControlName="orderNumber">
+                                <span *ngIf="isInError('orderNumber')"
+                                    class="k-text-error">{{getErrors('orderNumber')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <!--row-4-->
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Heat Sequence' | translate }}" fxFlex>
+                                <kendo-numerictextbox formControlName="heatSeq" [format]="'n0'">
+                                </kendo-numerictextbox>
+                                <span *ngIf="isInError('heatSeq')" class="k-text-error">{{getErrors('heatSeq')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Order Line N°' | translate }}" fxFlex>
+                                <input kendoTextBox formControlName="orderPosition">
+                                <span *ngIf="isInError('orderPosition')"
+                                    class="k-text-error">{{getErrors('orderPosition')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <!--row-5-->
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Heat Piece' | translate }}" fxFlex>
+                                <kendo-numerictextbox formControlName="heatPieceSeq" [format]="'n0'">
+                                </kendo-numerictextbox>
+                                <span *ngIf="isInError('heatPieceSeq')"
+                                    class="k-text-error">{{getErrors('heatPieceSeq')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Line Piece N°' | translate }}" fxFlex>
+                                <kendo-numerictextbox formControlName="jobPieceSeq" [format]="'n0'">
+                                </kendo-numerictextbox>
+                                <span *ngIf="isInError('jobPieceSeq')"
+                                    class="k-text-error">{{getErrors('jobPieceSeq')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <!--row-6-->
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Transition' | translate }}" fxFlex>
+                                <kendo-combobox [data]="transitionList | async" [textField]="'label'"
+                                    [valueField]="'value'" [valuePrimitive]="true" [allowCustom]="false"
+                                    formControlName="transition">
+                                </kendo-combobox>
+                                <span *ngIf="isInError('transition')"
+                                    class="k-text-error">{{getErrors('transition')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="p-col-12">
+                <kendo-tabstrip>
+                    <!--  Input Piece Data  -->
+                    <kendo-tabstrip-tab title="Input Piece Data" [selected]="true">
+                        <ng-template kendoTabContent>
+                            <div class="p-grid p-nogutter">
+                                <!--row-1-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Head Thickness [mm]' | translate | uomLabel:'mm':'in' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="preliminaryThkHead" [format]="'n3'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('preliminaryThkHead')"
+                                            class="k-text-error">{{getErrors('preliminaryThkHead')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-4">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Entry Length [m]' | translate | uomLabel:'m':'ft' }}" fxFlex>
+                                        <kendo-numerictextbox formControlName="preliminaryLen" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('preliminaryLen')"
+                                            class="k-text-error">{{getErrors('preliminaryLen')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-2">
+                                    <div class="k-textbox-container k-state-empty grid-cell-button-container" fxFlex>
+                                        <button kendoButton (click)="ipdCompute()">Calc</button>
+                                    </div>
+                                </div>
+                                <!--row-2-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Tail Thickness [mm]' | translate | uomLabel:'mm':'in' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="preliminaryThkTail" [format]="'n3'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('preliminaryThkTail')"
+                                            class="k-text-error">{{getErrors('preliminaryThkTail')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Entry Weight [kg]' | translate | uomLabel:'kg':'lb' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="weight" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('weight')"
+                                            class="k-text-error">{{getErrors('weight')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-3-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Entry Thickness [mm]' | translate | uomLabel:'mm':'in' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="preliminaryThk" [format]="'n3'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('preliminaryThk')"
+                                            class="k-text-error">{{getErrors('preliminaryThk')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-6">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-useMeasWidth" formControlName="useMeasWidth"
+                                            class="k-checkbox">
+                                        <!---->
+                                        <label class="k-checkbox-label"
+                                            for="field-id-useMeasWidth">{{'Use Measured Width' | translate }}</label>
+                                        <span *ngIf="isInError('useMeasWidth')"
+                                            class="k-text-error">{{getErrors('useMeasWidth')}}</span>
+                                    </div>
+                                </div>
+                                <!--row-4-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Head Width [mm]' | translate | uomLabel:'mm':'in' }}" fxFlex>
+                                        <kendo-numerictextbox formControlName="preliminaryWdtHead" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('preliminaryWdtHead')"
+                                            class="k-text-error">{{getErrors('preliminaryWdtHead')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Meas Head Width [mm]' | translate | uomLabel:'mm':'in' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="measuredWidthHead" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('measuredWidthHead')"
+                                            class="k-text-error">{{getErrors('measuredWidthHead')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-5-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Tail Width [mm]' | translate | uomLabel:'mm':'in' }}" fxFlex>
+                                        <kendo-numerictextbox formControlName="preliminaryWdtTail" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('preliminaryWdtTail')"
+                                            class="k-text-error">{{getErrors('preliminaryWdtTail')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Meas Tail Width [mm]' | translate | uomLabel:'mm':'in' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="measuredWidthTail" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('measuredWidthTail')"
+                                            class="k-text-error">{{getErrors('measuredWidthTail')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-6-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Entry Width [mm]' | translate | uomLabel:'mm':'in' }}" fxFlex>
+                                        <kendo-numerictextbox formControlName="preliminaryWdt" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('preliminaryWdt')"
+                                            class="k-text-error">{{getErrors('preliminaryWdt')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-6">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-useMeasTemp" formControlName="useMeasTemp"
+                                            class="k-checkbox">
+                                        <!---->
+                                        <label class="k-checkbox-label"
+                                            for="field-id-useMeasTemp">{{'Use Measured Temperature' | translate }}</label>
+                                        <span *ngIf="isInError('useMeasTemp')"
+                                            class="k-text-error">{{getErrors('useMeasTemp')}}</span>
+                                    </div>
+                                </div>
+                                <!--row-7-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Entry Temperature [°C]' | translate | uomLabel:'°C':'°F' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="entryTemp" [format]="'n0'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('entryTemp')"
+                                            class="k-text-error">{{getErrors('entryTemp')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Measured Temperature [°C]' | translate | uomLabel:'°C':'°F' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="measuredTemp" [format]="'n0'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('measuredTemp')"
+                                            class="k-text-error">{{getErrors('measuredTemp')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-8-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Source Process' | translate }}" fxFlex>
+                                        <kendo-combobox [data]="sourceProcessList | async" [textField]="'label'"
+                                            [valueField]="'value'" [valuePrimitive]="true"
+                                            formControlName="sourceCodeId">
+                                        </kendo-combobox>
+                                        <span *ngIf="isInError('sourceCodeId')"
+                                            class="k-text-error">{{getErrors('sourceCodeId')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-6">
+                                </div>
+                                <!--row-9-->
+                                <div class="p-col-12">
+                                    <kendo-textbox-container floatingLabel="{{'Note' | translate }}" fxFlex>
+                                        <input kendoTextBox formControlName="remark">
+                                        <span *ngIf="isInError('remark')"
+                                            class="k-text-error">{{getErrors('remark')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </kendo-tabstrip-tab>
+                    <!--  Steel Design Data  -->
+                    <kendo-tabstrip-tab title="Steel Design Data">
+                        <ng-template kendoTabContent>
+                            <div class="p-grid p-nogutter">
+                                <!--row-1-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Steel Grade ID' | translate }}" fxFlex>
+                                        <kendo-combobox [data]="materialGradeIdList | async" [textField]="'label'"
+                                            [valueField]="'value'" [valuePrimitive]="true"
+                                            formControlName="gradeGroupId">
+                                        </kendo-combobox>
+                                        <span *ngIf="isInError('gradeGroupId')"
+                                            class="k-text-error">{{getErrors('gradeGroupId')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Base Grade' | translate }}" fxFlex>
+                                        <input kendoTextBox formControlName="baseGradeId">
+                                        <span *ngIf="isInError('baseGradeId')"
+                                            class="k-text-error">{{getErrors('baseGradeId')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+
+
+                                <!--row-2-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Grade Group' | translate }}" fxFlex>
+                                        <kendo-combobox [data]="gradeGroupList | async" [textField]="'label'"
+                                            [valueField]="'value'" [valuePrimitive]="true"
+                                            formControlName="gradeGroupId">
+                                        </kendo-combobox>
+                                        <span *ngIf="isInError('gradeGroupId')"
+                                            class="k-text-error">{{getErrors('gradeGroupId')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-6">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-useBaseGrade" formControlName="useBaseGrade"
+                                            class="k-checkbox">
+                                        <!---->
+                                        <label class="k-checkbox-label"
+                                            for="field-id-useBaseGrade">{{'Use Base Grade' | translate }}</label>
+                                        <span *ngIf="isInError('useBaseGrade')"
+                                            class="k-text-error">{{getErrors('useBaseGrade')}}</span>
+                                    </div>
+                                </div>
+
+
+                                <!--row-3-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Furnace Exit Temperature [°C]' | translate | uomLabel:'°C':'°F' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="furnaceDischargeTemp" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('furnaceDischargeTemp')"
+                                            class="k-text-error">{{getErrors('furnaceDischargeTemp')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-6"></div>
+                                <!--row-4-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Target Exit Temperature [°C]' | translate | uomLabel:'°C':'°F' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetExitTemp" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetExitTemp')"
+                                            class="k-text-error">{{getErrors('targetExitTemp')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container floatingLabel="{{'Min Exit Temperature [°C]' | translate | uomLabel:'°C':'°F' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetExitTempResultMin" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetExitTempResultMin')"
+                                            class="k-text-error">{{getErrors('targetExitTempResultMin')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container floatingLabel="{{'Lower Exit Temperature [°C]' | translate | uomLabel:'°C':'°F' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetExitTempNtol" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetExitTempNtol')"
+                                            class="k-text-error">{{getErrors('targetExitTempNtol')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-5-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Exit Temperature within Tolerance [%]' | translate }}" fxFlex>
+                                        <kendo-numerictextbox formControlName="targetTempFmCustomertol" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetTempFmCustomertol')"
+                                            class="k-text-error">{{getErrors('targetTempFmCustomertol')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container floatingLabel="{{'Max Exit Temperature [°C]' | translate | uomLabel:'°C':'°F' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetExitTempResultMax" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetExitTempResultMax')"
+                                            class="k-text-error">{{getErrors('targetExitTempResultMax')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container floatingLabel="{{'Upper Tolerance [°C]' | translate | uomLabel:'°C':'°F' }}" fxFlex>
+                                        <kendo-numerictextbox formControlName="targetExitTempPtol" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetExitTempPtol')"
+                                            class="k-text-error">{{getErrors('targetExitTempPtol')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-6-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Target Coiling Temperature [°C]' | translate | uomLabel:'°C':'°F' }}" fxFlex>
+                                        <kendo-numerictextbox formControlName="targetTempDC" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetTempDC')"
+                                            class="k-text-error">{{getErrors('targetTempDC')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container floatingLabel="{{'Min Coiling Temperature [°C]' | translate | uomLabel:'°C':'°F' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetTempDCResultMin" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetTempDCResultMin')"
+                                            class="k-text-error">{{getErrors('targetTempDCResultMin')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container floatingLabel="{{'Lower Tolerance [°C]' | translate | uomLabel:'°C':'°F' }}" fxFlex>
+                                        <kendo-numerictextbox formControlName="targetTempDCNtol" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetTempDCNtol')"
+                                            class="k-text-error">{{getErrors('targetTempDCNtol')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-7-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Coiling Temperature Within Tolerance [%]' | translate }}" fxFlex>
+                                        <kendo-numerictextbox formControlName="targetTempDCCustomertol" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetTempDCCustomertol')"
+                                            class="k-text-error">{{getErrors('targetTempDCCustomertol')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container floatingLabel="{{'Max Coiling Temperature [°C]' | translate | uomLabel:'°C':'°F' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetTempDCResultMax" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetTempDCResultMax')"
+                                            class="k-text-error">{{getErrors('targetTempDCResultMax')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container floatingLabel="{{'Upper [°C]' | translate | uomLabel:'°C':'°F' }}" fxFlex>
+                                        <kendo-numerictextbox formControlName="targetTempDCPtol" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetTempDCPtol')"
+                                            class="k-text-error">{{getErrors('targetTempDCPtol')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-8-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Target Profile [mm]' | translate | uomLabel:'mm':'in' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetProfile" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetProfile')"
+                                            class="k-text-error">{{getErrors('targetProfile')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Min Profile [mm]' | translate | uomLabel:'mm':'in' }}" fxFlex>
+                                        <kendo-numerictextbox formControlName="targetProfileResultMin" [format]="'n3'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetProfileResultMin')"
+                                            class="k-text-error">{{getErrors('targetProfileResultMin')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Lower Tolerance [mm]' | translate | uomLabel:'mm':'in' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetProfileNtol" [format]="'n3'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetProfileNtol')"
+                                            class="k-text-error">{{getErrors('targetProfileNtol')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-9-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Profile Within Tolerance [%]' | translate }}" fxFlex>
+                                        <kendo-numerictextbox formControlName="targetProfileCustomertol"
+                                            [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetProfileCustomertol')"
+                                            class="k-text-error">{{getErrors('targetProfileCustomertol')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Max Profile [mm]' | translate | uomLabel:'mm':'in' }}" fxFlex>
+                                        <kendo-numerictextbox formControlName="targetProfileResultMax" [format]="'n3'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetProfileResultMax')"
+                                            class="k-text-error">{{getErrors('targetProfileResultMax')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Upper Tolerance [mm]' | translate | uomLabel:'mm':'in' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetProfilePtol" [format]="'n3'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetProfilePtol')"
+                                            class="k-text-error">{{getErrors('targetProfilePtol')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-10-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Target Flatness [l-Units]' | translate }}" fxFlex>
+                                        <kendo-numerictextbox formControlName="targetFlatness" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetFlatness')"
+                                            class="k-text-error">{{getErrors('targetFlatness')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container floatingLabel="{{'Min Flatness [l-Units]' | translate }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetFlatnessResultMin" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetFlatnessResultMin')"
+                                            class="k-text-error">{{getErrors('targetFlatnessResultMin')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Lower Tolerance [l-Units]' | translate }}" fxFlex>
+                                        <kendo-numerictextbox formControlName="targetFlatnessNtol" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetFlatnessNtol')"
+                                            class="k-text-error">{{getErrors('targetFlatnessNtol')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-11-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Flatness Within Tolerance [%]' | translate }}" fxFlex>
+                                        <kendo-numerictextbox formControlName="targetFlatnessCustomertol"
+                                            [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetFlatnessCustomertol')"
+                                            class="k-text-error">{{getErrors('targetFlatnessCustomertol')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container floatingLabel="{{'Max Flatness [l-Units]' | translate }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetFlatnessResultMax" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetFlatnessResultMax')"
+                                            class="k-text-error">{{getErrors('targetFlatnessResultMax')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Upper Tolerance [l-Units]' | translate }}" fxFlex>
+                                        <kendo-numerictextbox formControlName="targetFlatnessPtol" [format]="'n1'">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetFlatnessPtol')"
+                                            class="k-text-error">{{getErrors('targetFlatnessPtol')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </kendo-tabstrip-tab>
+                    <!--  Customer Order Data  -->
+                    <kendo-tabstrip-tab title="Customer Order Data">
+                        <ng-template kendoTabContent>
+                            <div class="p-grid p-nogutter">
+                                <!--row-1-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Material Specification Code' | translate }}" fxFlex>
+                                        <input kendoTextBox formControlName="alloySpecCode">
+                                        <span *ngIf="isInError('alloySpecCode')"
+                                            class="k-text-error">{{getErrors('alloySpecCode')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Material Specification' | translate }}"
+                                        fxFlex>
+                                        <kendo-combobox [data]="materialSpecificationIdList | async"
+                                            [textField]="'label'" [valueField]="'value'" [valuePrimitive]="true"
+                                            formControlName="materialSpecId">
+                                        </kendo-combobox>
+                                        <span *ngIf="isInError('materialSpecId')"
+                                            class="k-text-error">{{getErrors('materialSpecId')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-2-->
+                                <div class="p-col-6">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-trialFlag" formControlName="trialFlag"
+                                            class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-trialFlag">{{'Trial' | translate }}</label>
+                                        <span *ngIf="isInError('trialFlag')"
+                                            class="k-text-error">{{getErrors('trialFlag')}}</span>
+                                    </div>
+                                </div>
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Trial No' | translate }}" fxFlex>
+                                        <input kendoTextBox formControlName="trialNo">
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-3-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Target Cold Thickness [mm]' | translate | uomLabel:'mm':'in' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetThickness">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetThickness')"
+                                            class="k-text-error">{{getErrors('targetThickness')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Min Ex Thickness [mm]' | translate | uomLabel:'mm':'in' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetExitThicknessResultMin">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetExitThicknessResultMin')"
+                                            class="k-text-error">{{getErrors('targetExitThicknessResultMin')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Lower Tolerance [mm]' | translate | uomLabel:'mm':'in' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetThicknessNtol">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetThicknessNtol')"
+                                            class="k-text-error">{{getErrors('targetThicknessNtol')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-4-->
+                                <div class="p-col-6">
+
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Max Ex Thickness [mm]' | translate | uomLabel:'mm':'in' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetExitThicknessResultMax">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetExitThicknessResultMax')"
+                                            class="k-text-error">{{getErrors('targetExitThicknessResultMax')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Upper Tolerance [mm]' | translate | uomLabel:'mm':'in' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetThicknessPtol">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetThicknessPtol')"
+                                            class="k-text-error">{{getErrors('targetThicknessPtol')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-5-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Target Cold Width [mm]' | translate | uomLabel:'mm':'in' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetWidth">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetWidth')"
+                                            class="k-text-error">{{getErrors('targetWidth')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Min Ex Width [mm]' | translate | uomLabel:'mm':'in' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetExitWidthResultMin">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetExitWidthResultMin')"
+                                            class="k-text-error">{{getErrors('targetExitWidthResultMin')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Lower Tolerance [mm]' | translate | uomLabel:'mm':'in' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetWidthNtol">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetWidthNtol')"
+                                            class="k-text-error">{{getErrors('targetWidthNtol')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-6-->
+                                <div class="p-col-6">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-preliminaryWdtChg" formControlName="preliminaryWdtChg"
+                                            class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-preliminaryWdtChg">{{'Width Change' | translate }}</label>
+                                        <span *ngIf="isInError('preliminaryWdtChg')"
+                                            class="k-text-error">{{getErrors('preliminaryWdtChg')}}</span>
+                                    </div>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Max Ex Width [mm]' | translate | uomLabel:'mm':'in' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox kendoTextBox formControlName="targetExitWidthResultMax">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetExitWidthResultMax')"
+                                            class="k-text-error">{{getErrors('targetExitWidthResultMax')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Upper Tolerance [mm]' | translate | uomLabel:'mm':'in' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox kendoTextBox formControlName="targetWidthPtol">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetWidthPtol')"
+                                            class="k-text-error">{{getErrors('targetWidthPtol')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-7-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Target Weight [kg]' | translate | uomLabel:'kg':'lb' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetWeight">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetWeight')"
+                                            class="k-text-error">{{getErrors('targetWeight')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Min Ex Weigth [kg]' | translate | uomLabel:'kg':'lb' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox kendoTextBox formControlName="targetExitWeightResultMin">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetExitWeightResultMin')"
+                                            class="k-text-error">{{getErrors('targetExitWeightResultMin')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Lower Tolerance [kg]' | translate | uomLabel:'kg':'lb' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox kendoTextBox formControlName="targetWeightNtol">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetWeightNtol')"
+                                            class="k-text-error">{{getErrors('targetWeightNtol')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-8-->
+                                <div class="p-col-6">
+
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Max Ex Weigth [kg]' | translate | uomLabel:'kg':'lb' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox kendoTextBox formControlName="targetExitWeightResultMax">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetExitWeightResultMax')"
+                                            class="k-text-error">{{getErrors('targetExitWeightResultMax')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-3">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Upper Tolerance [kg]' | translate | uomLabel:'kg':'lb' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox kendoTextBox formControlName="targetWeightPtol">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetWeightPtol')"
+                                            class="k-text-error">{{getErrors('targetWeightPtol')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-9-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Customer ID' | translate }}" fxFlex>
+                                        <input kendoTextBox formControlName="customerId">
+                                        <span *ngIf="isInError('customerId')"
+                                            class="k-text-error">{{getErrors('customerId')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Customer Name' | translate }}" fxFlex>
+                                        <input kendoTextBox formControlName="customerName">
+                                        <span *ngIf="isInError('customerName')"
+                                            class="k-text-error">{{getErrors('customerName')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-10-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Contact Name' | translate }}" fxFlex>
+                                        <input kendoTextBox formControlName="customerContactName">
+                                        <span *ngIf="isInError('customerContactName')"
+                                            class="k-text-error">{{getErrors('customerContactName')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Carrier Mode' | translate }}" fxFlex>
+                                        <input kendoTextBox formControlName="carrierMode">
+                                        <span *ngIf="isInError('carrierMode')"
+                                            class="k-text-error">{{getErrors('carrierMode')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-11-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'End Use' | translate }}" fxFlex>
+                                        <input kendoTextBox formControlName="endUse">
+                                        <span *ngIf="isInError('endUse')"
+                                            class="k-text-error">{{getErrors('endUse')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'End Use Surface Rating [%]' | translate }}" fxFlex>
+                                        <kendo-numerictextbox formControlName="enduseSurfaceRating">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('enduseSurfaceRating')"
+                                            class="k-text-error">{{getErrors('enduseSurfaceRating')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-12-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Area Type' | translate }}" fxFlex>
+                                        <kendo-combobox [data]="areaTypeList | async" [textField]="'label'"
+                                            [valueField]="'value'" [valuePrimitive]="true" formControlName="areaType">
+                                        </kendo-combobox>
+                                        <span *ngIf="isInError('areaType')"
+                                            class="k-text-error">{{getErrors('areaType')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Target Internal Diameter [mm]' | translate | uomLabel:'mm':'in' }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox formControlName="targetInternalDiameter">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetInternalDiameter')"
+                                            class="k-text-error">{{getErrors('targetInternalDiameter')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <!--row-13-->
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Destination Process' | translate }}"
+                                        fxFlex>
+                                        <kendo-combobox [data]="destinationProcessList | async" [textField]="'label'"
+                                            [valueField]="'value'" [valuePrimitive]="true" formControlName="destCodeId">
+                                        </kendo-combobox>
+                                        <span *ngIf="isInError('destCodeId')"
+                                            class="k-text-error">{{getErrors('destCodeId')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-6">
+                                </div>
+                            </div>
+                        </ng-template>
+                    </kendo-tabstrip-tab>
+                    <!--  Chemical Composition  -->
+                    <kendo-tabstrip-tab title="Chemical Composition">
+                        <ng-template kendoTabContent>
+                            <div class="p-grid p-nogutter">
+                                <div class="p-col-12">
+                                    <div class="k-form-field">
+                                        <input type="radio" name="chemSubTab" id="radio-laan" class="k-radio"
+                                            [(ngModel)]="vmHelper.chemSubTab" [value]="vmHelper.indexLaboratoryAnalysis"
+                                            [ngModelOptions]="modelOptions">
+                                        <label class="k-radio-label" for="radio-laan">Laboratory
+                                            Analysis</label>
+
+                                        <input type="radio" name="chemSubTab" id="radio-stgr" class="k-radio"
+                                            [(ngModel)]="vmHelper.chemSubTab" [value]="vmHelper.indexSteelGrade"
+                                            [ngModelOptions]="modelOptions">
+                                        <label class="k-radio-label" for="radio-stgr">Steel Grade</label>
+
+                                        <input type="radio" name="chemSubTab" id="radio-masp" class="k-radio"
+                                            [(ngModel)]="vmHelper.chemSubTab"
+                                            [value]="vmHelper.indexMaterialSpecification"
+                                            [ngModelOptions]="modelOptions">
+                                        <label class="k-radio-label" for="radio-masp">Material
+                                            Specification</label>
+                                    </div>
+                                </div>
+                                <div class="p-col-12">
+
+                                    <app-chem-laboratory-analysis *ngIf="vmHelper.isLaboratoryAnalysisVisible"
+                                        [chemElement]="chemElement" [modelOptions]="modelOptions" [form]="form"
+                                        [(isDefaultSteelGradeUsed)]="vmHelper.isDefaultSteelGradeUsed"
+                                        [analysisSampleList]="analysisSampleList" [items]="chem.laboratoryAnalysisItems"
+                                        (sampleIdChange)="changeLaboratoryAnalysisSampleId($event)">
+                                    </app-chem-laboratory-analysis>
+
+                                    <app-chem-steel-grade *ngIf="vmHelper.isSteelGradeVisible"
+                                        [chemElement]="chemElement" [modelOptions]="modelOptions" [form]="form"
+                                        [items]="chem.steelGradeItems">
+                                    </app-chem-steel-grade>
+
+                                    <app-chem-material-specification *ngIf="vmHelper.isMaterialSpecificationVisible"
+                                        [chemElement]="chemElement" [modelOptions]="modelOptions" [form]="form"
+                                        [items]="chem.materialSpecificationItems">
+                                    </app-chem-material-specification>
+
+                                </div>
+                            </div>
+                        </ng-template>
+                    </kendo-tabstrip-tab>
+                </kendo-tabstrip>
+            </div>
+            <div class="p-col-12">
+                <app-detail-action-bar [isNew]="isNew" [isReadOnly]="isReadOnly" 
+                    (savePressed)="onSaveClick()" saveLabel="{{'EXAMPLE.SAVE|Save'|translate}}"
+                    (deletePressed)="onDeleteClick()" deleteLabel="{{'Delete'|translate}}"
+                    (cancelPressed)="onCancelClick()" cancelLabel="{{cancelBackButton|translate}}">
+                </app-detail-action-bar>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div kendoDialogContainer></div>

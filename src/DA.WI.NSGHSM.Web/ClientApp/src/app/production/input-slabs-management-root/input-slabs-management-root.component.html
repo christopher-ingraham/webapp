@@ -1,0 +1,200 @@
+<kendo-tabstrip #kendoTabStripInstance="kendoTabStrip" [keepTabContent]="true" [animate]="true"
+    (tabSelect)="onSelectTab($event.index)">
+
+    <kendo-tabstrip-tab *ngFor="let tab of tabstrip.tabs" [title]="tab.title" [selected]="tab.isSelected"
+        [ngSwitch]="tab.type">
+
+        <ng-template kendoTabContent *ngSwitchCase="'master'">
+            <kendo-splitter orientation="vertical" style="height: 100%;">
+                <!--  Input Slabs List Filters  -->
+                <kendo-splitter-pane [resizable]="false" [collapsible]="true" [scrollable]="false" size="200px"
+                    min="200px" max="200px">
+                    <fieldset style="width: 98.5%;">
+                        <legend (click)="applyFilters($event)" title="Apply filter(s)...">Filters</legend>
+                        <form>
+                            <div class="p-grid p-nogutter">
+                                <div class="p-col-6">
+                                    <div class="p-grid p-nogutter">
+                                        <div class="p-col-12">
+                                            <input type="checkbox" id="filterCreationDateTime" class="k-checkbox"
+                                                [(ngModel)]="filter.creationDateTime.isEnabled"
+                                                [ngModelOptions]="modelOptions" />
+                                            <label class=" k-checkbox-label" for="filterCreationDateTime">Creation Date
+                                                Time</label>
+                                        </div>
+                                        <div class="p-col-12">
+                                            <app-time-filter [disabled]="!filter.creationDateTime.isEnabled"
+                                                [(dateTimeFrom)]="filter.creationDateTime.value.from"
+                                                [(dateTimeTo)]="filter.creationDateTime.value.to">
+                                            </app-time-filter>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-col-2">
+                                    <div class="p-grid p-nogutter">
+                                        <div class="p-col-12">
+                                            <input type="checkbox" id="filterSlabNumber" class="k-checkbox"
+                                                [(ngModel)]="filter.slabNumber.isEnabled"
+                                                [ngModelOptions]="modelOptions" />
+                                            <label class="k-checkbox-label" for="filterSlabNumber">Slab N°</label>
+                                        </div>
+                                        <div class="p-col-12">
+                                            <input kendoTextBox [disabled]="!filter.slabNumber.isEnabled"
+                                                [(ngModel)]="filter.slabNumber.value" [ngModelOptions]="modelOptions" />
+                                        </div>
+                                        <div class="p-col-12">
+                                            <input type="checkbox" id="filterHeatNumber" class="k-checkbox"
+                                                [(ngModel)]="filter.heatNumber.isEnabled"
+                                                [ngModelOptions]="modelOptions" />
+                                            <label class="k-checkbox-label" for="filterHeatNumber">Heat N°</label>
+                                        </div>
+                                        <div class="p-col-12">
+                                            <input kendoTextBox [disabled]="!filter.heatNumber.isEnabled"
+                                                [(ngModel)]="filter.heatNumber.value" [ngModelOptions]="modelOptions" />
+                                        </div>
+                                        <div class="p-col-12">
+                                            <input type="checkbox" id="filterStringNumber" class="k-checkbox"
+                                                [(ngModel)]="filter.stringNumber.isEnabled"
+                                                [ngModelOptions]="modelOptions" />
+                                            <label class="k-checkbox-label" for="filterStringNumber">String N°</label>
+                                        </div>
+                                        <div class="p-col-12">
+                                            <input kendoTextBox [disabled]="!filter.stringNumber.isEnabled"
+                                                [(ngModel)]="filter.stringNumber.value"
+                                                [ngModelOptions]="modelOptions" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-col-2">
+                                    <div class="p-grid p-nogutter">
+                                        <div class="p-col-12">
+                                            <input type="checkbox" id="filterCustomerOrderNumber" class="k-checkbox"
+                                                [(ngModel)]="filter.customerOrderNumber.isEnabled"
+                                                [ngModelOptions]="modelOptions" />
+                                            <label class="k-checkbox-label" for="filterCustomerOrderNumber">Customer
+                                                Order
+                                                N°</label>
+                                        </div>
+                                        <div class="p-col-12">
+                                            <input kendoTextBox [disabled]="!filter.customerOrderNumber.isEnabled"
+                                                [(ngModel)]="filter.customerOrderNumber.value"
+                                                [ngModelOptions]="modelOptions" />
+                                        </div>
+                                        <div class="p-col-12">&nbsp;</div>
+                                        <div class="p-col-12">
+                                            <input type="checkbox" id="filterCustomerName" class="k-checkbox"
+                                                [(ngModel)]="filter.customerName.isEnabled"
+                                                [ngModelOptions]="modelOptions" />
+                                            <label class="k-checkbox-label" for="filterCustomerName">Customer
+                                                Name</label>
+                                        </div>
+                                        <div class="p-col-12">
+                                            <input kendoTextBox [disabled]="!filter.customerName.isEnabled"
+                                                [(ngModel)]="filter.customerName.value"
+                                                [ngModelOptions]="modelOptions" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-col-2">
+                                    <div class="p-grid p-nogutter">
+                                        <div class="p-col-12">
+                                            <input type="checkbox" id="filterPieceStatus" class="k-checkbox"
+                                                [(ngModel)]="filter.pieceStatus.isEnabled"
+                                                [ngModelOptions]="modelOptions" />
+                                            <label class="k-checkbox-label" for="filterPieceStatus">Piece
+                                                Status</label>
+                                        </div>
+                                        <div class="p-col-12">
+                                            <kendo-combobox [data]="pieceStatusList" [textField]="'label'"
+                                                [valueField]="'value'" [disabled]="!filter.pieceStatus.isEnabled"
+                                                [(ngModel)]="filterPieceStatusValue" [ngModelOptions]="modelOptions">
+                                            </kendo-combobox>
+                                        </div>
+                                        <div class="p-col-12">
+                                            <input type="checkbox" id="filterProductionStatus" class="k-checkbox"
+                                                [(ngModel)]="filter.productionStatus.isEnabled"
+                                                [ngModelOptions]="modelOptions" />
+                                            <label class="k-checkbox-label" for="filterProductionStatus">Production
+                                                Status</label>
+                                        </div>
+                                        <div class="p-col-12">
+                                            <div class="p-grid p-nogutter">
+                                                <div class="p-col-6">
+                                                    <kendo-textbox-container floatingLabel="{{'From' | translate }}"
+                                                        fxFlex>
+                                                        <kendo-numerictextbox
+                                                            [(ngModel)]="filter.productionStatus.value.from"
+                                                            [ngModelOptions]="modelOptions"
+                                                            [disabled]="!filter.productionStatus.isEnabled"
+                                                            [format]="numberFormatOptions"></kendo-numerictextbox>
+                                                    </kendo-textbox-container>
+                                                </div>
+                                                <div class="p-col-6">
+                                                    <kendo-textbox-container floatingLabel="{{'To' | translate }}"
+                                                        fxFlex>
+                                                        <kendo-numerictextbox
+                                                            [(ngModel)]="filter.productionStatus.value.to"
+                                                            [ngModelOptions]="modelOptions"
+                                                            [disabled]="!filter.productionStatus.isEnabled"
+                                                            [format]="numberFormatOptions"></kendo-numerictextbox>
+                                                    </kendo-textbox-container>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="p-col-12">
+                                            <div kendoTooltip style="text-align: center; padding-top: 10px;">
+                                                <button kendoButton type="button" title="Apply filter(s)"><i
+                                                        class="k-icon k-i-filter"
+                                                        (click)="applyFilters($event)"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </fieldset>
+                </kendo-splitter-pane>
+                <!--  Input Slabs List  -->
+                <kendo-splitter-pane [resizable]="true" [scrollable]="false" min="300px">
+                    <fieldset>
+                        <legend>Input Slabs List</legend>
+                        <div class="p-grid p-nogutter">
+                            <div class="p-col-12">
+                                <app-action-toolbar newVisible="true" (newClicked)="inputSlabNew($event)"
+                                    removeVisible="true" (removeClicked)="inputSlabRemove($event)"
+                                    [removeDisabled]="!inputPieceSelection.isSelected" editVisible="true"
+                                    (editClicked)="inputSlabEdit($event)"
+                                    [editDisabled]="!inputPieceSelection.isSelected" copyVisible="true"
+                                    (copyClicked)="inputSlabCopy($event)"
+                                    [copyDisabled]="!inputPieceSelection.isSelected" refreshVisible="true"
+                                    [newVisible] = "newButtonVisible"
+                                    [removeVisible] = "removeButtonVisible"
+                                    [editVisible] = "updateButtonVisible"
+                                    [copyVisible] = "copyButtonVisible"
+                                    (refreshClicked)="inputSlabListRefresh($event)"></app-action-toolbar>
+                            </div>
+                            <div class="p-col-12">
+                                <app-hrm-input-piece-list [filters]="filters" [row]="inputPieceSelection"
+                                    (edit)="inputSlabEditEntity($event)">
+                                </app-hrm-input-piece-list>
+                            </div>
+                        </div>
+                    </fieldset>
+                </kendo-splitter-pane>
+            </kendo-splitter>
+        </ng-template>
+
+        <ng-template kendoTabContent *ngSwitchCase="'HrmInputPieceDetail'">
+            <app-hrm-input-piece-detail [parentTab]="tab"></app-hrm-input-piece-detail>
+        </ng-template>
+
+        <ng-template kendoTabContent *ngSwitchDefault>
+            <p>Unsupported entity detail!</p>
+            <button kendoButton (click)="tab.close()">Close</button>
+        </ng-template>
+
+    </kendo-tabstrip-tab>
+
+</kendo-tabstrip>
+
+<div kendoDialogContainer></div>

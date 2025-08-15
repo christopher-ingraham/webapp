@@ -1,0 +1,29 @@
+svg {
+    width:100%;
+    max-width: 100%;
+	height:auto;
+}
+.legenda {
+    font-size: 12px;
+    text-align: center;
+    padding:20px 0;
+    border-top: 1px solid #cccccc;
+    margin-top: 30px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+.legenda span {
+    color:#ff0000;
+    font-size: 25px;
+    line-height: 20px;
+    vertical-align: bottom;
+}
+.legenda span.active {
+    color: green;
+}
+.riga {
+    display: block;
+    border-top: 1px solid #cccccc;
+    margin: 0 20px 30px 20px;
+}

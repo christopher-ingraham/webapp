@@ -1,0 +1,619 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DA.MW.Broker.Common</name>
+    </assembly>
+    <members>
+        <member name="T:DA.MW.Broker.Common.Configuration.ConfigurationLoader">
+            <summary>
+            Load the broker configuration object from the Configuration Params.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Configuration.ConfigurationLoader.Load(DA.MW.Broker.Common.Entities.ConfigurationParams)">
+            <summary>
+            This function will load the App broker configuration from the object
+            </summary>
+            <returns>Configuration with some extra informations</returns>
+        </member>
+        <member name="T:DA.MW.Broker.Common.Entities.AcknowledgementType">
+            <summary>
+            Types of acknowledgement supported
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Entities.AcknowledgementType.Ignore">
+            <summary>
+            ignore, the library will decide what to do
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Entities.AcknowledgementType.Ack">
+            <summary>
+            ack the message
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Entities.AcknowledgementType.Nack">
+            <summary>
+            nack the message
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Common.Entities.AppEnvironment">
+            <summary>
+            Static class containing global information
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.AppEnvironment.BrokerName">
+            <summary>
+            Gets or sets the name of the broker.
+            </summary>
+            <value>
+            The name of the broker.
+            </value>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.AppEnvironment.ServiceName">
+            <summary>
+            The name of the service, how it appears in the ServiceManager list.
+            </summary>
+            <value>
+            The name of the service.
+            </value>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.AppEnvironment.MachineName">
+            <summary>
+            The name of the machine where the service is running.
+            </summary>
+            <value>
+            The name of the machine.
+            </value>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.AppEnvironment.UserName">
+            <summary>
+            The name of the user logged in the machine.
+            </summary>
+            <value>
+            The name of the user.
+            </value>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.AppEnvironment.ProcessId">
+            <summary>
+            The process identifier.
+            </summary>
+            <value>
+            The process identifier.
+            </value>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.AppEnvironment.Host">
+            <summary>
+            The host where the RabbitMQ server is.
+            </summary>
+            <value>
+            The host.
+            </value>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.AppEnvironment.Port">
+            <summary>
+            The port opened by the RabbitMQ server.
+            </summary>
+            <value>
+            The port.
+            </value>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.AppEnvironment.Domain">
+            <summary>
+            The domain used for the subscription to Middleware.
+            </summary>
+            <value>
+            The domain.
+            </value>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.AppEnvironment.AreaId">
+            <summary>
+            The process area identifier, used for Middleware and process control.
+            </summary>
+            <value>
+            The area identifier.
+            </value>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.AppEnvironment.StationCode">
+            <summary>
+            The process station code, used for Middleware and process control.
+            </summary>
+            <value>
+            The station code.
+            </value>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.AppEnvironment.ExchangeName">
+            <summary>
+            Gets or sets the name of the exchange.
+            </summary>
+            <value>
+            The name of the exchange.
+            </value>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.AppEnvironment.SingleConnectionAttempt">
+            <summary>
+            Gets or sets a value indicating whether to continue connection reattempt.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.AppEnvironment.IsSelfMessageReceiveRabbit">
+            <summary>
+            Gets or sets a value indicating whether this instance will receive a message
+            sent by itself.  Default is No, but allow to override.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.AppEnvironment.RabbitUserName">
+            <summary>
+            Gets or sets a value for the username to be used to connect to rabbitMQ
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.AppEnvironment.RabbitUserPass">
+            <summary>
+            Gets or sets a value for the user password to be used to connect to rabbitMQ
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.AppEnvironment.IsDCADispatcher">
+            <summary>
+            Gets or sets a value indicating whether this instance is dispatcher.
+            </summary>
+            <value>
+              <c>true</c> if this instance is dispatcher; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:DA.MW.Broker.Common.Entities.ConfigurationParams">
+            <summary>
+            This class is used by the App to load the configuration of the broker Client
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.ConfigurationParams.BrokerType">
+            <summary>
+            Sets the type of the broker.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.ConfigurationParams.BrokerName">
+            <summary>
+            Gets or sets the name of the broker.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.ConfigurationParams.Host">
+            <summary>
+            The host where the Messaging server is.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.ConfigurationParams.Port">
+            <summary>
+            The port opened by the Messaging server.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.ConfigurationParams.Domain">
+            <summary>
+            The domain used for the subscription to Middleware.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.ConfigurationParams.AreaId">
+            <summary>
+            The process area identifier, used for Middleware and process control.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.ConfigurationParams.StationCode">
+            <summary>
+            The process station code, used for Middleware and process control.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.ConfigurationParams.ServiceName">
+            <summary>
+            Gets or sets the name of the service.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.ConfigurationParams.ExchangeName">
+            <summary>
+            Gets or sets the name of the exchange.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.ConfigurationParams.SingleConnectionAttempt">
+            <summary>
+            Gets or sets a value indicating whether to continue connection reattempt.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.ConfigurationParams.RabbitUserName">
+            <summary>
+            Gets or sets a value for the username to be used to connect to rabbitMQ
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.ConfigurationParams.RabbitUserPass">
+            <summary>
+            Gets or sets a value for the user password to be used to connect to rabbitMQ
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Entities.ConfigurationParams.IsSelfMessageReceiveRabbit">
+            <summary>
+            Gets or sets a value indicating whether this instance will receive a message
+            sent by itself.  Default is No, but allow to override.
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Common.Entities.BrokerType">
+            <summary>
+            Valid Messaging Clients attached to this Broker Client
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Entities.BrokerType.RabbitMQ">
+            <summary>
+            The rabbitMQ (Messaging) Process  Message Broker (Using RMQClient)
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Entities.BrokerType.DCADispatcher">
+            <summary>
+            The DCA Dispatcher Process Message Broker (using DSP client)
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Common.Entities.ConnectionInfo">
+            <summary>
+            This is the Connection Info data that you can use if needed.
+            This has all the Connection Info properties
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Entities.ConnectionInfo.HostName">
+            <summary>The host name</summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Entities.ConnectionInfo.PortNumber">
+            <summary>The port number</summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Entities.ConnectionInfo.DomainName">
+            <summary>The domain name</summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Entities.ConnectionInfo.AreaId">
+            <summary>The area identifier</summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Entities.ConnectionInfo.StationCode">
+            <summary>The station code</summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Entities.ConnectionInfo.SubscribedGroup">
+            <summary>The subscribed group</summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Entities.ConnectionInfo.Status">
+            <summary>The status</summary>
+        </member>
+        <member name="T:DA.MW.Broker.Common.Entities.SendingResult">
+            <summary>
+            Types of possible result from a sending operation
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Entities.SendingResult.Sent">
+            <summary>
+            the message has been sent
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Entities.SendingResult.Queued">
+            <summary>
+            the message has been stored in an internal queue and will be sent
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Entities.SendingResult.NotQueued">
+            <summary>
+            the message has not been sent and has not been stored because the queue is full
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Common.IBrokerMessage">
+            <summary>
+            Interface that defines a generic broker message
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.IBrokerMessage.Header">
+            <summary>
+            Header of Danieli messaging protocol
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.IBrokerMessage.Body">
+            <summary>
+            Buffer that contains the message information
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Common.IBrokerMessageAck">
+            <summary>
+            Interface that defines a generic broker message ack
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.IBrokerMessageAck.Acknowledgement">
+            <summary>
+            Gets the acknowledgement to execute
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Common.IBrokerMessageExt">
+            <summary>
+            Interface that defines a generic broker message Extra Fields
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.IBrokerMessageExt.QueueName">
+            <summary>
+            Queue that received the message
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.IBrokerMessageExt.ChannelNumber">
+            <summary>
+            Number of the channel where the ack should be done
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.IBrokerMessageExt.DeliveryTag">
+            <summary>
+            This is the delivery tag of the message 
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Common.IBrokerMessageExt.RoutingKey">
+            <summary>
+            Gets the routing key.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Common.IBrokerMessageExt.CreateMessageAck(DA.MW.Broker.Common.Entities.AcknowledgementType)">
+            <summary>
+            Creates the message ack.
+            </summary>
+            <param name="acknowledgement">The acknowledgement.</param>
+            <returns></returns>
+        </member>
+        <member name="T:DA.MW.Broker.Common.Protocol.ConnectionStatuses">
+            <summary>
+            List of possible connection statuses
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Protocol.ConnectionStatuses.Undefined">
+            <summary>
+            Not a valid status
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Protocol.ConnectionStatuses.NotConnected">
+            <summary>
+            Not connected (yet or after a disconnection)
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Protocol.ConnectionStatuses.Connecting">
+            <summary>
+            The connection is lost, or never got, but the system keeps trying to connect
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Protocol.ConnectionStatuses.Connected">
+            <summary>
+            Connection established
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Common.Protocol.MsgHeader">
+            <summary>
+            This is the Message Header data that you can use if needed.
+            This has all the Header Information properties
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Protocol.MsgHeader.Domain">
+            <summary>
+            The domain
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Protocol.MsgHeader.Group">
+            <summary>
+            The group
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Protocol.MsgHeader.Code">
+            <summary>
+            The code
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Protocol.MsgHeader.AreaId">
+            <summary>
+            The area identifier
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Protocol.MsgHeader.StationCode">
+            <summary>
+            The station code
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Protocol.MsgHeader.SourceId">
+            <summary>
+            The source identifier
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Protocol.MsgHeader.PlcId">
+            <summary>
+            The PLC identifier
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Protocol.MsgHeader.PlcOp">
+            <summary>
+            The PLC op
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Protocol.MsgHeader.ReplyId">
+            <summary>
+            The reply identifier
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Protocol.MsgHeader.ReplyResult">
+            <summary>
+            The reply result
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Protocol.MsgHeader.TimeStamp">
+            <summary>
+            The time stamp
+            public double TimeStamp = DateTime.Now.ToOADate();
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Protocol.MsgHeader.Mask">
+            <summary>
+            The mask
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Protocol.MsgHeader.Icon">
+            <summary>
+            The icon
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Protocol.MsgHeader.Sender">
+            <summary>
+            The sender
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Common.Protocol.MsgHeader.Recipient">
+            <summary>
+            The recipient
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MsgHeader.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Common.Protocol.MsgHeader"/> class.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MsgHeader.#ctor(System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Common.Protocol.MsgHeader"/> class.
+            </summary>
+            <param name="data">The data.</param>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MsgHeader.#ctor(DA.MW.Broker.Common.Entities.AppEnvironment)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Common.Protocol.MsgHeader"/> class.
+            </summary>
+            <param name="appEnvironment">The application environment.</param>
+        </member>
+        <member name="P:DA.MW.Broker.Common.Protocol.MsgHeader.DataSize">
+            <summary>
+            Gets the size of the data.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MsgHeader.Data">
+            <summary>
+            Datas this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MsgHeader.SetData(System.Byte[],System.Int32)">
+            <summary>
+            Sets the data.
+            </summary>
+            <param name="Data">The data.</param>
+            <param name="offset">The offset.</param>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MsgHeader.#ctor(DA.MW.Broker.Common.Protocol.MsgHeader)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Common.Protocol.MsgHeader"/> class.
+            </summary>
+            <param name="msgInfoHeader">The MSG information header.</param>
+        </member>
+        <member name="T:DA.MW.Broker.Common.Protocol.MWCodeString">
+            <summary>
+            Used with MsgHeader
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MWCodeString.getValue">
+            <summary>
+            Gets the value.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MWCodeString.Size">
+            <summary>
+            Sizes this instance.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MWCodeString.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Common.Protocol.MWCodeString"/> class.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MWCodeString.ToString">
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MWCodeString.op_Implicit(System.String)~DA.MW.Broker.Common.Protocol.MWCodeString">
+            <summary>
+            Performs an implicit conversion from <see cref="T:System.String"/> to <see cref="T:DA.MW.Broker.Common.Protocol.MWCodeString"/>.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>
+            The result of the conversion.
+            </returns>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MWCodeString.op_Implicit(DA.MW.Broker.Common.Protocol.MWCodeString)~System.String">
+            <summary>
+            Performs an implicit conversion from <see cref="T:DA.MW.Broker.Common.Protocol.MWCodeString"/> to <see cref="T:System.String"/>.
+            </summary>
+            <param name="DspStrValue">The DSP string value.</param>
+            <returns>
+            The result of the conversion.
+            </returns>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MWCodeString.Data">
+            <summary>
+            Datas this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MWCodeString.SetData(System.Byte[],System.Int32)">
+            <summary>
+            Sets the data.
+            </summary>
+            <param name="Data">The data.</param>
+            <param name="offset">The offset.</param>
+        </member>
+        <member name="T:DA.MW.Broker.Common.Protocol.MWString">
+            <summary>
+            Used with MsgHeader
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MWString.GetValue">
+            <summary>
+            Gets the value.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MWString.Size">
+            <summary>
+            Sizes this instance.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MWString.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Common.Protocol.MWString"/> class.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MWString.ToString">
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MWString.op_Implicit(System.String)~DA.MW.Broker.Common.Protocol.MWString">
+            <summary>
+            Performs an implicit conversion from <see cref="T:System.String"/> to <see cref="T:DA.MW.Broker.Common.Protocol.MWString"/>.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>
+            The result of the conversion.
+            </returns>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MWString.op_Implicit(DA.MW.Broker.Common.Protocol.MWString)~System.String">
+            <summary>
+            Performs an implicit conversion from <see cref="T:DA.MW.Broker.Common.Protocol.MWString"/> to <see cref="T:System.String"/>.
+            </summary>
+            <param name="DspStrValue">The DSP string value.</param>
+            <returns>
+            The result of the conversion.
+            </returns>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MWString.Data">
+            <summary>
+            Datas this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Common.Protocol.MWString.SetData(System.Byte[],System.Int32)">
+            <summary>
+            Sets the data.
+            </summary>
+            <param name="Data">The data.</param>
+            <param name="offset">The offset.</param>
+        </member>
+    </members>
+</doc>

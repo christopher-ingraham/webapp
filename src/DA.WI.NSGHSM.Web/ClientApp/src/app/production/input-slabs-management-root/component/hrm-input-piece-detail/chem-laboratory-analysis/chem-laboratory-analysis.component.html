@@ -1,0 +1,50 @@
+<form [formGroup]="form">
+    <fieldset>
+        <legend>Laboratory Analysis</legend>
+        <div class="p-grid p-nogutter">
+            <div class="p-col-6">
+                <div class="k-form-field">
+                    <input type="checkbox" id="field-id-is-default-steel-grade-used"
+                        [(ngModel)]="isDefaultSteelGradeUsed" [ngModelOptions]="modelOptions" class="k-checkbox">
+                    <!---->
+                    <label class="k-checkbox-label"
+                        for="field-id-is-default-steel-grade-used">{{'Use default steel grade'|translate }}</label>
+                </div>
+
+            </div>
+            <div class="p-col-6">
+                <kendo-textbox-container floatingLabel="{{'Sample ID'|translate }}" fxFlex>
+                    <kendo-combobox [data]="samples" [textField]="'label'" [valueField]="'value'"
+                        [(ngModel)]="selectedSample" [ngModelOptions]="modelOptions" [allowCustom]="false">
+                    </kendo-combobox>
+                </kendo-textbox-container>
+            </div>
+
+            <div class="p-col-12">&nbsp;</div>
+
+            <div class="p-col-12">
+                <table style="width: 100%">
+                    <tbody>
+                        <tr *ngFor="let item of items">
+                            <th scope="row">{{item.left.label | translate}}</th>
+                            <td>
+                                <kendo-numerictextbox [readonly]="true" [format]="'n3'" [spinners]="false"
+                                    [value]="item.left.analysis">
+                                </kendo-numerictextbox>
+                            </td>
+                            <td>&nbsp;</td>
+                            <th scope="row">{{item.right.label | translate}}</th>
+                            <td>
+                                <kendo-numerictextbox [readonly]="true" [format]="'n3'" [spinners]="false"
+                                    [value]="item.right.analysis">
+                                </kendo-numerictextbox>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </fieldset>
+</form>

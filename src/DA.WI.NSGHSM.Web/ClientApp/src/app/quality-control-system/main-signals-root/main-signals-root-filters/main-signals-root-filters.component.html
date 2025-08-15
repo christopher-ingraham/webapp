@@ -1,0 +1,66 @@
+<form>
+    <fieldset>
+        <legend>Produced Coils</legend>
+        <div class="p-grid p-nogutter">
+            <div class="p-col-4">
+                <div class="p-grid">
+                    <div class="p-col-12">
+                        <input type="checkbox" id="filterProducedCoilId" class="k-checkbox"
+                            [(ngModel)]="filter.producedCoilId.isEnabled"
+                            [ngModelOptions]="modelOptions" />
+                        <label class="k-checkbox-label" for="filterProducedCoilId">Produced Coil
+                            ID</label>
+                    </div>
+                    <div class="p-col-12">
+                        <input kendoTextBox [(ngModel)]="filter.producedCoilId.value"
+                            [ngModelOptions]="modelOptions"
+                            [disabled]="!filter.producedCoilId.isEnabled" />
+                    </div>
+                </div>
+            </div>
+            <div class="p-col-4">
+                <div class="p-grid">
+                    <div class="p-col-12">
+                        <input type="checkbox" id="filterInputCoilId" class="k-checkbox"
+                            [(ngModel)]="filter.inputCoilId.isEnabled"
+                            [ngModelOptions]="modelOptions" />
+                        <label class="k-checkbox-label" for="filterInputCoilId">Input Slab No</label>
+                    </div>
+                    <div class="p-col-12">
+                        <input class="k-textbox" [(ngModel)]="filter.inputCoilId.value"
+                            [ngModelOptions]="modelOptions"
+                            [disabled]="!filter.inputCoilId.isEnabled" />
+                    </div>
+                </div>
+            </div>
+            <div class="p-col-4">
+                <div class="p-grid">
+                    <div class="p-col-12">
+                        &nbsp;
+                    </div>
+                    <div class="p-col-12">
+                        <div kendoTooltip style="text-align: center; padding-top: 10px;">
+                            <button kendoButton type="button" title="Apply filter(s)"><i
+                                    class="k-icon k-i-filter"
+                                    (click)="applyFilters($event)"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-12">
+                <input type="checkbox" id="filterProductionStopDate" class="k-checkbox"
+                    [(ngModel)]="filter.productionStopDate.isEnabled" [ngModelOptions]="modelOptions" />
+                <label class="k-checkbox-label" for="filterProductionStopDate">Production Stops
+                    Date</label>
+            </div>
+            <div class="p-col-12">
+                <app-time-filter [disabled]="!filter.productionStopDate.isEnabled"
+                    [(dateTimeFrom)]="filter.productionStopDate.value.from"
+                    [(dateTimeTo)]="filter.productionStopDate.value.to">
+                </app-time-filter>
+            </div>
+        </div>
+    </fieldset>
+</form>

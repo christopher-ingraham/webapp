@@ -1,0 +1,252 @@
+{
+  "HOME": {
+    "TEST": "This is translated in all languages !",
+    "TEST2": "This is translated only in default (en)"
+  },
+  "APP": {
+    "PAGE_NOT_FOUND": {
+      "TITLE": "Page not found",
+      "BACK_TO_HOME": "Back to home"
+    }
+  },
+  "SETTINGS": {
+    "TITLE": "Settings",
+    "USER": {
+      "TITLE": "User",
+      "USERNAME": "Username",
+      "ROLES": "Roles",
+      "LOGOUT": "Logout"
+    },
+    "ABOUT": {
+      "TITLE": "About",
+      "VERSION": "Version",
+      "CREATED_FROM_DAWI_TEMP_VERSION": "Created from DA.WI Template Version",
+      "ENVIRONMENT": "Environment",
+      "DESCRIPTION": "Test Description",
+      "CUSTOMERNAME": "CustomerName",
+      "COPYRIGHT": "Copyright",
+      "LOCALE": "Locale"
+    }
+  },
+  "SHELL": {
+    "SIDEBAR": {
+      "HOME": "Home",
+      "DIAGNOSTICS": "Diagnostics",
+      "TEST": "Test",
+      "SETTINGS": "Settings",
+      "LOGOUT": "Logout",
+      "EXAMPLE": {
+        "GROUP_NAME": "Example",
+        "CITIES": "Cities",
+        "MEASUREMENTS": "Measurements"
+      }
+    },
+    "FOOTER": {
+      "APP_STATE": {
+        "READY": "Ready",
+        "BUSY": "Busy"
+      },
+      "TEXT": "[Configurable Text]"
+    }
+  },
+  "CORE": {
+    "ERRORS": {
+      "NOT_FOUND": "The requested resource was not found",
+      "UNAUTHORIZED": "The requested resource is unavailable to current user",
+      "FORBIDDEN": "The requested resource is forbidden to you",
+      "BAD_REQUEST": {
+        "REQUIRED_FIELD": "{{field}} is a required field",
+        "FIELD_MUST_BE_POSITIVE": "{{field}} must be positive",
+        "ALREADY_EXISTS": "this {{field}} already exists",
+        "UNKNOWN": "Invalid request",
+        "RELATED_RESOURCES_EXIST": "the resource has associated resources which must be deleted first",
+        "FIELD_NOT_VALID": "{{field}} is not valid"
+      },
+      "API_CALL_FAIL": "The call to the Api server failed. Please verify that the server is up and running.",
+      "INTERNAL_SERVER_ERROR": "An internal server error occurred. Please contact the administrator.",
+      "UNKNOWN": "An unknown error occurred. Please contact the administrator."
+
+    },
+    "AUTH": {
+      "UNAUTHORIZED": {
+        "TITLE": "Unauthorized",
+        "LOGIN_WITH_ANOTHER_USER": "Login with another user",
+        "BACK_TO_HOME": "Back to home"
+      }
+    }
+  },
+  "KENDO": {
+    "CALENDAR": {
+      "TODAY": "TODAY"
+    },
+    "GRID": {
+      "GROUPPANELEMPTY": "Drag a column header and drop it here to group by that column",
+      "NORECORDS": "No records available.",
+      "PAGERFIRSTPAGE": "Go to the first page",
+      "PAGERPREVIOUSPAGE": "Go to the previous page",
+      "PAGERNEXTPAGE": "Go to the next page",
+      "PAGERLASTPAGE": "Go to the last page",
+      "PAGERPAGE": "Page",
+      "PAGEROF": "of",
+      "PAGERITEMS": "items",
+      "PAGERITEMSPERPAGE": "items per page",
+      "FILTER": "Filter",
+      "FILTEREQOPERATOR": "Is equal to",
+      "FILTERNOTEQOPERATOR": "Is not equal to",
+      "FILTERISNULLOPERATOR": "Is null",
+      "FILTERISNOTNULLOPERATOR": "Is not null",
+      "FILTERISEMPTYOPERATOR": "Is empty",
+      "FILTERISNOTEMPTYOPERATOR": "Is not empty",
+      "FILTERSTARTSWITHOPERATOR": "Starts with",
+      "FILTERCONTAINSOPERATOR": "Contains",
+      "FILTERNOTCONTAINSOPERATOR": "Does not contain",
+      "FILTERENDSWITHOPERATOR": "Ends with",
+      "FILTERGTEOPERATOR": "Is greater than or equal to",
+      "FILTERGTOPERATOR": "Is greater than",
+      "FILTERLTEOPERATOR": "Is less than or equal to",
+      "FILTERLTOPERATOR": "Is less than",
+      "FILTERISTRUE": "is true",
+      "FILTERISFALSE": "is false",
+      "FILTERBOOLEANALL": "(All)",
+      "FILTERAFTEROREQUALOPERATOR": "Is after or equal to",
+      "FILTERAFTEROPERATOR": "Is after",
+      "FILTERBEFOREOPERATOR": "Is before",
+      "FILTERBEFOREOREQUALOPERATOR": "Is before or equal to",
+      "FILTERFILTERBUTTON": "Filter",
+      "FILTERCLEARBUTTON": "Clear",
+      "FILTERANDLOGIC": "And",
+      "FILTERORLOGIC": "Or",
+      "LOADING": "Loading",
+      "SORT": "Sort",
+      "COLUMNMENU": "Column Menu",
+      "COLUMNS": "Columns",
+      "LOCK": "Lock",
+      "UNLOCK": "Unlock",
+      "SORTASCENDING": "Sort Ascending",
+      "SORTDESCENDING": "Sort Descending",
+      "COLUMNSAPPLY": "Apply",
+      "COLUMNSRESET": "Reset"
+    },
+    "SLIDER": {
+      "INCREMENT": "Increase value",
+      "DECREMENT": "Decrease value",
+      "DRAGHANDLE": "drag"
+    },
+    "SWITCH": {
+      "TRUE": true,
+      "FALSE": false
+    },
+    "UPLOAD": {
+      "CANCEL": "Cancel",
+      "CLEARSELECTEDFILES": "Clear",
+      "DROPFILESHERE": "Drop files here to upload",
+      "HEADERSTATUSUPLOADED": "Done",
+      "HEADERSTATUSUPLOADING": "Uploading...",
+      "INVALIDFILEEXTENSION": "File type not allowed.",
+      "INVALIDFILES": "Invalid file(s). Please check file upload requirements.",
+      "INVALIDMAXFILESIZE": "File size too large.",
+      "INVALIDMINFILESIZE": "File size too small.",
+      "REMOVE": "Remove",
+      "RETRY": "Retry",
+      "SELECT": "Select files...",
+      "UPLOADSELECTEDFILES": "Upload files"
+    },
+    "DATEINPUT": {
+      "INCREMENT": "Increase value",
+      "DECREMENT": "Decrease value"
+    },
+    "AUTOCOMPLETE": {
+      "NODATATEXT": "No data found",
+      "CLEARTITLE": "clear"
+    },
+    "COMBOBOX": {
+      "NODATATEXT": "No data found",
+      "CLEARTITLE": "clear"
+    },
+    "DROPDOWNLIST": {
+      "NODATATEXT": "No data found",
+      "CLEARTITLE": "clear"
+    },
+    "MULTISELECT": {
+      "NODATATEXT": "No data found",
+      "CLEARTITLE": "clear"
+    },
+    "DATEPICKER": {
+      "TODAY": "Today",
+      "TOGGLE": "Toggle calendar"
+    },
+    "TIMEPICKER": {
+      "ACCEPT": "Set",
+      "ACCEPTLABEL": "Set",
+      "CANCEL": "Cancel",
+      "CANCELLABEL": "Cancel",
+      "NOW": "Now",
+      "NOWLABEL": "Now",
+      "TOGGLE": "Toggle time list"
+    },
+    "NUMERICTEXTBOX": {
+      "INCREMENT": "Increase value",
+      "DECREMENT": "Decrease value"
+    }
+  },
+  "VALIDATIONS": {
+    "REQUIRED": "{{fieldName}} is required.",
+    "MAXLENGTH": "{{fieldName}} exceeds the maximum length of {{requiredLength}} characters.",
+    "MIN": "{{fieldName}} must be greater or equal to {{min}}.",
+    "MAX": "{{fieldName}} must be greater or equal to {{max}}."
+  },
+  "TEST": {
+    "TRANSLATE_DEFAULT": {
+      "TRANSLATION_FOUND": "This is the translated message",
+      "TRANSLATION_FOUND_WITH_PARAM": "This is the translated message, with parameters: {value: {{value}}}"
+    }
+  },
+  "EXAMPLE": {
+    "CITY": {
+      "FIELDS": {
+        "NAME": "Name",
+        "COUNTRYNAME": "Country Name",
+        "POPULATION": "Population"
+      },
+      "PAGETITLE": {
+        "LIST": "Cities",
+        "NEW": "New City",
+        "DETAIL": "City Detail"
+      },
+      "NEW": "New City",
+      "FILTER": "Filter",
+      "GOTO_MEASUREMENTS": "Go to measurements"
+    },
+    "MEASUREMENT": {
+      "PAGETITLE": {
+        "LIST": "Measurements",
+        "LISTFOR": "Measurements for",
+        "NEW": "New Measurement",
+        "DETAILS": "Measurement Details"
+      },
+      "FIELDS": {
+        "CITYNAME": "City Name",
+        "WEATHER": "Weather",
+        "TEMPERATUREC": "Temperature (C)",
+        "PRESSUREMB": "Pressure (mbar)",
+        "MEASUREDAT": "Measured At",
+        "FROM": "From",
+        "TO": "To"
+      },
+      "VALIDATIONS": {
+        "CITYNAME": {
+          "VALID": "This city with this name was not found."
+        }
+      },
+      "NEW": "New Measurement",
+      "FILTER": "Filter"
+    },
+    "ITEMS": "Items",
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "BACK": "Back",
+    "DELETE": "Delete",
+    "CONFIRM_DELETE": "Are you you want to delete this item?",
+    "INSERT_TEXT_TO_SEARCH": "Insert the text to search"
+  }
+}

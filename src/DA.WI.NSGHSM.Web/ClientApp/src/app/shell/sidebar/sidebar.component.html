@@ -1,0 +1,16 @@
+<kendo-panelbar (stateChange)="stateChange($event)" [items]="panelBarItems"></kendo-panelbar>
+<div *ngIf="isDebug" style="margin-top: 1cm;">
+    <!--  DEBUG ONLY BELOW  -->
+    <fieldset>
+        <legend title="This block is visible only when the webapp is run in DEV mode."><strong>DEV MODE ONLY</strong></legend>
+        <div class="ui-grid">
+            <div class="p-col-12">
+                <button kendoButton routerLink="/playground">Playground</button>
+            </div>
+            <div class="p-col-12">
+                <button kendoButton (click)="appUserInfoVisible = !appUserInfoVisible">appUserInfo</button>
+                <pre *ngIf="appUserInfoVisible">{{ appUserInfo | json }}</pre>
+            </div>
+        </div>
+    </fieldset>
+</div>

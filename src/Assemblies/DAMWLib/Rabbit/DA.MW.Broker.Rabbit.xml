@@ -1,0 +1,982 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DA.MW.Broker.Rabbit</name>
+    </assembly>
+    <members>
+        <member name="T:DA.MW.Broker.Rabbit.BufferPublishData">
+            <summary>
+            Create a new buffer array to be sent to RabbitMQ
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.BufferPublishData.#ctor(System.String,System.String,System.Byte[],DA.MW.Broker.Common.Protocol.MsgHeader,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Rabbit.BufferPublishData"/> struct.
+            This class will combine Header and Body into a new byte array.
+            </summary>
+            <param name="exchangeName">Name of the exchange.</param>
+            <param name="routingKey">The routing key.</param>
+            <param name="msgBuffer">The MSG buffer.</param>
+            <param name="header">The header.</param>
+            <param name="isPersistent">if set to <c>true</c> [is persistent].</param>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.BufferPublishData.HasHeader">
+            <summary>
+            Gets a value indicating whether this instance has header.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.BufferPublishData.Body">
+            <summary>
+            Gets the body.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.BufferPublishData.Exchange">
+            <summary>
+            Gets the exchange.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.BufferPublishData.RoutingKey">
+            <summary>
+            Gets the routing key.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.BufferPublishData.IsPersistent">
+            <summary>
+            Gets a value indicating whether this instance is persistent.
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.PublicationError">
+            <summary>
+            This is used to save any errors so they can be preformed before the Dispose is completed
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.PublicationError.#ctor(DA.MW.Broker.Rabbit.BufferPublishData,DA.MW.Broker.Rabbit.Exceptions.RMQException)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Rabbit.PublicationError"/> class.
+            </summary>
+            <param name="data">The data.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.PublicationError.Data">
+            <summary>
+            Gets the data.
+            </summary>
+            <value>
+            The data.
+            </value>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.PublicationError.Exception">
+            <summary>
+            Gets the exception.
+            </summary>
+            <value>
+            The exception.
+            </value>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.Exceptions.RMQException">
+            <summary>
+            RMQ Exception Class to send specific exceptions
+            </summary>
+            <seealso cref="T:System.Exception" />
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Exceptions.RMQException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Rabbit.Exceptions.RMQException"/> class.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Exceptions.RMQException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Rabbit.Exceptions.RMQException"/> class.
+            </summary>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.Exceptions.RMQException.InternalErrorCode">
+            <summary>
+            Gets the internal error code.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.Exceptions.RMQException.InternalErrorText">
+            <summary>
+            Gets the internal error text.
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.Exceptions.RMQExceptionMapper">
+            <summary>
+            Internal class that has the reference to an actual rabbitmq channel and has the responsability 
+            to try map rabbitMQ exceptions to library one that keep original the exception as internal one.
+            If the exception type is not one of rabbitMQ it throw as it is.
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.Exceptions.AlreadyClosedException">
+            <summary>
+            Thrown when the application tries to make use of a session or connection 
+            that has already been shut down.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Exceptions.AlreadyClosedException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Rabbit.Exceptions.AlreadyClosedException"/> class.
+            </summary>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.Exceptions.AuthenticationFailureException">
+            <summary>
+            Thrown when the cause is an authentication failure.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Exceptions.AuthenticationFailureException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Rabbit.Exceptions.AuthenticationFailureException"/> class.
+            </summary>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.Exceptions.BrokerUnreachableException">
+            <summary>
+            Thrown when no connection could be opened during a 
+            ConnectionFactory.CreateConnection attempt.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Exceptions.BrokerUnreachableException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Rabbit.Exceptions.BrokerUnreachableException"/> class.
+            </summary>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.Exceptions.ChannelAllocationException">
+            <summary>
+            Thrown when a SessionManager cannot allocate a new channel number, or the
+            requested channel number is already in use.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Exceptions.ChannelAllocationException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Rabbit.Exceptions.ChannelAllocationException"/> class.
+            </summary>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.Exceptions.ConnectFailureException">
+            <summary>
+            Thrown when a connection to the broker fails
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Exceptions.ConnectFailureException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Rabbit.Exceptions.ConnectFailureException"/> class.
+            </summary>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.Exceptions.OperationInterruptedException">
+            <summary>
+            Thrown when a session is destroyed during an RPC call to a broker. 
+            For example, if a TCP connection dropping causes the destruction of
+            a session in the middle of a QueueDeclare operation, an 
+            OperationInterruptedException will be thrown to the caller of 
+            IModel.QueueDeclare.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Exceptions.OperationInterruptedException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Rabbit.Exceptions.OperationInterruptedException"/> class.
+            </summary>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.Exceptions.PacketNotRecognizedException">
+            <summary>
+            Thrown to indicate that the peer didn't understand the packet received 
+            from the client. Peer sent default message describing protocol version
+            it is using and transport parameters.
+            Remarks: The peer's {'A','M','Q','P',txHi,txLo,major,minor} packet is
+            decoded into instances of this class.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Exceptions.PacketNotRecognizedException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Rabbit.Exceptions.PacketNotRecognizedException"/> class.
+            </summary>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.Exceptions.PossibleAuthenticationFailureException">
+            <summary>
+            Thrown when the likely cause is an authentication failure.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Exceptions.PossibleAuthenticationFailureException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Rabbit.Exceptions.PossibleAuthenticationFailureException"/> class.
+            </summary>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.Exceptions.ProtocolVersionMismatchException">
+            <summary>
+            Thrown to indicate that the peer does not support the wire protocol 
+            version we requested immediately after opening the TCP socket.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Exceptions.ProtocolVersionMismatchException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Rabbit.Exceptions.ProtocolVersionMismatchException"/> class.
+            </summary>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.Exceptions.UnexpectedMethodException">
+            <summary>
+            Thrown when the model receives an RPC reply that it wasn't expecting.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Exceptions.UnexpectedMethodException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Rabbit.Exceptions.UnexpectedMethodException"/> class.
+            </summary>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.Exceptions.UnsupportedMethodException">
+            <summary>
+            Thrown when the model receives an RPC request it cannot satisfy.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Exceptions.UnsupportedMethodException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Rabbit.Exceptions.UnsupportedMethodException"/> class.
+            </summary>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.Exceptions.UnsupportedMethodFieldException">
+            <summary>
+            Thrown when the model cannot transmit a method field because the
+            version of the protocol the model is implementing does not contain
+            a definition for the field in question.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Exceptions.UnsupportedMethodFieldException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Rabbit.Exceptions.UnsupportedMethodFieldException"/> class.
+            </summary>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.Exceptions.WireFormattingException">
+            <summary>
+            Thrown when the wire-formatting code cannot encode a particular .NET
+            value to AMQP protocol format.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Exceptions.WireFormattingException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Rabbit.Exceptions.WireFormattingException"/> class.
+            </summary>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Pool`1.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.Pool`1.IsDisposed">
+            <summary>
+            Gets a value indicating whether this instance is disposed.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.PublicationFlow.SendNow(DA.MW.Broker.Rabbit.BufferPublishData)">
+            <summary>
+            This is thread safe but try to send the message asap, ignoring the messages of the publishing queue,
+            actually both sending operation as parallel. If it fails for whathever reason the exception is thrown.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.PublicationFlow.SendNowOrAddToQueue(DA.MW.Broker.Rabbit.BufferPublishData)">
+            <summary>
+            If there are no previous messages in the publication queue this method try send a message
+            syncronously and, in the other case, it will try to add the message to the publication queue. 
+            If it fails to send the message syncronously it will throw an exception as in SendNow method but,
+            if the reason of the failure is a problem with the connection, it will try to add to the publication 
+            queue.
+            </summary>
+            <param name="args"></param>
+            <returns>The result of the sending operation</returns>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.PublicationFlow.AddToQueue(DA.MW.Broker.Rabbit.BufferPublishData)">
+            <summary>
+            This method add the message to the publication queue and try to send it as soon
+            as possible but respecting the queue order.
+            </summary>
+            <param name="args"></param>
+            <returns>true if the message is added, false if the queue buffer is full</returns>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.PublicationFlow.AddToQueue(DA.MW.Broker.Rabbit.BufferPublishData[])">
+            <summary>
+            This method add an array of messages to the publication queue and try to send them as soon
+            as possible but respecting the queue order.
+            </summary>
+            <param name="argsArray"></param>
+            <returns>return an array of the same dimension as the messages array where every value is 
+            true if the corresponding message is added, false if the queue buffer is full</returns>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.PublicationFlow.SendMessageOrAddToQueue(DA.MW.Broker.Rabbit.BufferPublishData)">
+            <summary>
+            try send message, if ok return OK, if fail return false
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.RMQClient">
+            <summary>
+            Implementation of the low level client library for the RabbitMQ message broker
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQClient.#ctor(NLog.ILogger,DA.MW.Broker.Common.Entities.AppEnvironment,System.Threading.Tasks.TaskScheduler)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Rabbit.RMQClient"/> class.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="userEnv">The user env.</param>
+            <param name="taskScheduler">The task scheduler.</param>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQClient.Environment">
+            <summary>
+            This class contains some environment variables
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQClient.Factory">
+            <summary>
+            The user must use this factory to create new library resources.
+            The lifetime of these resources are handled by the library, so after the call
+            of the dispose method  of the library all the resources are not safe to use anymore.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQClient.IsOpen">
+            <summary>
+            Gets a value indicating whether this instance is open.
+            </summary>
+            <value>
+              <c>true</c> if this instance is open; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQClient.SetEventCapture(System.Action,System.Action,System.Action)">
+            <summary>
+            Sets the event capture.
+            </summary>
+            <param name="EventConnectionEstablished">The event connection established.</param>
+            <param name="EventConnectionLost">The event connection lost.</param>
+            <param name="EventConnectionReattempt">The event connection reattempt.</param>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQClient.Connect(System.Boolean)">
+            <summary>
+            Connects this instance.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQClient.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQClient.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.RMQConsumer">
+            <summary>
+            This class is modeled after the consumer concept of the amqp protocol.
+            An istance of this object that can only be created with the library factory.
+            That instance map a consumer resource created by the factory on a remote rabbit node.
+            This class offer a reception method that call a callback and some methods to acknowledge
+            the received messages.
+            This consumer actually contains n consumers, one per binded queue, but every message received 
+            is handled by the same flow and is returned to the user using the same callback.
+            This consumer can be disposed by the user but then is must not be used anymore.
+            </summary>
+        </member>
+        <member name="E:DA.MW.Broker.Rabbit.RMQConsumer.AckingMessageFailure">
+            <summary>
+            Stored list of when Occurs [acking message failure].
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQConsumer.PrefetchCount">
+            <summary>
+            This is the number of messages to be fetched from the queue at a time
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQConsumer.ReceptionQueueSize">
+            <summary>
+            It's the max number of messages that the reception queue can contain togheter
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQConsumer.ReceptionQueueCount">
+            <summary>
+            It's the number of the messages in the reception queue that are ready to be processed
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQConsumer.AckingQueueCount">
+            <summary>
+            It's the number of the messages in the acking queue that are ready to be sended
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQConsumer.ProcessAlsoRedelivered">
+            <summary>
+            If is set to true the message receiver processes also the messages that have the Redelivered flag set to true,
+            so the application should process the messages in an idempotent manner.
+            If is set to false it drops the messages that have the Redelivered flag set to true.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQConsumer.SleepTime">
+            <summary>
+            This define how many millisec the publication method should sleep when the connection
+            is down
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQConsumer.LogOn">
+            <summary>
+            This enable/disable log on acking's functions that tend do be frequently called
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQConsumer.DataReceivedCallback">
+            <summary>
+            This is the callback that is called for every received message.
+            The object is of type RMQMessageEvent
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQConsumer.TaskScheduler">
+            <summary>
+            Task scheduler where the callback is schedulated
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQConsumer.BindedQueues">
+            <summary>
+            Queues that are consumed by this consumer at the moment
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQConsumer.AddQueue(DA.MW.Broker.Rabbit.RMQQueue,System.Boolean,System.Boolean)">
+            <summary>
+            Register the <paramref name="queue"/> to the consumer to consume the messages.
+            The user should set the <paramref name="autoAck"/> to false for critical applications.
+            The user can use forceRebinding to apply the re-binding of the queue with the consumer
+            but it MUST be sure that there are no acks of messages from that queue at the same moment.
+            </summary>
+            <param name="queue"></param>
+            <param name="autoAck"></param>
+            <param name="forceRebinding"></param>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQConsumer.RemoveQueue(DA.MW.Broker.Rabbit.RMQQueue)">
+            <summary>
+            Remove the <paramref name="queue"/> from the consumer.
+            </summary>
+            <param name="queue"></param>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQConsumer.AcknowledgeSingleMessage(DA.MW.Broker.Rabbit.RMQMessageAck)">
+            <summary>
+            Do the acknowledgement of the messages that have deliverTag equal to <paramref name="messageAck.deliveryTag.deliveryTag"/>.
+            The type of acknowledgement done is defined in the <paramref name="messageAck.acknowledgment.acknowledgment"/>.
+            </summary>
+            <param name="messageAck"></param>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQConsumer.AcknowledgeMultipleMessages(DA.MW.Broker.Rabbit.RMQMessageAck)">
+            <summary>
+            Do the acknowledgement of all the messages that have deliverTag minor or equal to <paramref name="messageAck.deliveryTag.deliveryTag"/>.
+            The type of acknowledgement done is defined in the <paramref name="messageAck.acknowledgment.acknowledgment"/>.
+            In the multiple acknowledgement mode Reject is not supported.
+            </summary>
+            <param name="messageAck"></param>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQConsumer.AcknowledgeMultipleMessages(DA.MW.Broker.Rabbit.RMQMessageAck[])">
+            <summary>
+            Do the acknowledgment of all messages with multiple flag set to true if is possible,
+            but if that's not the case do the ack with the multiple flag set to false.
+            TODO : va tenuta o commentata?
+            </summary>
+            <param name="messageAcks"></param>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQConsumer.InitDataFlow">
+            <summary>
+            define dataflow blocks and connects them
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQConsumer.HandleMessage(DA.MW.Broker.Rabbit.RMQMessage)">
+            <summary>
+            function that handles the messages from rabbitmq passing it to the app or dropping it 
+            if the ProcessAlsoRedelivered is false an the message has the redelivered flag at true
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQConsumer.AcknowledgeMessage(System.Threading.Tasks.Task{DA.MW.Broker.Common.IBrokerMessageAck})">
+            <summary>
+            Function that handles the acknowledment of the message basing on the options received from the previous block.
+            The user should keep in mind that if it register more queue to a single consumer we cannot figure out (actually
+            we can but it's a lot of work) from which queue that message is coming, so we can handle the acknowledgment
+            automatically.
+            </summary>
+            <param name="messageAckTask">how to perform the acknowledgment decided by the </param>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQConsumer.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQConsumer.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.AckingError">
+            <summary>
+            This is used to save any Acking errors so they can be preformed before the Dispose is completed
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.AckingError.#ctor(DA.MW.Broker.Rabbit.RMQMessageAck,DA.MW.Broker.Rabbit.Exceptions.RMQException)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DA.MW.Broker.Rabbit.AckingError"/> class.
+            </summary>
+            <param name="data">The data.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.AckingError.Data">
+            <summary>
+            Gets the data.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.AckingError.Exception">
+            <summary>
+            Gets the exception.
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.RMQExchange">
+            <summary>
+            This class is modeled after the exchange concept of the amqp protocol.
+            An istance of this object that can be created only with the library factory.
+            That instance map an exchange resource created by the factory on a remote rabbit node.
+            This class offer some publication methods to send messages to the mapped exchange.
+            </summary>
+        </member>
+        <member name="E:DA.MW.Broker.Rabbit.RMQExchange.SendingMessageFailure">
+            <summary>
+            Occurs when [sending message failure].
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQExchange.ExchangeName">
+            <summary>
+            The remote exchange name
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQExchange.ExchangeType">
+            <summary>
+            The type of exchange that define how it will forward the messages to the queues
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQExchange.Durable">
+            <summary>
+            The exchange will survive a broker restart
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQExchange.AutoDelete">
+            <summary>
+            The exchange that has had at least one queue binded is deleted when last queue unbinds
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQExchange.CreationArgs">
+            <summary>
+            Extra arguments for creation
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQExchange.ExchangeMessageID">
+            <summary>
+            The remote exchange name
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQExchange.PublicationQueueSize">
+            <summary>
+            It's the max size of the publication queue, when the queue is full the following
+            publiction methods refuse to add any message to the queue:
+            - <see cref="M:DA.MW.Broker.Rabbit.RMQExchange.SendNowOrAddToPublicationQueue(DA.MW.Broker.Common.Protocol.MsgHeader,System.Byte[],System.String,System.Boolean,System.Nullable{System.Int32})"/>
+            - <see cref="M:DA.MW.Broker.Rabbit.RMQExchange.AddToPublicationQueue(DA.MW.Broker.Common.Protocol.MsgHeader,System.Byte[],System.String,System.Boolean,System.Nullable{System.Int32})"/>
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQExchange.PublicationQueueCount">
+            <summary>
+            It's the numeber of messages to be published
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQExchange.LogOn">
+            <summary>
+            This enable/disable log on publication's functions that tend do be frequently called
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQExchange.SleepTime">
+            <summary>
+            This define how many millisec the publication method should sleep when the connection
+            is down
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQExchange.RemoteCreate">
+            <summary>
+            This method create an exchange resource on the connected rabbit node.
+            This method is idempotent.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQExchange.RemoteDelete(System.Boolean)">
+            <summary>
+            This method delete a remote exchange resource on the connected rabbit node.
+            This method is idempotent.
+            </summary>
+            <param name="ifUnused">delete an exchange only if it has no binded queue,
+            in the other case throw an exception</param>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQExchange.CreateRoutingKey(DA.MW.Broker.Common.Protocol.MsgHeader)">
+            <summary>
+            Creates a routing key from <see cref="T:DA.MW.Broker.Common.Protocol.MsgHeader"/> data using this format:
+            'Domain.AreaId.StationCode.Group.Code'.
+            </summary>
+            <param name="header">The protocol header</param>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQExchange.CreateBindingKey(DA.MW.Broker.Common.Protocol.MsgHeader)">
+            <summary>
+            Creates a routing key from <see cref="T:DA.MW.Broker.Common.Protocol.MsgHeader"/> data using this format:
+            'Domain.AreaId.StationCode.Group.Code'.
+            If header is null the jolly binding key is created '*' that will route all the messages
+            to the queue, if hte hesder is not null the binding key is created with the format
+            Domain.AreaId.StationCode.Group.Code filled with the value of the corrisponding fields
+            or the character '*' if the value is null.
+            </summary>
+            <param name="header">The protocol header</param>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQExchange.SendNow(DA.MW.Broker.Common.Protocol.MsgHeader,System.Byte[],System.String,System.Boolean,System.Nullable{System.Int32})">
+            <summary>
+            This is thread safe but try to send the message asap, ignoring the messages of the publishing queue,
+            actually both sending operation as parallel. If it fails for whathever reason the exception is thrown.
+            The routing key is calculated from the header data
+            </summary>
+            <param name="header">The header.</param>
+            <param name="bufferToSend">The buffer to send.</param>
+            <param name="routingKey">The routing key.</param>
+            <param name="isPersistent">if set to <c>true</c> [is persistent].</param>
+            <param name="id">The identifier.</param>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQExchange.SendNowOrAddToPublicationQueue(DA.MW.Broker.Common.Protocol.MsgHeader,System.Byte[],System.String,System.Boolean,System.Nullable{System.Int32})">
+            <summary>
+            This is the second more efficent way of sending a message.
+            If there are no previous messages in the publication queue this method try send a message
+            syncronously and, in the other case, it will try to add the message to the publication queue.
+            If it fails to send the message syncronously it will throw an exception as in SendNow method but,
+            if the reason of the failure is a problem with the connection, it will try to add to the publication
+            queue.
+            The routing key is calculated from the header data
+            </summary>
+            <param name="header">The header.</param>
+            <param name="bufferToSend">The buffer to send.</param>
+            <param name="routingKey">The routing key.</param>
+            <param name="isPersistent">if set to <c>true</c> [is persistent].</param>
+            <param name="id">The identifier.</param>
+            <returns>Returns the result of the operation</returns>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQExchange.AddToPublicationQueue(DA.MW.Broker.Common.Protocol.MsgHeader,System.Byte[],System.String,System.Boolean,System.Nullable{System.Int32})">
+            <summary>
+            This is the more efficent way of sending a message, statistically it will publish
+            a message in less time that the SendNow and SendNowOrAddToPublicationQueue methods.
+            This method add the message to the publication queue and try to send it as soon
+            as possible but respecting the queue order.
+            Register to SendingMessageFailure EventHandler to be informed if a messege has not
+            been published.
+            The routing key is calculated from the header data
+            </summary>
+            <param name="header">The header.</param>
+            <param name="bufferToSend">The buffer to send.</param>
+            <param name="routingKey">The routing key.</param>
+            <param name="isPersistent">if set to <c>true</c> [is persistent].</param>
+            <param name="id">The identifier.</param>
+            <returns>True if successful</returns>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQExchange.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.RMQFactory">
+            <summary>
+            This class contains all the public methods that can be used outside the assembly
+            to to instantiate those objects that map the rabbit remote resourcee:
+            - <see cref="T:DA.MW.Broker.Rabbit.RMQQueue"/>
+            - <see cref="T:DA.MW.Broker.Rabbit.RMQExchange"/>
+            - <see cref="T:DA.MW.Broker.Rabbit.RMQConsumer"/>
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQFactory.CreateQueue(System.String,System.Boolean,System.Boolean,System.Boolean,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Method that return a queue object already mirrored on the remote node or
+            throw an exception if some exception arises.
+            </summary>
+            <param name="queueName"></param>
+            <param name="durable"></param>
+            <param name="autoDelete"></param>
+            <param name="exclusive"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQFactory.CreateExchange(System.String,System.String,System.Boolean,System.Boolean,System.Int32,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Method that return an exchange object already mirrored on the remote node or
+            throw an exception if some exception arises.
+            If a resource is already be instantiated return that instance.
+            </summary>
+            <param name="exchangeName"></param>
+            <param name="exchangeType"></param>
+            <param name="durable"></param>
+            <param name="autoDelete"></param>
+            <param name="publicationQueueSize"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQFactory.CreateConsumer(System.Func{System.Object,DA.MW.Broker.Common.IBrokerMessageAck},System.Int32,System.UInt16,System.Threading.Tasks.TaskScheduler)">
+            <summary>
+             Method that return a consumer object already mirrored on the remote node or
+            throw an exception if some exception arises.
+            </summary>
+            <param name="callback"></param>
+            <param name="receptionQueueSize"></param>
+            <param name="prefetchCount"></param>
+            <param name="taskScheduler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQFactory.GetRabbitDirectExchange(System.Int32)">
+            <summary>
+            This method returns the default direct exchange of rabbitmq
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQFactory.GetRabbitTopicExchange(System.Int32)">
+            <summary>
+            This method returns default topic exchange of rabbitmq
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQFactory.GetRabbitHeadersExchange(System.Int32)">
+            <summary>
+            This method returns default headers exchange of rabbitmq
+            </summary>
+            <param name="publicationQueueSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQFactory.GetRabbitFanoutExchange(System.Int32)">
+            <summary>
+            This method returns default fanout exchange of rabbitmq
+            </summary>
+            <param name="publicationQueueSize"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.RMQMessage">
+            <summary>
+            This class expose to the client the body of the message, the queue where the message
+            has been sended and the channel id where to ack, if is neccessary, the message
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQMessage.Header">
+            <summary>
+            DA Header
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQMessage.Body">
+            <summary>
+            Buffer that contains the raw data of the message
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQMessage.ChannelNumber">
+            <summary>
+            Number of the channel where the ack should be done
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQMessage.DeliveryTag">
+            <summary>
+            This is the delivery tag of the message 
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQMessage.RoutingKey">
+            <summary>
+            Gets the routing key.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQMessage.QueueName">
+            <summary>
+            Name of the queue
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQMessage.Queue">
+            <summary>
+            Queue that received the message
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQMessage.AutoAck">
+            <summary>
+            If it's true the consumer will ack the messages on receiving,
+            if false the client should be handling the acknowledgment 
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQMessage.Process">
+            <summary>
+            This indicates if the consumer has set the message to process or not
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQMessage.Channel">
+            <summary>
+            Internal usage only, channel where the message, if necessary, must be acked
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQMessage.MessageId">
+            <summary>
+            Gets the message identifier.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQMessage.CreateMessageAck(DA.MW.Broker.Common.Entities.AcknowledgementType)">
+            <summary>
+            Helper function to build a class that wraps the ack choice
+            together with some internal useful information
+            </summary>
+            <param name="acknowledgement">the ack choice</param>
+            <returns></returns>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.RMQMessageAck">
+            <summary>
+            Internal class to keep together the message-received event data and 
+            the user choice for aknowledgement
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQMessageAck.Acknowledgement">
+            <summary>
+            Gets the acknowledgement type.
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQMessageAck.Message">
+            <summary>
+            The RMQ message used to get details required for response.
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.RMQMessageEvent">
+            <summary>
+            This is internal class that is used to group all important informations that are useful 
+            in the lifecicle of a received message event
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQMessageEvent.Queue">
+            <summary>
+            Queue that received the message
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQMessageEvent.AutoAck">
+            <summary>
+            If it's true the consumer will ack the messages on receiving,
+            if false the client should be handling the acknowledgment 
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQMessageEvent.Process">
+            <summary>
+            This indicates if the consumer has set the message to process or not
+            </summary>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.RMQQueue">
+            <summary>
+            This class is modeled after the queue concept of the amqp protocol.
+            An istance of this object that can be created only with the library factory.
+            That instance map a queue resource created by the factory on a remote
+            rabbit node.
+            </summary>
+        </member>
+        <member name="F:DA.MW.Broker.Rabbit.RMQQueue.DefaultCreationArgs">
+            <summary>
+            Defaults arguments that are used in queue declaration
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQQueue.QueueName">
+            <summary>
+            The remote queue name
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQQueue.Durable">
+            <summary>
+            The queue will survive a broker restart
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQQueue.AutoDelete">
+            <summary>
+            The queue that has had at least one consumer is deleted when last consumer unsubscribes
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQQueue.Exclusive">
+            <summary>
+            The queue can be used by only one connection and the queue will be deleted when that connection closes
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.RMQQueue.CreationArgs">
+            <summary>
+            Extra arguments for creation
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQQueue.RemoteCreate">
+            <summary>
+            This method creates a queue resource on the connected rabbit node.
+            This method is idempotent.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQQueue.RemoteDelete(System.Boolean,System.Boolean)">
+            <summary>
+            This method deletes a remote queue resource on the connected rabbit node.
+            This method is idempotent.
+            </summary>
+            <param name="ifUnused">delete a queue only if it has no consumer, in the other case throw an exception</param>
+            <param name="ifEmpty">delete a queue only if it is empty, in the other case throw an exception</param>
+            <returns>Number of messages deleted</returns>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQQueue.Bind(DA.MW.Broker.Rabbit.RMQExchange,System.Collections.Generic.List{System.String},System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            This method binds the queue on the exchange for every routing key specified
+            </summary>
+            <param name="exchange">exchange resource</param>
+            <param name="routingKeys">routing keys</param>
+            <param name="args">optional arguments</param>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQQueue.Unbind(DA.MW.Broker.Rabbit.RMQExchange,System.Collections.Generic.List{System.String},System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            This method unbinds the queue on the exchange for every routing key specified
+            </summary>
+            <param name="exchange">exchange resource</param>
+            <param name="routingKeys">routing keys</param>
+            <param name="args">optional arguments</param>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.RMQUtils">
+            <summary>
+            RMQ Client Util Class
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQUtils.Deserialize``1(System.Byte[])">
+            <summary>
+            Deserializes the specified body.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="body">The body.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQUtils.SerializeToBinary(System.Object)">
+            <summary>
+            Serializes to binary.
+            </summary>
+            <param name="obj">The object.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.RMQUtils.SerializeToJson(System.Object)">
+            <summary>
+            Serializes to json.
+            </summary>
+            <param name="obj">The object.</param>
+            <returns></returns>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.SingleQueueConsumer">
+            <summary>
+            this class wrap a consumer and it's private channel. The channel ownnership 
+            is detained by this class but a reference of the channel is passed in the 
+            basicdeliveryevent args every time a message is received, so the class that
+            implement the event handler can handle the ack of messages, if necessary
+            </summary>
+        </member>
+    </members>
+</doc>

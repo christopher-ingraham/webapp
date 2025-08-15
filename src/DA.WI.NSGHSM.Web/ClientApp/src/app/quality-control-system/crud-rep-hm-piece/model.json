@@ -1,0 +1,179 @@
+{
+    "$schema": "../src/crud-module/schema.json",
+    "api": {
+        "url": "report/RepHmPiece",
+        "list": "list"
+    },
+    "entity": "repHmPiece",
+    "fields": [{
+            "name": "outputCoil",
+            "label": "Output Coil ID",
+            "type": "string",
+            "isId": true,
+            "readonly": true
+        },
+        {
+            "name": "data",
+            "label": "Production Date",
+            "type": "Date"
+        },
+        {
+            "name": "materialGradeId",
+            "label": "Material Grade ID",
+            "type": "string"
+        },
+        {
+            "name": "width",
+            "label": "Width [mm]",
+            "type": "number"
+        },
+        {
+            "name": "thickness",
+            "label": "Thickness [mm]",
+            "type": "number"
+        },
+        {
+            "name": "weight",
+            "label": "Weight [kg]",
+            "type": "number"
+        },
+        {
+            "name": "passNo",
+            "label": "Pass No",
+            "type": "number"
+        },
+        {
+            "name": "outPieceNo",
+            "label": "Out Piece No",
+            "type": "number"
+        },
+        {
+            "name": "outPieceArea",
+            "label": "Out Piece Area",
+            "type": "string"
+        }
+    ],
+    "filter": [
+        "outputCoil"
+    ],
+    "grid": [{
+        "label": "Default",
+        "name": "default",
+        "columns": [{
+                "field": "outputCoil",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "data",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "materialGradeId",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "width",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "thickness",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "weight",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "passNo",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "outPieceNo",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "outPieceArea",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            }
+            
+        ]
+    }],
+    "tabs": [{
+        "label": "Identification",
+        "rows": [{
+                "field": "outputCoil",
+                "columns": 6,
+                "controlType": "inputText"
+            },
+            {
+                "field": "data",
+                "columns": 6,
+                "controlType": "inputText"
+            },
+            {
+                "field": "materialGradeId",
+                "columns": 6,
+                "controlType": "inputText"
+            },
+            {
+                "field": "width",
+                "columns": 4,
+                "controlType": "inputNumber"
+            },
+            {
+                "field": "thickness",
+                "columns": 4,
+                "controlType": "inputNumber"
+            },
+            {
+                "field": "weight",
+                "columns": 4,
+                "controlType": "inputNumber"
+            },
+            {
+                "field": "passNo",
+                "columns": 4,
+                "controlType": "inputNumber"
+            },
+            {
+                "field": "outPieceNo",
+                "columns": 4,
+                "controlType": "inputNumber"
+            },
+            {
+                "field": "outPieceArea",
+                "columns": 4,
+                "controlType": "inputText"
+            }
+        ]
+    }],
+    "title": "RepHmPiece",
+    "widgetSet": "kendo-ui"
+}

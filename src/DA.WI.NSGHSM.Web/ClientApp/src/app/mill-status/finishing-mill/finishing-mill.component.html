@@ -1,0 +1,579 @@
+<div *ngIf="data != null">
+	<table class="macchine" style="margin: 0 auto" width="82%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td class="descaler">
+                <app-descaler [data]="data.descalerData" *ngIf="data"></app-descaler>
+            </td>
+			<td class="stand"><img class="icona term before" src="assets/icone/termometro.svg" /><img style="left: 1px;"
+					class="icona raggi before" src="assets/icone/x-ray.png" />
+				<app-stand [data]="data.standData[0]" *ngIf="data"></app-stand>
+			</td>
+			<td class="stand">
+				<app-stand [data]="data.standData[1]" *ngIf="data"></app-stand>
+			</td>
+			<td class="stand">
+				<app-stand [data]="data.standData[2]" *ngIf="data"></app-stand>
+			</td>
+			<td class="stand">
+				<app-stand [data]="data.standData[3]" *ngIf="data"></app-stand>
+			</td>
+			<td class="stand">
+				<app-stand [data]="data.standData[4]" *ngIf="data"></app-stand>
+			</td>
+			<td class="stand"><img class="icona term after" src="assets/icone/termometro.svg" /><img style="right: 1px;"
+					class="icona raggi after" src="assets/icone/raggi-x.svg" /><img style="bottom: 1em; right: 1px;"
+					class="icona raggi after" src="assets/icone/x-ray.png" />
+				<app-stand [data]="data.standData[5]" *ngIf="data"></app-stand>
+			</td>
+		</tr>
+	</table>
+	<table class="dati-macchina" *ngIf="data" border="0" cellspacing="0" cellpadding="0">
+		<tr class="topid">
+			<td class="vuoto"></td>
+			<td colspan="2" class="vuoto sopra"></td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td colspan="2" class="sopra">F1</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td colspan="2" class="sopra">F2</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td colspan="2" class="sopra">F3</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td colspan="2" class="sopra">F4</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td colspan="2" class="sopra">F5</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td colspan="2" class="sopra">F6</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr class="tb-head">
+			<td class="vuoto"></td>
+			<td class="label">STAND DATA</td>
+			<td class="unit">UNIT</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">SETUP</td>
+			<td class="actual">ACTUAL</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">SETUP</td>
+			<td class="actual">ACTUAL</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">SETUP</td>
+			<td class="actual">ACTUAL</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">SETUP</td>
+			<td class="actual">ACTUAL</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">SETUP</td>
+			<td class="actual">ACTUAL</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">SETUP</td>
+			<td class="actual">ACTUAL</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">Exit Thickness</td>
+			<td class="unit">{{ 'mm' | uomLabel:'!mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[0].setupData.exitThickness | uomValue:'mm':'in' }}</td>
+			<td class="actual">{{ data.standData[0].actualData.exitThickness | uomValue:'mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[1].setupData.exitThickness | uomValue:'mm':'in' }}</td>
+			<td class="actual">{{ data.standData[1].actualData.exitThickness | uomValue:'mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[2].setupData.exitThickness | uomValue:'mm':'in' }}</td>
+			<td class="actual">{{ data.standData[2].actualData.exitThickness | uomValue:'mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[3].setupData.exitThickness | uomValue:'mm':'in' }}</td>
+			<td class="actual">{{ data.standData[3].actualData.exitThickness | uomValue:'mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[4].setupData.exitThickness | uomValue:'mm':'in' }}</td>
+			<td class="actual">{{ data.standData[4].actualData.exitThickness | uomValue:'mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[5].setupData.exitThickness | uomValue:'mm':'in' }}</td>
+			<td class="actual">{{ data.standData[5].actualData.exitThickness | uomValue:'mm':'in' }}</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">Rolling Force</td>
+			<td class="unit">{{ 'kN' | uomLabel:'!kN':'ton' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[0].setupData.rollingForce | uomValue:'kN':'ton' }}</td>
+			<td class="actual">{{ data.standData[0].actualData.rollingForce | uomValue:'kN':'ton' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[1].setupData.rollingForce | uomValue:'kN':'ton' }}</td>
+			<td class="actual">{{ data.standData[1].actualData.rollingForce | uomValue:'kN':'ton' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[2].setupData.rollingForce | uomValue:'kN':'ton' }}</td>
+			<td class="actual">{{ data.standData[2].actualData.rollingForce | uomValue:'kN':'ton' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[3].setupData.rollingForce | uomValue:'kN':'ton' }}</td>
+			<td class="actual">{{ data.standData[3].actualData.rollingForce | uomValue:'kN':'ton' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[4].setupData.rollingForce | uomValue:'kN':'ton' }}</td>
+			<td class="actual">{{ data.standData[4].actualData.rollingForce | uomValue:'kN':'ton' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[5].setupData.rollingForce | uomValue:'kN':'ton' }}</td>
+			<td class="actual">{{ data.standData[5].actualData.rollingForce | uomValue:'kN':'ton' }}</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">Stand speed</td>
+			<td class="unit">{{ 'm/s' | uomLabel:'!m/s':'fpm' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[0].setupData.standSpeed | uomValue:'m/s':'fpm' }}</td>
+			<td class="actual">{{ data.standData[0].actualData.standSpeed | uomValue:'m/s':'fpm' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[1].setupData.standSpeed | uomValue:'m/s':'fpm' }}</td>
+			<td class="actual">{{ data.standData[1].actualData.standSpeed | uomValue:'m/s':'fpm' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[2].setupData.standSpeed | uomValue:'m/s':'fpm' }}</td>
+			<td class="actual">{{ data.standData[2].actualData.standSpeed | uomValue:'m/s':'fpm' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[3].setupData.standSpeed | uomValue:'m/s':'fpm' }}</td>
+			<td class="actual">{{ data.standData[3].actualData.standSpeed | uomValue:'m/s':'fpm' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[4].setupData.standSpeed | uomValue:'m/s':'fpm' }}</td>
+			<td class="actual">{{ data.standData[4].actualData.standSpeed | uomValue:'m/s':'fpm' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[5].setupData.standSpeed | uomValue:'m/s':'fpm' }}</td>
+			<td class="actual">{{ data.standData[5].actualData.standSpeed | uomValue:'m/s':'fpm' }}</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">Reduction</td>
+			<td class="unit">%</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{data.standData[0].setupData.reduction | number:'1.1-1'}}</td>
+			<td class="actual">{{data.standData[0].actualData.reduction | number:'1.1-1'}}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{data.standData[1].setupData.reduction | number:'1.1-1'}}</td>
+			<td class="actual">{{data.standData[1].actualData.reduction | number:'1.1-1'}}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{data.standData[2].setupData.reduction | number:'1.1-1'}}</td>
+			<td class="actual">{{data.standData[2].actualData.reduction | number:'1.1-1'}}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{data.standData[3].setupData.reduction | number:'1.1-1'}}</td>
+			<td class="actual">{{data.standData[3].actualData.reduction | number:'1.1-1'}}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{data.standData[4].setupData.reduction | number:'1.1-1'}}</td>
+			<td class="actual">{{data.standData[4].actualData.reduction | number:'1.1-1'}}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{data.standData[5].setupData.reduction | number:'1.1-1'}}</td>
+			<td class="actual">{{data.standData[5].actualData.reduction | number:'1.1-1'}}</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">Gap</td>
+			<td class="unit">{{ 'mm' | uomLabel:'!mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[0].setupData.gap | uomValue:'mm':'in' }}</td>
+			<td class="actual">{{ data.standData[0].actualData.gap | uomValue:'mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[1].setupData.gap | uomValue:'mm':'in' }}</td>
+			<td class="actual">{{ data.standData[1].actualData.gap | uomValue:'mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[2].setupData.gap | uomValue:'mm':'in' }}</td>
+			<td class="actual">{{ data.standData[2].actualData.gap | uomValue:'mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[3].setupData.gap | uomValue:'mm':'in' }}</td>
+			<td class="actual">{{ data.standData[3].actualData.gap | uomValue:'mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[4].setupData.gap | uomValue:'mm':'in' }}</td>
+			<td class="actual">{{ data.standData[4].actualData.gap | uomValue:'mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[5].setupData.gap | uomValue:'mm':'in' }}</td>
+			<td class="actual">{{ data.standData[5].actualData.gap | uomValue:'mm':'in' }}</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">WR Bending</td>
+			<td class="unit">{{ 'kN' | uomLabel:'!kN':'ton' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[0].setupData.wrBending | uomValue:'kN':'ton' }}</td>
+			<td class="actual">{{ data.standData[0].actualData.wrBending | uomValue:'kN':'ton' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[1].setupData.wrBending | uomValue:'kN':'ton' }}</td>
+			<td class="actual">{{ data.standData[1].actualData.wrBending | uomValue:'kN':'ton' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[2].setupData.wrBending | uomValue:'kN':'ton' }}</td>
+			<td class="actual">{{ data.standData[2].actualData.wrBending | uomValue:'kN':'ton' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[3].setupData.wrBending | uomValue:'kN':'ton' }}</td>
+			<td class="actual">{{ data.standData[3].actualData.wrBending | uomValue:'kN':'ton' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[4].setupData.wrBending | uomValue:'kN':'ton' }}</td>
+			<td class="actual">{{ data.standData[4].actualData.wrBending | uomValue:'kN':'ton' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[5].setupData.wrBending | uomValue:'kN':'ton' }}</td>
+			<td class="actual">{{ data.standData[5].actualData.wrBending | uomValue:'kN':'ton' }}</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">WR Shifting</td>
+			<td class="unit">{{ 'mm' | uomLabel:'!mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[0].setupData.wrShifting | uomValue:'mm':'in' }}</td>
+			<td class="actual">{{ data.standData[0].actualData.wrShifting | uomValue:'mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[1].setupData.wrShifting | uomValue:'mm':'in' }}</td>
+			<td class="actual">{{ data.standData[1].actualData.wrShifting | uomValue:'mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[2].setupData.wrShifting | uomValue:'mm':'in' }}</td>
+			<td class="actual">{{ data.standData[2].actualData.wrShifting | uomValue:'mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[3].setupData.wrShifting | uomValue:'mm':'in' }}</td>
+			<td class="actual">{{ data.standData[3].actualData.wrShifting | uomValue:'mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[4].setupData.wrShifting | uomValue:'mm':'in' }}</td>
+			<td class="actual">{{ data.standData[4].actualData.wrShifting | uomValue:'mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[5].setupData.wrShifting | uomValue:'mm':'in' }}</td>
+			<td class="actual">{{ data.standData[5].actualData.wrShifting | uomValue:'mm':'in' }}</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">Looper Angle</td>
+			<td class="unit">deg</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{data.standData[0].setupData.looperAngle  | number:'1.1-1'}}</td>
+			<td class="actual">{{data.standData[0].actualData.looperAngle | number:'1.1-1'}}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{data.standData[1].setupData.looperAngle | number:'1.1-1'}}</td>
+			<td class="actual">{{data.standData[1].actualData.looperAngle | number:'1.1-1'}}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{data.standData[2].setupData.looperAngle | number:'1.1-1'}}</td>
+			<td class="actual">{{data.standData[2].actualData.looperAngle | number:'1.1-1'}}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{data.standData[3].setupData.looperAngle | number:'1.1-1'}}</td>
+			<td class="actual">{{data.standData[3].actualData.looperAngle | number:'1.1-1'}}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{data.standData[4].setupData.looperAngle | number:'1.1-1'}}</td>
+			<td class="actual">{{data.standData[4].actualData.looperAngle | number:'1.1-1'}}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">Looper Specific Tension</td>
+			<td class="unit">{{ 'MPa' | uomLabel:'!MPa':'psi' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[0].setupData.looperSpecificTension | uomValue:'MPa':'psi' }}</td>
+			<td class="actual">{{ data.standData[0].actualData.looperSpecificTension | uomValue:'MPa':'psi' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[1].setupData.looperSpecificTension | uomValue:'MPa':'psi' }}</td>
+			<td class="actual">{{ data.standData[1].actualData.looperSpecificTension | uomValue:'MPa':'psi' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[2].setupData.looperSpecificTension | uomValue:'MPa':'psi' }}</td>
+			<td class="actual">{{ data.standData[2].actualData.looperSpecificTension | uomValue:'MPa':'psi' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[3].setupData.looperSpecificTension | uomValue:'MPa':'psi' }}</td>
+			<td class="actual">{{ data.standData[3].actualData.looperSpecificTension | uomValue:'MPa':'psi' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[4].setupData.looperSpecificTension | uomValue:'MPa':'psi' }}</td>
+			<td class="actual">{{ data.standData[4].actualData.looperSpecificTension | uomValue:'MPa':'psi' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">Interstand Cooling Flow</td>
+			<td class="unit">{{ 'm³/h' | uomLabel:'!m³/h':'gpm' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[0].setupData.interstandCoolingFlow | uomValue:'m³/h':'gpm' }}</td>
+			<td class="actual">{{ data.standData[0].actualData.interstandCoolingFlow | uomValue:'m³/h':'gpm' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[1].setupData.interstandCoolingFlow | uomValue:'m³/h':'gpm' }}</td>
+			<td class="actual">{{ data.standData[1].actualData.interstandCoolingFlow | uomValue:'m³/h':'gpm' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[2].setupData.interstandCoolingFlow | uomValue:'m³/h':'gpm' }}</td>
+			<td class="actual">{{ data.standData[2].actualData.interstandCoolingFlow | uomValue:'m³/h':'gpm' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[3].setupData.interstandCoolingFlow | uomValue:'m³/h':'gpm' }}</td>
+			<td class="actual">{{ data.standData[3].actualData.interstandCoolingFlow | uomValue:'m³/h':'gpm' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.standData[4].setupData.interstandCoolingFlow | uomValue:'m³/h':'gpm' }}</td>
+			<td class="actual">{{ data.standData[4].actualData.interstandCoolingFlow | uomValue:'m³/h':'gpm' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+		</tr>
+	</table>
+	<br />
+	<table class="dati-macchina ingresso" *ngIf="data" width="32%" border="0" cellspacing="0" cellpadding="0">
+		<tr class="tb-head">
+			<td class="vuoto"></td>
+			<td class="label">ENTRY DATA</td>
+			<td class="unit">UNIT</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">SETUP</td>
+			<td class="actual">ACTUAL</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">Entry Width</td>
+			<td class="unit">{{ 'mm' | uomLabel:'!mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.entryData.setupData.entryWidth | uomValue:'mm':'in': false | number:'1.1-1' }}
+			</td>
+			<td class="actual">{{ data.entryData.actualData.entryWidth | uomValue:'mm':'in': false | number:'1.1-1'}}
+			</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">Entry Speed</td>
+			<td class="unit">{{ 'm/s' | uomLabel:'!m/s':'fpm' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.entryData.setupData.entrySpeed | uomValue:'m/s':'fpm' }}</td>
+			<td class="actual"[ngStyle]="{'border': getColor(data.entryData.actualData.entrySpeedStatus, data.standData[0].status.mis)}">{{ data.entryData.actualData.entrySpeed | uomValue:'m/s':'fpm' }}</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">Entry Temperature (Spot 1)</td>
+			<td class="unit">{{ '°C' | uomLabel:'!C':'F' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup" rowspan="3" style="vertical-align : middle;text-align:center;">
+				{{ data.entryData.setupData.entryTemp | uomValue:'C':'F' }}</td>
+			<td class="actual"[ngStyle]="{'border': getColor(data.entryData.actualData.entryTempStatus, data.standData[0].status.mis)}">{{ data.entryData.actualData.entryTemperature1 | uomValue:'C':'F' }}</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">Entry Temperature (Spot 2)</td>
+			<td class="unit">{{ '°C' | uomLabel:'!C':'F' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="actual"[ngStyle]="{'border': getColor(data.entryData.actualData.entryTempStatus, data.standData[0].status.mis)}">{{ data.entryData.actualData.entryTemperature2 | uomValue:'C':'F' }}</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">Entry Temperature (Spot 3)</td>
+			<td class="unit">{{ '°C' | uomLabel:'!C':'F' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="actual"[ngStyle]="{'border': getColor(data.entryData.actualData.entryTempStatus, data.standData[0].status.mis)}">{{ data.entryData.actualData.entryTemperature3 | uomValue:'C':'F' }}</td>
+			<td class="vuoto"></td>
+		</tr>
+	</table>
+	<table class="dati-macchina mezzo" *ngIf="data" width="32%" border="0" cellspacing="0" cellpadding="0">
+		<tr class="tb-head">
+			<td class="vuoto"></td>
+			<td class="label">PIECE TRACKING</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="pieceId">PIECE ID</td>
+			<td class="furnaceTime">FURNACE TIME [s]</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tbody class= "trackingFM">
+			<ng-container *ngFor="let generalData of data.generalData">
+				<tr>
+					<td class="vuoto"></td>
+					<td class="label"><strong>{{generalData.positionLabel}}</strong></td>
+					<td class="vuoto"></td>
+					<td class="vuoto"></td>
+					<td class="pieceId"><strong>{{generalData.pieceId}}</strong></td>
+					<td class="furnaceTime"><strong>{{generalData.furnaceTime}}</strong></td>
+					<td class="vuoto"></td>
+				</tr>
+			</ng-container>
+		</tbody>
+	</table>
+
+	<table class="dati-macchina uscita" *ngIf="data" width="32%" border="0" cellspacing="0" cellpadding="0">
+		<tr class="tb-head">
+			<td class="vuoto"></td>
+			<td class="label" width="32%">EXIT DATA</td>
+			<td class="unit" width="11.2%">UNIT</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">SETUP</td>
+			<td class="actual">ACTUAL</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">Exit Thickness</td>
+			<td class="unit">{{ 'mm' | uomLabel:'!mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.exitData.setupData.exitThickness | uomValue:'mm':'in' }}</td>
+			<td class="actual"[ngStyle]="{'border': getColor(data.exitData.actualData.exitThicknessStatus, data.standData[5].status.mis)}">{{ data.exitData.actualData.exitThickness | uomValue:'mm':'in' }}</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">Exit Width</td>
+			<td class="unit">{{ 'mm' | uomLabel:'!mm':'in' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.exitData.setupData.exitWidth | uomValue:'mm':'in': false | number:'1.1-1' }}</td>
+			<td class="actual"[ngStyle]="{'border': getColor(data.exitData.actualData.exitWidthStatus, data.standData[5].status.mis)}">{{ data.exitData.actualData.exitWidth | uomValue:'mm':'in': false | number:'1.1-1' }}
+			</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">Exit Speed</td>
+			<td class="unit">{{ 'm/s' | uomLabel:'!m/s':'fpm' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{ data.exitData.setupData.exitSpeed | uomValue:'m/s':'fpm' }}</td>
+			<td class="actual" [ngStyle]="{'border': getColor(data.exitData.actualData.exitSpeedStatus, data.standData[5].status.mis)}">{{ data.exitData.actualData.exitSpeed | uomValue:'m/s':'fpm' }}</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">Flatness</td>
+			<td class="unit">I-Units</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{data.exitData.setupData.flatness | number:'1.1-1'}}</td>
+			<td class="actual"[ngStyle]="{'border': getColor(data.exitData.actualData.flatnessStatus, data.standData[5].status.mis)}">{{data.exitData.actualData.flatness | number:'1.1-1'}}</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td *ngIf="data.exitData.setupData.crownDistance==0" class="label">Crown (C25)</td>
+			<td *ngIf="data.exitData.setupData.crownDistance==1" class="label">Crown (C40)</td>
+			<td class="unit">{{ 'µm' | uomLabel:'!µm':'mils' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup">{{data.exitData.setupData.crown | uomValue:'µm':'mils' }}</td>
+			<td *ngIf="data.exitData.setupData.crownDistance==0" class="actual" [ngStyle]="{'border': getColor(data.exitData.actualData.crownStatus, data.standData[5].status.mis)}">
+				{{data.exitData.actualData.stripCrown25 | uomValue:'µm':'mils' }}</td>
+			<td *ngIf="data.exitData.setupData.crownDistance==1" class="actual" [ngStyle]="{'border': getColor(data.exitData.actualData.crownStatus, data.standData[5].status.mis)}">
+				{{data.exitData.actualData.stripCrown40 | uomValue:'µm':'mils' }}</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td *ngIf="data.exitData.setupData.crownDistance==0" class="label">Wedge (C25)</td>
+			<td *ngIf="data.exitData.setupData.crownDistance==1" class="label">Wedge (C40)</td>
+			<td class="unit">{{ 'µm' | uomLabel:'!µm':'mils' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup"></td>
+			<td *ngIf="data.exitData.setupData.crownDistance==0" class="actual" [ngStyle]="{'border': getColor(data.exitData.actualData.wedgeStatus, data.standData[5].status.mis)}">
+				{{data.exitData.actualData.stripWedge25 | uomValue:'µm':'mils' }}</td>
+			<td *ngIf="data.exitData.setupData.crownDistance==1" class="actual" [ngStyle]="{'border': getColor(data.exitData.actualData.wedgeStatus, data.standData[5].status.mis)}">
+				{{data.exitData.actualData.stripCrown40 | uomValue:'µm':'mils' }}</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">Exit Temperature (Spot 1)</td>
+			<td class="unit">{{ '°C' | uomLabel:'!C':'F' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="setup" rowspan="3" style="vertical-align : middle;text-align:center;">
+				{{ data.exitData.setupData.exitTemp | uomValue:'C':'F' }}</td>
+			<td class="actual" [ngStyle]="{'border': getColor(data.exitData.actualData.exitTempStatus, data.standData[5].status.mis)}">{{ data.exitData.actualData.exitTemp1 | uomValue:'C':'F' }}</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">Exit Temperature (Spot 2)</td>
+			<td class="unit">{{ '°C' | uomLabel:'!C':'F' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="actual" [ngStyle]="{'border': getColor(data.exitData.actualData.exitTempStatus, data.standData[5].status.mis)}">{{ data.exitData.actualData.exitTemp2 | uomValue:'C':'F' }}</td>
+			<td class="vuoto"></td>
+		</tr>
+		<tr>
+			<td class="vuoto"></td>
+			<td class="label">Exit Temperature (Spot 3)</td>
+			<td class="unit">{{ '°C' | uomLabel:'!C':'F' }}</td>
+			<td class="vuoto"></td>
+			<td class="vuoto"></td>
+			<td class="actual" [ngStyle]="{'border': getColor(data.exitData.actualData.exitTempStatus, data.standData[5].status.mis)}">{{ data.exitData.actualData.exitTemp3 | uomValue:'C':'F' }}</td>
+			<td class="vuoto"></td>
+		</tr>
+	</table>
+
+</div>

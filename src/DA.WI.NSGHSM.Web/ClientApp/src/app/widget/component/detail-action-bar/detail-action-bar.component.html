@@ -1,0 +1,10 @@
+<hr />
+<div fxLayout="row" [fxLayoutAlign]="layoutAlign">
+    <button *ngIf="!isNew && !isReadOnly && deleteVisible" kendoButton
+        (click)="deletePressed.emit($event)">{{deleteLabel}}</button>
+    <div>
+        <button kendoButton [primary]="true" [disabled]="disabled" (click)="savePressed.emit($event)"
+            *ngIf="!isReadOnly && saveVisible">{{saveLabel}}</button>
+        <button *ngIf="cancelVisible" kendoButton (click)="cancelPressed.emit($event)">{{cancelLabel}}</button>
+    </div>
+</div>

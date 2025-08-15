@@ -1,0 +1,211 @@
+{
+  "HOME": {
+    "TEST": "Questo è tradotto in tutte le lingue !"
+  },
+  "APP": {
+    "PAGE_NOT_FOUND": {
+      "TITLE": "Pagina non trovata",
+      "BACK_TO_HOME": "Ritorna alla Home"
+    }
+  },
+  "SETTINGS": {
+    "TITLE": "Impostazioni",
+    "USER": {
+      "TITLE": "Utente",
+      "USERNAME": "Username",
+      "ROLES": "Ruoli",
+      "LOGOUT": "Uscita"
+    },
+    "ABOUT": {
+      "TITLE": "Informazioni",
+      "VERSION": "Versione",
+      "CREATED_FROM_DAWI_TEMP_VERSION": "Created from DA.WI Template Version",
+      "ENVIRONMENT": "Ambiente",
+      "DESCRIPTION": "Descrizione",
+      "CUSTOMERNAME": "Cliente",
+      "COPYRIGHT": "Copyright",
+      "LOCALE": "Impostazioni Internazionali"
+    }
+  },
+  "SHELL": {
+    "SIDEBAR": {
+      "HOME": "Home",
+      "DIAGNOSTICS": "Diagnostica",
+      "TEST": "Test",
+      "SETTINGS": "Impostazioni",
+      "LOGOUT": "Uscita",
+      "EXAMPLE": {
+        "GROUP_NAME": "Esempio",
+        "CITIES": "Città",
+        "MEASUREMENTS": "Misurazioni"
+      }
+    }
+  },
+  "KENDO": {
+    "CALENDAR": {
+      "TODAY": "OGGI"
+    },
+    "GRID": {
+      "GROUPPANELEMPTY": "Trascina l'header di una colonna e rilascialo qui per raggruppare secondo tale colonna",
+      "NORECORDS": "Nessun record disponibile.",
+      "PAGERFIRSTPAGE": "Vai alla prima pagina",
+      "PAGERPREVIOUSPAGE": "Vai alla pagina precedente",
+      "PAGERNEXTPAGE": "Vai alla prossima pagina",
+      "PAGERLASTPAGE": "Vai all'ultima pagina",
+      "PAGERPAGE": "Pagina",
+      "PAGEROF": "di",
+      "PAGERITEMS": "elementi",
+      "PAGERITEMSPERPAGE": "elementi per pagina",
+      "FILTER": "Filter",
+      "FILTEREQOPERATOR": "È uguale a",
+      "filternoteqoperator": "Non è uguale a",
+      "FILTERISNULLOPERATOR": "È nullo",
+      "FILTERISNOTNULLOPERATOR": "Non è nullo",
+      "FILTERISEMPTYOPERATOR": "È vuoto",
+      "FILTERISNOTEMPTYOPERATOR": "Non è vuoto",
+      "FILTERSTARTSWITHOPERATOR": "Inizia con",
+      "FILTERCONTAINSOPERATOR": "Contiene",
+      "FILTERNOTCONTAINSOPERATOR": "Non contiene",
+      "FILTERENDSWITHOPERATOR": "Finisce con",
+      "FILTERGTEOPERATOR": "È più grande o uguale a",
+      "FILTERGTOPERATOR": "È più grande di",
+      "FILTERLTEOPERATOR": "È più piccolo o uguale a",
+      "FILTERLTOPERATOR": "È più piccolo o uguale a",
+      "FILTERISTRUE": "è vero",
+      "FILTERISFALSE": "è falso",
+      "FILTERBOOLEANALL": "(Tutti)",
+      "FILTERAFTEROREQUALOPERATOR": "È dopo o uguale a",
+      "FILTERAFTEROPERATOR": "È dopo",
+      "FILTERBEFOREOPERATOR": "È prima",
+      "FILTERBEFOREOREQUALOPERATOR": "È prima o uguale a",
+      "FILTERFILTERBUTTON": "Filtro",
+      "FILTERCLEARBUTTON": "Rimuovi",
+      "FILTERANDLOGIC": "E",
+      "FILTERORLOGIC": "O",
+      "LOADING": "Loading",
+      "SORT": "Sort",
+      "COLUMNMENU": "Column Menu",
+      "COLUMNS": "Columns",
+      "LOCK": "Lock",
+      "UNLOCK": "Unlock",
+      "SORTASCENDING": "Sort Ascending",
+      "SORTDESCENDING": "Sort Descending",
+      "COLUMNSAPPLY": "Apply",
+      "COLUMNSRESET": "Reset"
+    },
+    "SLIDER": {
+      "INCREMENT": "למעלה",
+      "DECREMENT": "למטה",
+      "DRAGHANDLE": "drag"
+    },
+    "SWITCH": {
+      "TRUE": true,
+      "FALSE": false
+    },
+    "UPLOAD": {
+      "CANCEL": "Annulla",
+      "CLEARSELECTEDFILES": "Clear",
+      "DROPFILESHERE": "rilascia qui i file per l'upload",
+      "HEADERSTATUSUPLOADED": "Fatto",
+      "HEADERSTATUSUPLOADING": "Upload in corso...",
+      "INVALIDFILEEXTENSION": "File type not allowed.",
+      "INVALIDFILES": "Invalid file(s). Please check file upload requirements.",
+      "INVALIDMAXFILESIZE": "File size too large.",
+      "INVALIDMINFILESIZE": "File size too small.",
+      "REMOVE": "Rimuovi",
+      "RETRY": "Riprova",
+      "SELECT": "Seleziona...",
+      "UPLOADSELECTEDFILES": "Upload dei file selezionati"
+    },
+    "DATEINPUT": {
+      "INCREMENT": "למעלה",
+      "DECREMENT": "למטה"
+    },
+    "AUTOCOMPLETE": {
+      "NODATATEXT": "No data found",
+      "CLEARTITLE": "clear"
+    },
+    "COMBOBOX": {
+      "NODATATEXT": "No data found",
+      "CLEARTITLE": "clear"
+    },
+    "DROPDOWNLIST": {
+      "NODATATEXT": "No data found",
+      "CLEARTITLE": "clear"
+    },
+    "MULTISELECT": {
+      "NODATATEXT": "No data found",
+      "CLEARTITLE": "clear"
+    },
+    "DATEPICKER": {
+      "TODAY": "Oggi",
+      "TOGGLE": "Toggle calendar"
+    },
+    "TIMEPICKER": {
+      "ACCEPT": "Set",
+      "ACCEPTLABEL": "Set",
+      "CANCEL": "Annulla",
+      "CANCELLABEL": "Annulla",
+      "NOW": "Adesso",
+      "NOWLABEL": "Adesso",
+      "TOGGLE": "Selezionare il time list"
+    },
+    "NUMERICTEXTBOX": {
+      "INCREMENT": "למעלה",
+      "DECREMENT": "למטה"
+    }
+  },
+  "VALIDATIONS": {
+    "REQUIRED": "{{fieldName}} obbligatorio.",
+    "MAXLENGTH": "{{fieldName}} superato numero massimo di {{requiredLength}} caratteri.",
+    "MIN": "{{fieldName}} deve essere maggiore o uguale a {{min}}."
+  },
+  "EXAMPLE": {
+    "CITY": {
+      "FIELDS": {
+        "NAME": "Nome",
+        "COUNTRYNAME": "Nome Stato",
+        "POPULATION": "Popolazione"
+      },
+      "PAGETITLE": {
+        "LIST": "Città",
+        "NEW": "Nuova Città",
+        "DETAIL": "Dettaglio Città"
+      },
+      "NEW": "Nuova Città",
+      "FILTER": "Filtro",
+      "GOTO_MEASUREMENTS": "Vai alle misurazioni"
+    },
+    "MEASUREMENT": {
+      "PAGETITLE": {
+        "LIST": "Misurazioni",
+        "LISTFOR": "Misurazioni per",
+        "NEW": "Nuova Misurazione",
+        "DETAILS": "Dettagli Misurazione"
+      },
+      "FIELDS": {
+        "CITYNAME": "Nome Città",
+        "WEATHER": "Tempo",
+        "TEMPERATUREC": "Temperatura (C)",
+        "PRESSUREMB": "Pressione (mbar)",
+        "MEASUREDAT": "Misurata il",
+        "FROM": "Da",
+        "TO": "A"
+      },
+      "VALIDATIONS": {
+        "CITYNAME": {
+          "VALID": "La città con questo nome non è presente nel sistema."
+        }
+      },
+      "NEW": "Nuova Misurazione",
+      "FILTER": "Filtro"
+    },
+    "ITEMS": "Items",
+    "SAVE": "Salva",
+    "CANCEL": "Annulla",
+    "BACK": "Indietro",
+    "DELETE": "Cancella",
+    "CONFIRM_DELETE": "Sei sicuro di voler eliminare questo elemento?",
+    "INSERT_TEXT_TO_SEARCH": "Inserisci il testo da cercare"
+  }
+}

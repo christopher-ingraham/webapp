@@ -1,0 +1,10 @@
+input {
+    width: 99%;
+}
+div[class*="p-col-"] {
+    padding: 1em;
+}
+
+kendo-grid{
+    font-size:8px;
+}

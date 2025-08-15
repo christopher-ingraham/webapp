@@ -1,0 +1,65 @@
+<div fxLayout="column" class="fx-full-height">
+    <div fxFlex class="fx-full-height-grid-container">
+        <div *ngIf="isMobile | async; then cardList else columnGrid"></div>
+        <ng-template #cardList>
+            <kendo-grid class="fx-full-height fx-full-width" [data]="data" [pageable]="true" [pageSize]="pageSize"
+                [skip]="dataRequest.page.skip" [loading]="isLoading" (pageChange)="onPageChange($event)"
+                (cellClick)="onRowClick($event)" [selectable]="selectableSettings" style="width: 98.5%;">
+                <kendo-grid-column title="{{'EXAMPLE.ITEMS|Items' | translate}}">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div fxLayout="column">
+                            <h4><a class="k-text-info" (click)="onRowEdit(dataItem)">{{dataItem.jobId}}</a></h4>
+                            <h4><a class="k-text-info" (click)="onRowEdit(dataItem)">{{dataItem.jobId}}</a></h4>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0" translate>EXAMPLE.HRMJOB.FIELDS.STATUSLABEL|Status</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.statusLabel}}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0" translate>EXAMPLE.HRMJOB.FIELDS.REMARK|Remark</div>
+                                <span fxFlexOffset="1em" fxFlex="2 1 0">{{dataItem.remark}}</span>
+                            </div>
+                            <div fxLayout="row" fxFlexOffset=".5em">
+                                <div fxFlex="1 1 0" translate>EXAMPLE.HRMJOB.FIELDS.ORDERSTARTDATE|Order Start Date
+                                </div>
+                                <span fxFlexOffset="1em"
+                                    fxFlex="2 1 0">{{dataItem.orderStartDate | date:'dd/MM/yyyy hh:mm:ss'}}</span>
+                            </div>
+                        </div>
+                    </ng-template>
+                </kendo-grid-column>
+            </kendo-grid>
+        </ng-template>
+        <ng-template #columnGrid>
+            <kendo-grid class="fx-full-height fx-full-width" [data]="data" [pageable]="true" [pageSize]="pageSize"
+                [skip]="dataRequest.page.skip" [loading]="isLoading" (pageChange)="onPageChange($event)"
+                [resizable]="true" (cellClick)="onRowClick($event)" [selectable]='selectableSettings' style="width: 98.5%;">
+                <kendo-grid-column field="jobSeq"
+                    title="{{ 'EXAMPLE.HRMJOB.FIELDS.JOBSEQ|String Sequence' | translate }}">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div kendoTooltip>
+                            <a class="k-text-info" title="View string {{dataItem.jobId}}..."
+                                (click)="onRowEdit(dataItem)">{{dataItem.jobSeq}}</a></div>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="jobId" title="{{ 'EXAMPLE.HRMJOB.FIELDS.JOBID|String N°' | translate }}">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div kendoTooltip>
+                            <a class="k-text-info" title="View string {{dataItem.jobId}}..."
+                                (click)="onRowEdit(dataItem)">{{dataItem.jobId}}</a></div>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="statusLabel"
+                    title="{{'EXAMPLE.HRMJOB.FIELDS.STATUSLABEL|Status' | translate}}">
+                </kendo-grid-column>
+                <kendo-grid-column field="remark" title="{{'EXAMPLE.HRMJOB.FIELDS.REMARK|Remark' | translate}}">
+                </kendo-grid-column>
+                <kendo-grid-column field="orderStartDate"
+                    title="{{'EXAMPLE.HRMJOB.FIELDS.ORDERSTARTDATE|Order Start Date' | translate}}">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{dataItem.orderStartDate | date:'dd/MM/yyyy hh:mm:ss'}}
+                    </ng-template>
+                </kendo-grid-column>
+            </kendo-grid>
+        </ng-template>
+    </div>
+</div>

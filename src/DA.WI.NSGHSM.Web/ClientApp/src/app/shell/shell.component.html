@@ -1,0 +1,23 @@
+<div fxLayout="column" class="fx-fill">
+    <app-header>
+        <button id="hamburger" kendoButton (click)="toggleSidebar()">
+            <span class="k-icon k-i-menu"></span>
+        </button>
+    </app-header>
+    <div fxFlex fxLayout="row">
+        <app-sidebar [hidden]="!sidebarIsVisible" (linkClicked)="onSidebarLinkClicked()"></app-sidebar>
+        <div fxFlex class="fx-container fx-full-height fx-scrollable-y" id="content">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>
+<go-top-button [animate]="true" [speed]="50" [acceleration]="2" [styles]="{
+            'border-radius': '20px 20px 20px 20px',
+            'right': '5px',
+            'color': 'yellow',
+            'border': '2px solid',
+            'line-height': '30px'
+    }">
+    <span class="k-icon k-i-arrow-up"></span>
+</go-top-button>

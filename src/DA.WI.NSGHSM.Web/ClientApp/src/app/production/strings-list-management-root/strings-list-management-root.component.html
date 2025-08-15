@@ -1,0 +1,142 @@
+<kendo-tabstrip #kendoTabStripInstance="kendoTabStrip" [keepTabContent]="true" [animate]="true"
+    (tabSelect)="onSelectTab($event.index)">
+
+    <kendo-tabstrip-tab *ngFor="let tab of tabstrip.tabs" [title]="tab.title" [selected]="tab.isSelected"
+        [ngSwitch]="tab.type">
+
+        <ng-template kendoTabContent *ngSwitchCase="'master'">
+            <kendo-splitter orientation="vertical" style="height: 100%;">
+                <!-- Strings List Filters  -->
+                <kendo-splitter-pane [resizable]="false" [collapsible]="true" [scrollable]="false" size="200px"
+                    min="200px" max="200px">
+                    <fieldset>
+                        <legend (click)="applyFilters($event)">Filters</legend>
+                        <form>
+                            <div class="p-grid">
+                                <div class="p-col-8">
+                                    <div class="p-grid">
+                                        <div class="p-col-12">
+                                            <input type="checkbox" id="filterPlannedProductionDate" class="k-checkbox"
+                                                [(ngModel)]="filter.plannedProductionDate.isEnabled"
+                                                [ngModelOptions]="modelOptions" />
+                                            <label class=" k-checkbox-label" for="filterPlannedProductionDate">Planned
+                                                Production Date</label>
+                                        </div>
+                                        <div class="p-col-12">
+                                            <app-time-filter [disabled]="!filter.plannedProductionDate.isEnabled"
+                                                [(dateTimeFrom)]="filter.plannedProductionDate.value.from"
+                                                [(dateTimeTo)]="filter.plannedProductionDate.value.to">
+                                            </app-time-filter>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-col-2">
+                                    <div class="p-grid">
+                                        <div class="p-col-12">
+                                            <input type="checkbox" id="filterStringNumber" class="k-checkbox"
+                                                [(ngModel)]="filter.stringNumber.isEnabled"
+                                                [ngModelOptions]="modelOptions" />
+                                            <label class="k-checkbox-label" for="filterStringNumber">String N°</label>
+                                        </div>
+                                        <div class="p-col-12">
+                                            <input kendoTextBox [disabled]="!filter.stringNumber.isEnabled"
+                                                [(ngModel)]="filter.stringNumber.value"
+                                                [ngModelOptions]="modelOptions" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-col-2">
+                                    <div class="p-grid">
+                                        <div class="p-col-12">
+                                            <input type="checkbox" id="filterProductionStatus" class="k-checkbox"
+                                                [(ngModel)]="filter.productionStatus.isEnabled"
+                                                [ngModelOptions]="modelOptions" />
+                                            <label class="k-checkbox-label" for="filterProductionStatus">Production
+                                                Status</label>
+                                        </div>
+                                        <div class="p-col-12">
+                                            <kendo-combobox [data]="productionStatusList" [textField]="'label'"
+                                                [valueField]="'value'" [disabled]="!filter.productionStatus.isEnabled"
+                                                [(ngModel)]="productionStatusValue" [ngModelOptions]="modelOptions">
+                                            </kendo-combobox>
+                                        </div>
+                                        <div class="p-col-12">
+                                            <div kendoTooltip style="text-align: center; padding-top: 10px;">
+                                                <button kendoButton type="button" title="Apply filter(s)"><i
+                                                        class="k-icon k-i-filter"
+                                                        (click)="applyFilters($event)"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </fieldset>
+                </kendo-splitter-pane>
+                <!--  Master String List  -->
+                <kendo-splitter-pane [resizable]="true" [scrollable]="false" size="40%">
+                    <fieldset>
+                        <legend>Strings List</legend>
+                        <div class="p-grid">
+                            <div class="p-col-12">
+                                <app-action-toolbar newVisible="true" (newClicked)="stringNew($event)"
+                                    removeVisible="true" (removeClicked)="stringRemove($event)"
+                                    [removeDisabled]="!jobSelection.isSelected" editVisible="true"
+                                    (editClicked)="stringEdit($event)" [editDisabled]="!jobSelection.isSelected"
+                                    copyVisible="true" (copyClicked)="stringCopy($event)"
+                                    [copyDisabled]="!jobSelection.isSelected" refreshVisible="true"
+                                    [newVisible] = "newButtonVisible"
+                                    [removeVisible] = "removeButtonVisible"
+                                    [editVisible] = "updateButtonVisible"
+                                    [copyVisible] = "copyButtonVisible"
+                                    (refreshClicked)="stringListRefresh($event)"></app-action-toolbar>
+                            </div>
+                            <div class="p-col-12">
+                                <app-hrm-job-list [filters]="filters" [row]="jobSelection"
+                                    (edit)="stringEditEntity($event)">
+                                </app-hrm-job-list>
+                            </div>
+                        </div>
+                    </fieldset>
+                </kendo-splitter-pane>
+                <!--  Input Slabs List  -->
+                <kendo-splitter-pane [resizable]="true" [scrollable]="false">
+                    <fieldset>
+                        <legend>Input Slabs List</legend>
+                        <div class="p-grid">
+                            <div class="p-col-12">
+                                <app-action-toolbar viewVisible="true" (viewClicked)="inputSlabView($event)"
+                                    [viewDisabled]="!inputPieceSelection.isSelected" refreshVisible="true"
+                                    (refreshClicked)="inputSlabsListRefresh($event)"
+                                    [refreshDisabled]="!jobSelection.isSelected">
+                                </app-action-toolbar>
+                            </div>
+                            <div class="p-col-12">
+                                <app-hrm-input-piece-list [master]="jobSelection" [row]="inputPieceSelection"
+                                    (edit)="inputSlabViewEntity($event)">
+                                </app-hrm-input-piece-list>
+                            </div>
+                        </div>
+                    </fieldset>
+                </kendo-splitter-pane>
+            </kendo-splitter>
+        </ng-template>
+
+        <ng-template kendoTabContent *ngSwitchCase="'HrmJobDetail'">
+            <app-hrm-job-detail [parentTab]="tab"></app-hrm-job-detail>
+        </ng-template>
+
+        <ng-template kendoTabContent *ngSwitchCase="'HrmInputPieceDetail'">
+            <app-hrm-input-piece-detail [parentTab]="tab"></app-hrm-input-piece-detail>
+        </ng-template>
+
+        <ng-template kendoTabContent *ngSwitchDefault>
+            <p>Unsupported entity detail!</p>
+            <button kendoButton (click)="tab.close()">Close</button>
+        </ng-template>
+
+    </kendo-tabstrip-tab>
+
+</kendo-tabstrip>
+
+<div kendoDialogContainer></div>

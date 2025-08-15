@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DA.MW.Broker.Rabbit.Helper</name>
+    </assembly>
+    <members>
+        <member name="T:DA.MW.Broker.Rabbit.Helper.RMQClientFactory">
+            <summary>
+            This factory creates instances of RMQHelper that is the broker client
+            for rabbitMQ nodes.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Helper.RMQClientFactory.CreateBrokerClient(DA.MW.Broker.BrokerClientFactoryParams)">
+            <summary>
+            Use this function to create an instance of the client that must be
+            used to comunicate with the broker node of type <paramref name="bcfParams" />
+            </summary>
+            <param name="bcfParams">The BCF parameters.</param>
+            <returns>
+            An instance of the broker client
+            </returns>
+            <exception cref="T:System.ArgumentException">The type of parameter of name '{nameof(brokerClientFactoryParams.Logger)}' is not '{typeof(Logger).Name}</exception>
+        </member>
+        <member name="T:DA.MW.Broker.Rabbit.Helper.RMQHelper">
+            <summary>
+            High-level implementation of the client for rabbit. This library will be instantiated and
+            returned as an object of type IBrokerClient by BrokerClientFactory (using RMQClientFactory).
+            In this way there will be no reference to the Rabbit MQ broker in the application, 
+            except in the configuration object.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Helper.RMQHelper.#ctor(NLog.Logger,DA.MW.Broker.Common.Entities.AppEnvironment,System.Threading.Tasks.TaskScheduler,System.Action,System.Action,System.Action)">
+            <summary>
+            Create an instance of the communication library with high-level RabbitMQ.
+            </summary>
+            <param name="logger">Logger to be used</param>
+            <param name="rmqEnv">System information that must be loaded from the Configuration object</param>
+            <param name="taskScheduler">Scheduler that will handle the callbacks, if null instantiated an exclusive object</param>
+            <param name="EventConnectionEstablished">The event connection established.</param>
+            <param name="EventConnectionLost">The event connection lost.</param>
+            <param name="EventConnectionReattempt">The event connection reattempt.</param>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.Helper.RMQHelper.Environment">
+            <summary>
+            Information about the Envrionment in use
+            </summary>
+        </member>
+        <member name="P:DA.MW.Broker.Rabbit.Helper.RMQHelper.LogOn">
+            <summary>
+            It is not part of the common interface, it is used to enable a more verbose log
+            for processes executed by the class representing the exchange.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Helper.RMQHelper.CreateQueue(DA.MW.Broker.BrokerQueueParams,System.Func{DA.MW.Broker.Common.IBrokerMessage,DA.MW.Broker.Common.IBrokerMessageAck})">
+            <summary>
+            Create the resource 'queue' remotely and return the object that represents it.
+            Idempotent function for the server, that is, it can be called multiple times with the same parameters
+            always returning the same result.
+            </summary>
+            <param name="bqp">Structure of all variables that can be used by any provider</param>
+            <param name="Callback">The callback.</param>
+            <returns>
+            The queue object
+            </returns>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Helper.RMQHelper.DeleteQueue(DA.MW.Broker.BrokerQueue)">
+            <summary>
+            Delete the remote 'queue' resource.
+            </summary>
+            <param name = "queue"> The queue to be deleted </param>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Helper.RMQHelper.Subscribe(DA.MW.Broker.BrokerQueue,System.Collections.Generic.List{System.String})">
+            <summary>
+            Create a subscription by specifying a binding key list <paramref name="BindingKeys" />.
+            All messages sent to the remote server with a compatible routing key are forwarded to the <paramref name="queue" /> queue.
+            The messages will be pre-loaded locally in a local queue with a size of <paramref name="queue.prefetchCount.prefetchCount" />.
+            For each message received, the callback specified in <paramref name="queue.callback.callback" /> will be executed.
+            If the task scheduler specified in <paramref name="queue.taskScheduler.taskScheduler" /> is null the one defined by the manufacturer will be used
+            to execute the callback.
+            </summary>
+            <param name="queue">The queue.</param>
+            <param name="BindingKeys">The binding keys.</param>
+            <exception cref="T:System.InvalidOperationException">The queue has already another subscription</exception>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Helper.RMQHelper.Unsubscribe(DA.MW.Broker.BrokerQueue,System.Collections.Generic.List{System.String})">
+            <summary>
+            Delete the subscription />.
+            </summary>
+            <param name="queue">The queue.</param>
+            <param name="BindingKeys">The binding keys.</param>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Helper.RMQHelper.SendMessage(DA.MW.Broker.BrokerMessageParams)">
+            <summary>
+            This method is the one used as the external interface to send messages
+            This will use the desired send method as described in <paramref name = "bmParams.SendType.SendType" /> but defaults to AddToPublicationQueue.
+            </summary>
+            <param name="bmParams"></param>
+            <returns>
+            Object of bool or SendingResult.
+            If bool True if the message is added, false otherwise
+            If SendingResult then Sent, Queued or Not Queued ENUM
+            </returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Helper.RMQHelper.AckMessage(DA.MW.Broker.Common.IBrokerMessageAck,System.Boolean)">
+            <summary>
+            Function that allows to make the ack of one or more messages.
+            Use <see cref = "M:DA.MW.Broker.Rabbit.RMQMessage.CreateMessageAck(DA.MW.Broker.Common.Entities.AcknowledgementType)" /> to generate ack <paramref name = "messageAck" /> for the received message.
+            </summary>
+            <param name = "messageAck"> Ack of the specific message received </param>
+            <param name = "multiple"> If true performs for all messages received from that queue with <see cref = "P:DA.MW.Broker.Rabbit.RMQMessage.DeliveryTag" />
+            equal to or less than that of the message from which the ack <paramref name = "messageAck" /> was created </param> 
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Helper.RMQHelper.GetConnectionInformation">
+            <summary>
+            Gets the connection information.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Helper.RMQHelper.AddToPublicationQueue(DA.MW.Broker.Common.Protocol.MsgHeader,System.Byte[],System.String,System.Boolean)">
+            <summary>
+            Add the message to the publication queue, the message will be published asynchronously,
+            however this is the most efficient function that has the highest value of messages per second sent.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Helper.RMQHelper.SendNow(DA.MW.Broker.Common.Protocol.MsgHeader,System.Byte[],System.String,System.Boolean)">
+            <summary>
+            The sending of the message is done in a way that is independent of the existence of other messages already present in the sending queue.
+            This is the less efficient publication function as a performance.
+            If the sending of the message fails in the application domain, an exception is launched that identifies the problem.
+            The typical use case is when I do not care about the exact order of sending messages and I have a maximum of 100 messages / second.
+            Other case is I have the send queue with 10,000 messages in the queue and I have an important message to send as soon as possible.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Helper.RMQHelper.SendNowOrAddToPublicationQueue(DA.MW.Broker.Common.Protocol.MsgHeader,System.Byte[],System.String,System.Boolean)">
+            <summary>
+            If there are no messages in the queue, the message is sent synchronously.
+            If the synchronous sending fails due to missing connection problems, the message is put in the queue,
+            if the cause of the failure is not connected to the connection, it throws the exception.
+            </summary>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Helper.RMQHelper.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:DA.MW.Broker.Rabbit.Helper.RMQHelper.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+    </members>
+</doc>

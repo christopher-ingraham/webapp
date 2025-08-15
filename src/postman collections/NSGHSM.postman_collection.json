@@ -1,0 +1,1620 @@
+{
+	"info": {
+		"_postman_id": "70c79fe7-465b-4032-916a-0de5a928f3eb",
+		"name": "NSGHSM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Quality Control System",
+			"item": [
+				{
+					"name": "RepHmPiece  list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5011/qcs/RepHmPiece/list?page.take=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"qcs",
+								"RepHmPiece",
+								"list"
+							],
+							"query": [
+								{
+									"key": "filter.searchDataFrom",
+									"value": "2019-11-17T23:00:00.000Z",
+									"disabled": true
+								},
+								{
+									"key": "filter.searchDataTo",
+									"value": "2019-11-24T22:59:59.999Z",
+									"disabled": true
+								},
+								{
+									"key": "filter.StartDate",
+									"value": "2018-10-27T23:00:00.000Z",
+									"disabled": true
+								},
+								{
+									"key": "filter.EndDate",
+									"value": "2019-01-27T23:00:00.000Z",
+									"disabled": true
+								},
+								{
+									"key": "page.take",
+									"value": "10"
+								},
+								{
+									"key": "filter.SearchProducedCoil",
+									"value": "72002240",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RepHmPieceStat list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/qcs/RepHmPieceStat/list?filter.sampleIdEq=ENTRY_THK&filter.chartData=1&page.take=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"qcs",
+								"RepHmPieceStat",
+								"list"
+							],
+							"query": [
+								{
+									"key": "filter.outPieceNoEq",
+									"value": "9748",
+									"disabled": true
+								},
+								{
+									"key": "filter.passNoEq",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "filter.sampleIdEq",
+									"value": "ENTRY_THK"
+								},
+								{
+									"key": "filter.chartData",
+									"value": "1"
+								},
+								{
+									"key": "page.take",
+									"value": "1",
+									"description": "filter."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RepHmPieceTrend list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/qcs/RepHmPieceTrend/list?filter.chartData=1&filter.SignalTypeEq=2&filter.sampleIdEq=SHAPE_BLOB&filter.OutPieceNoEq=23417",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"qcs",
+								"RepHmPieceTrend",
+								"list"
+							],
+							"query": [
+								{
+									"key": "filter.passNoEq",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "filter.chartData",
+									"value": "1"
+								},
+								{
+									"key": "page.take",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "filter.SignalTypeEq",
+									"value": "2"
+								},
+								{
+									"key": "filter.sampleIdEq",
+									"value": "SHAPE_BLOB"
+								},
+								{
+									"key": "filter.OutPieceNoEq",
+									"value": "23417"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tdb Process Code by CodeType (1 or 2)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/qcs/TdbProcessCode/list?filter.CodeType=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"qcs",
+								"TdbProcessCode",
+								"list"
+							],
+							"query": [
+								{
+									"key": "filter.CodeType",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tdb Material Grade list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/qcs/TdbMaterialGrade/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"qcs",
+								"TdbMaterialGrade",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tdb Grade Group list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/qcs/TdbGradeGroup/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"qcs",
+								"TdbGradeGroup",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tdb Alloy by Alloy_Code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/qcs/TdbAlloy/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"qcs",
+								"TdbAlloy",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tdb Alloy Spec by Alloy Spec CNT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/qcs/TdbAlloySpec/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"qcs",
+								"TdbAlloySpec",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tdb AlloySpec list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/qcs/TdbAlloySpec/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"qcs",
+								"TdbAlloySpec",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Production",
+			"item": [
+				{
+					"name": "Hrm Job",
+					"item": [
+						{
+							"name": "HrmJob by ID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5011/production/HrmJob/fdfd",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"HrmJob",
+										"fdfd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "HrmJob by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5011/production/HrmJob/lookup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"HrmJob",
+										"lookup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "HrmJob list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5011/production/HrmJob/list?filter.SearchJobId=2019101702",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"HrmJob",
+										"list"
+									],
+									"query": [
+										{
+											"key": "filter.SearchProductionStatus",
+											"value": "10",
+											"disabled": true
+										},
+										{
+											"key": "filter.SearchJobId",
+											"value": "2019101702"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New HrmJob",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"JobId\": \"6546464\",\n\t\"JobSeq\": 7,\n\t\"Remark\": \"fghfgh\",\n\t\"Status\": 5,\n\t\"OrderStartDate\": \"2018-10-24T15:51:30\",\n\t\"Operator\": \"Administrator\",\n\t\"Revision\": \"2019-02-24T15:51:30\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5011/production/HrmJob/new",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"HrmJob",
+										"new"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "HrmJob",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"Job_seq\": 67,\n\t\"Remark\": \"gfhfdh\",\n\t\"Status\": 1,\n\t\"Order_Start_Date\": \"2018-10-24T15:51:30\",\n\t\"Operator\": \"Administrator\",\n\t\"Revision\": \"2019-02-24T15:51:30\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5011/production/HrmJob/986909606",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"HrmJob",
+										"986909606"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Hrm Input Piece",
+					"item": [
+						{
+							"name": "HrmInputPiece list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5011/production/HrmInputPiece/lookup?",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"HrmInputPiece",
+										"lookup"
+									],
+									"query": [
+										{
+											"key": "filter.OutPieceArea",
+											"value": "AM",
+											"disabled": true
+										},
+										{
+											"key": "filter.SearchProductionStatusFrom",
+											"value": "11",
+											"disabled": true
+										},
+										{
+											"key": "filter.SearchProductionStatusTo",
+											"value": "12",
+											"disabled": true
+										},
+										{
+											"key": "filter.SearchCustomerOrderNo",
+											"value": "M",
+											"disabled": true
+										},
+										{
+											"key": "filter.SearchSlabNo",
+											"value": "P19101",
+											"disabled": true
+										},
+										{
+											"key": "filter.SearchStringNo",
+											"value": "20191011",
+											"disabled": true
+										},
+										{
+											"key": "filter.SearchCreationTimeFrom",
+											"value": "2019-11-28T23:00:00.000Z",
+											"disabled": true
+										},
+										{
+											"key": "filter.SearchCreationTimeTo",
+											"value": "2019-12-6T23:00:00.000Z",
+											"disabled": true
+										},
+										{
+											"key": "filter.SearchCustomerName",
+											"value": "RUD",
+											"disabled": true
+										},
+										{
+											"key": "filter.SearchHeatNo",
+											"value": "HEAT02",
+											"disabled": true
+										},
+										{
+											"key": "filter.SearchStatusLike",
+											"value": "10",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "HrmInputPiece by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5011/production/HrmInputPiece/12",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"HrmInputPiece",
+										"12"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "validation",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5011/production/HrmInputPiece/validation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"HrmInputPiece",
+										"validation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "HrmInputPiece",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"PieceSeq\": 3,\r\n    \"JobPieceSeq\": 34,\r\n    \"PieceId\": \"P111111\",\r\n    \"JobId\": \"2019102401\",\r\n    \"HeatNo\": 3,\r\n    \"HeatSeq\": 1,\r\n    \"HeatPieceSeq\": 0,\r\n    \"Transition\": 2,\r\n    \"SourceCodeId\": 1,\r\n    \"DestCodeId\": 2,\r\n    \"UseBaseGrade\": 0,\r\n    \"PreliminaryMatGradeId\": \"LOW_CARBON\",\r\n    \"MaterialSpecId\": \"CODE01_001\",\r\n    \"PreliminaryThk\": 21,\r\n    \"PreliminaryThkHead\": 1,\r\n    \"PreliminaryThkTail\": 32,\r\n    \"PreliminaryWdt\": 1,\r\n    \"PreliminaryWdtHead\": 3,\r\n    \"PreliminaryWdtTail\": 24,\r\n    \"PreliminaryWdtChg\": 42,\r\n    \"PreliminaryLen\": 1,\r\n    \"Weight\": 22,\r\n    \"EntryTemp\": 23,\r\n    \"FurnaceDischargeTemp\": 43,\r\n    \"TargetWidth\": 8,\r\n    \"TargetWidthPTol\": 77,\r\n    \"TargetWidthNTol\": 32,\r\n    \"TargetThickness\": 23,\r\n    \"TargetThicknessPTol\": 10,\r\n    \"TargetThicknessNTol\": 454,\r\n    \"TargetWeight\": 5434,\r\n    \"TargetWeightPTol\": 453,\r\n    \"TargetWeightNTol\": 20000,\r\n    \"TargetExitTemp\": 203,\r\n    \"TargetExitTempPTol\": 56,\r\n    \"TargetExitTempNTol\": 33,\r\n    \"TargetTempFmCustomerTol\": 23,\r\n    \"TargetTempDc\": 34,\r\n    \"TargetTempDcPTol\": 10,\r\n    \"TargetTempDcNTol\": 2,\r\n    \"TargetTempDcCustomerTol\": 5,\r\n    \"TargetProfile\": 1,\r\n    \"TargetProfilePTol\": 324,\r\n    \"TargetProfileNTol\": 233,\r\n    \"TargetProfileCustomerTol\": 32.55,\r\n    \"TargetFlatness\": 11,\r\n    \"TargetFlatnessPtol\": 434.8,\r\n    \"TargetFlatnessNTol\": 35.9,\r\n    \"TargetFlatnessCustomerTol\": 77,\r\n    \"TargetInternalDiameter\": 32,\r\n    \"UseMeasWidth\": 1,\r\n    \"MeasuredWidthHead\": 10.87,\r\n    \"MeasuredWidthTail\": 12,\r\n    \"UseMeasTemp\": 0,\r\n    \"MeasuredTemp\": 453,\r\n    \"Status\": 10,\r\n    \"Remark\": \"STEEL_1\",\r\n    \"Operator\": \"Administrator\",\r\n    \"OrderNumber\": \"gffdg\",\r\n    \"OrderPosition\": \"f445\",\r\n    \"CustomerId\": \"Model Test\",\r\n    \"EnduseSurfaceRating\": 224,\r\n    \"AreaType\": \"A\",\r\n    \"TrialFlag\": 1,\r\n    \"TrialNo\": \"56hfrr\",\r\n    \"CarrierMode\": \"Administrator\",\r\n    \"EndUse\": \"enduse test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5011/production/HrmInputPiece/17",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"HrmInputPiece",
+										"17"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "HrmInputPiece by ID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5011/production/HrmInputPiece/17",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"HrmInputPiece",
+										"17"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New  HrmInputPiece",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"PieceSeq\": 3,\r\n    \"JobPieceSeq\": 34,\r\n    \"PieceId\": \"P4356453\",\r\n    \"JobId\": \"2019102401\",\r\n    \"HeatNo\": 3,\r\n    \"HeatSeq\": 1,\r\n    \"HeatPieceSeq\": 0,\r\n    \"Transition\": 1,\r\n    \"SourceCodeId\": 1,\r\n    \"DestCodeId\": 2,\r\n    \"UseBaseGrade\": 0,\r\n    \"PreliminaryMatGradeId\": \"LOW_CARBON\",\r\n    \"MaterialSpecId\": \"CODE01_001\",\r\n    \"PreliminaryThk\": 23,\r\n    \"PreliminaryThkHead\": 34,\r\n    \"PreliminaryThkTail\": 10,\r\n    \"PreliminaryWdt\": 2,\r\n    \"PreliminaryWdtHead\": 5,\r\n    \"PreliminaryWdtTail\": 1,\r\n    \"PreliminaryWdtChg\": 43,\r\n    \"PreliminaryLen\": 342,\r\n    \"Weight\": 65,\r\n    \"EntryTemp\": 654,\r\n    \"FurnaceDischargeTemp\": 54,\r\n    \"TargetWidth\": 8,\r\n    \"TargetWidthPTol\": 77,\r\n    \"TargetWidthNTol\": 32,\r\n    \"TargetThickness\": 23,\r\n    \"TargetThicknessPTol\": 10,\r\n    \"TargetThicknessNTol\": 454,\r\n    \"TargetWeight\": 5434,\r\n    \"TargetWeightPTol\": 453,\r\n    \"TargetWeightNTol\": 20000,\r\n    \"TargetExitTemp\": 203,\r\n    \"TargetExitTempPTol\": 56,\r\n    \"TargetExitTempNTol\": 33,\r\n    \"TargetTempFmCustomerTol\": 23,\r\n    \"TargetTempDc\": 34,\r\n    \"TargetTempDcPTol\": 10,\r\n    \"TargetTempDcNTol\": 2,\r\n    \"TargetTempDcCustomerTol\": 5,\r\n    \"TargetProfile\": 1,\r\n    \"TargetProfilePTol\": 324,\r\n    \"TargetProfileNTol\": 233,\r\n    \"TargetProfileCustomerTol\": 32.55,\r\n    \"TargetFlataness\": 546.7,\r\n    \"TargetFlatanessPtol\": 434.8,\r\n    \"TargetFlatanessNTol\": 35.9,\r\n    \"TargetFlatanessCustomerTol\": 77,\r\n    \"TargetInternalDiameter\": 32,\r\n    \"UseMeasWidth\": 1,\r\n    \"MeasuredWidthHead\": 10.87,\r\n    \"MeasuredWidthTail\": 454,\r\n    \"UseMeasTemp\": 0,\r\n    \"MeasuredTemp\": 453,\r\n    \"Status\": 10,\r\n    \"Remark\": \"STEEL_1\",\r\n    \"Operator\": \"Administrator\",\r\n    \"OrderNumber\": \"gffdg\",\r\n    \"OrderPosition\": \"f445\",\r\n    \"CustomerId\": \"Model Test\",\r\n    \"EnduseSurfaceRating\": 224,\r\n    \"AreaType\": \"G\",\r\n    \"TrialFlag\": 1,\r\n    \"TrialNo\": \"56hfrr\",\r\n    \"CarrierMode\": \"Administrator\",\r\n    \"EndUse\": \"34ffgg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5011/production/HrmInputPiece/new",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"HrmInputPiece",
+										"new"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "UsedSetup",
+					"item": [
+						{
+							"name": "Used Setup list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5011/production/UsedSetup/list?filter.SearchInPieceNo=13",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"UsedSetup",
+										"list"
+									],
+									"query": [
+										{
+											"key": "filter.SearchInPieceNo",
+											"value": "13"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "ExitSaddles",
+					"item": [
+						{
+							"name": "Exit Saddles list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5011/production/ExitSaddles/list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"ExitSaddles",
+										"list"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Produced Coils",
+					"item": [
+						{
+							"name": "ProducedCoils list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5011/production/ProducedCoils/list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"ProducedCoils",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Produced Coils detail",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5011/production/ProducedCoils/19628",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"ProducedCoils",
+										"19628"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "RepHmSetup",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5011/production/RepHmSetup/13",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"RepHmSetup",
+										"13"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5011/production/ProducedCoils/validation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"ProducedCoils",
+										"validation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update ProductedCoils",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"OutPieceId\": \"PROVA33\",\n\t\"OutPieceSeq\": 3,\n\t\"InPieceId\": \"P191018002\",\n\t\"InPieceNo\": 12,\n\t\"JobId\": \"845g\",\n\t\"ProductionStartDate\": \"2018-10-24T15:51:30\",\n\t\"ProductionStopDate\": \"2018-10-27T15:51:30\",\n\t\"MaesuredWeight\": 45,\n\t\"CalculatedWeight\": 432,\n    \"Length\": 45,\n    \"ExitThk\": 65,\n    \"TargetWidth\": 43,\n    \"TargetThickness\": 43,\n    \"InnerDiameter\": 543,\n    \"OuterDiameter\": 56,\n    \"EndOfIngotFlag\": 435,\n    \"TestCut\": 1,\n    \"TrialFlag\": 4534,\n    \"CrewId\": \"CREW_1\",\n    \"ShiftId\": 3,\n    \"Status\": 90,\n    \"Remark\": \"fdgggg\",\n    \"SoakTime\": 34,\n    \"GapTime\": 435,\n    \"RollingTime\": 22,\n    \"StripCrownIntolFlag\": 0,\n    \"ExitThkIntolFlag\": 0,\n    \"ExitWidthIntolFlag\": 0,\n    \"ExitTempIntolFlag\": 1,\n    \"DowncoilTempIntolFlag\": 1,\n    \"InterstandCoolingBitmask\": 9,\n    \"DispositionCodesForHold\": [true,true,true,true,false,false,false,true,false,false,false,false,true,false,false,true,false,false,false,true,false,false,false,true,false,false,true,false,false,true]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5011/production/ProducedCoils/23479",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"ProducedCoils",
+										"23479"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Produced Coils",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"OutPieceId\": \"hgfghghrtr\", \n\t\"OutPieceSeq\": 322211, \n\t\"InPieceId\": \"fggfdf\", \n\t\"JobId\": \"fdhggfgf\", \n\t\"ProductionStartDate\": \"2018-10-24T15:51:30\", \n\t\"ProductionStopDate\": \"2018-11-24T15:51:30\",\n    \"MeasuredWeight\":  32, \n    \"CalculatedWeight\": 231, \n    \"Length\": 213, \n    \"ExitThk\": 321, \n    \"TargetWidth\": 232, \n    \"TargetThickness\": 321, \n    \"InnerDiameter\": 22, \n    \"OuterDiameter\": 321,\n    \"EndOfIngotFlag\": 32, \n    \"TestCut\": 23, \n    \"TrialFlag\": 12, \n    \"CrewId\": \"34543rff\", \n    \"ShiftId\": 43543, \n    \"Status\": 44, \n    \"Remark\":\"7548jy\", \n    \"SoakTime\": 435,\n    \"GapTime\": 435, \n    \"RollingTime\": 344, \n    \"StripCrownTolPerc\": 11, \n    \"StripCrownIntolFlag\": 23, \n    \"ExitThkTolPerc\": 34, \n    \"ExitThkIntolFlag\": 32, \n    \"ExitWidthTolPerc\":43, \n    \"ExitWidthIntolFlag\": 54,\n    \"ExitTempTolPerc\": 34, \n    \"ExitTempIntolFlag\": 32, \n    \"DowncoilTempTolPerc\": 85, \n    \"DowncoilTempIntolFlag\": 36, \n    \"InterstandCoolingBitmask\": 32, \n    \"Operator\": \"Administrator\",\n    \"DispositionCodesForHold\": [true,true,true,true,false,false,false,true,false,false,false,false,true,false,false,true,false,false,false,true,false,false,false,true,false,false,true,false,false,true]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5011/production/ProducedCoils/new",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"ProducedCoils",
+										"new"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Produced Coils",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5011/production/ProducedCoils/2332",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"ProducedCoils",
+										"2332"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Altre ",
+					"item": [
+						{
+							"name": "TdbMaterialSpec",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5011/production/TdbMaterialSpec/list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"TdbMaterialSpec",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "HrmAnalysisData  - Sample ID by Heat_No",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5011/production/HrmAnalysisData/list?filter.SearchHeatNo=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"HrmAnalysisData",
+										"list"
+									],
+									"query": [
+										{
+											"key": "filter.SearchHeatNo",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Hrm Heat list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5011/production/HrmHeat/list?filter.SearchJobId=2019101701                      ",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"HrmHeat",
+										"list"
+									],
+									"query": [
+										{
+											"key": "filter.SearchJobId",
+											"value": "2019101701                      "
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "HrmAnalysisData - detail metalli",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5011/production/HrmAnalysisData/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5011",
+									"path": [
+										"production",
+										"HrmAnalysisData",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Aux Value",
+			"item": [
+				{
+					"name": "Aux Value by VALUE_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/auxvalue/AuxValue/list?filter.SearchVariableId=AREA_TYPE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"auxvalue",
+								"AuxValue",
+								"list"
+							],
+							"query": [
+								{
+									"key": "filter.SearchVariableId",
+									"value": "AREA_TYPE"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "LookUps",
+			"item": [
+				{
+					"name": "cboInPieceId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/production/HrmInputPiece/lookup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"production",
+								"HrmInputPiece",
+								"lookup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cboCrew",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/production/RmlCrew/lookup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"production",
+								"RmlCrew",
+								"lookup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cboMatGrade",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/qcs/TdbMaterialGrade/lookup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"qcs",
+								"TdbMaterialGrade",
+								"lookup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cboExIntDiam",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/auxvalue/AuxValue/list?filter.SearchVariableId=EX_INT_DIAMETER",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"auxvalue",
+								"AuxValue",
+								"list"
+							],
+							"query": [
+								{
+									"key": "page.take",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "filter.SearchVariableId",
+									"value": "EX_INT_DIAMETER"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cboShift",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/auxvalue/AuxValue/list?filter.SearchVariableId=PRODUCTION_SHIFT",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"auxvalue",
+								"AuxValue",
+								"list"
+							],
+							"query": [
+								{
+									"key": "filter.SearchVariableId",
+									"value": "PRODUCTION_SHIFT"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cboExCoilStatus",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/auxvalue/AuxValue/list?filter.SearchVariableId=STATUS_INPUT",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"auxvalue",
+								"AuxValue",
+								"list"
+							],
+							"query": [
+								{
+									"key": "filter.SearchVariableId",
+									"value": "STATUS_INPUT"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cbInterStdCoolF1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/auxvalue/AuxValue/list?filter.SearchVariableId=ENABLED_FLAG",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"auxvalue",
+								"AuxValue",
+								"list"
+							],
+							"query": [
+								{
+									"key": "filter.SearchVariableId",
+									"value": "ENABLED_FLAG"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cbInterStdCoolF2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/auxvalue/AuxValue/list?filter.SearchVariableId=ENABLED_FLAG",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"auxvalue",
+								"AuxValue",
+								"list"
+							],
+							"query": [
+								{
+									"key": "filter.SearchVariableId",
+									"value": "ENABLED_FLAG"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cbInterStdCoolF3",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/auxvalue/AuxValue/list?filter.SearchVariableId=ENABLED_FLAG",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"auxvalue",
+								"AuxValue",
+								"list"
+							],
+							"query": [
+								{
+									"key": "filter.SearchVariableId",
+									"value": "ENABLED_FLAG"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cbInterStdCoolF4",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/auxvalue/AuxValue/list?filter.SearchVariableId=ENABLED_FLAG",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"auxvalue",
+								"AuxValue",
+								"list"
+							],
+							"query": [
+								{
+									"key": "filter.SearchVariableId",
+									"value": "ENABLED_FLAG"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cbInterStdCoolF5",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/auxvalue/AuxValue/list?filter.SearchVariableId=ENABLED_FLAG",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"auxvalue",
+								"AuxValue",
+								"list"
+							],
+							"query": [
+								{
+									"key": "filter.SearchVariableId",
+									"value": "ENABLED_FLAG"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cboMillMode",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/auxvalue/AuxValue/list?filter.SearchVariableId=MILL_MODE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"auxvalue",
+								"AuxValue",
+								"list"
+							],
+							"query": [
+								{
+									"key": "filter.SearchVariableId",
+									"value": "MILL_MODE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cboDescalerMode",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/auxvalue/AuxValue/list?filter.SearchVariableId=DESCALER_MODE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"auxvalue",
+								"AuxValue",
+								"list"
+							],
+							"query": [
+								{
+									"key": "filter.SearchVariableId",
+									"value": "DESCALER_MODE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cboEnbledStand",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/auxvalue/AuxValue/list?filter.SearchVariableId=ENABLED_STAND",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"auxvalue",
+								"AuxValue",
+								"list"
+							],
+							"query": [
+								{
+									"key": "filter.SearchVariableId",
+									"value": "ENABLED_STAND"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Plant Overview",
+			"item": [
+				{
+					"name": "Finishing Mill Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/PlantOverview/FinishingMillData/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"PlantOverview",
+								"FinishingMillData",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Roughing Mill Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/PlantOverview/RoughingMillData/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"PlantOverview",
+								"RoughingMillData",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Reports",
+			"item": [
+				{
+					"name": "Coil General Report",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/report/CoilGeneralReport/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"report",
+								"CoilGeneralReport",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Time Oriented Report",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/report/CoilGeneralReport/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"report",
+								"CoilGeneralReport",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shift Report",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/report/ShiftReport/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"report",
+								"ShiftReport",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cobble Report",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/report/CoilGeneralReport/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"report",
+								"CoilGeneralReport",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Stoppage Report",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/report/StoppageReport/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"report",
+								"StoppageReport",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Practice Report",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5011/report/PracticeReport/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5011",
+							"path": [
+								"report",
+								"PracticeReport",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

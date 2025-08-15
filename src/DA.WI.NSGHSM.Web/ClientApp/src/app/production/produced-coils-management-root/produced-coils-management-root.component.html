@@ -1,0 +1,183 @@
+<kendo-tabstrip #kendoTabStripInstance="kendoTabStrip" [keepTabContent]="true" [animate]="true"
+    (tabSelect)="onSelectTab($event.index)">
+
+    <kendo-tabstrip-tab *ngFor="let tab of tabstrip.tabs" [title]="tab.title" [selected]="tab.isSelected"
+        [ngSwitch]="tab.type">
+
+        <ng-template kendoTabContent *ngSwitchCase="'master'">
+            <kendo-splitter orientation="vertical" style="height: 100%;">
+                <!--  Produced Coils List Filters  -->
+                <kendo-splitter-pane [resizable]="false" [collapsible]="true" [scrollable]="false" size="200px"
+                    min="200px" max="200px">
+                    <fieldset>
+                        <legend (click)="applyFilters($event)" title="Apply filter(s)...">Filters</legend>
+                        <form>
+                            <div class="p-grid">
+                                <div class="p-col-6">
+                                    <div class="p-grid">
+                                        <div class="p-col-12">
+                                            <input type="checkbox" id="filterPlannedProductionDate" class="k-checkbox"
+                                                [(ngModel)]="filter.productionStopDate.isEnabled"
+                                                [ngModelOptions]="modelOptions" />
+                                            <label class=" k-checkbox-label"
+                                                for="filterPlannedProductionDate">Production Stop
+                                                Date</label>
+                                        </div>
+                                        <div class="p-col-12">
+                                            <app-time-filter [disabled]="!filter.productionStopDate.isEnabled"
+                                                [(dateTimeFrom)]="filter.productionStopDate.value.from"
+                                                [(dateTimeTo)]="filter.productionStopDate.value.to"></app-time-filter>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-col-2">
+                                    <div class="p-grid">
+                                        <div class="p-col-12">
+                                            <input type="checkbox" id="filterProducedPieceId" class="k-checkbox"
+                                                [(ngModel)]="filter.producedPieceId.isEnabled"
+                                                [ngModelOptions]="modelOptions" />
+                                            <label class="k-checkbox-label" for="filterProducedPieceId">Produced Pieced
+                                                ID</label>
+                                        </div>
+                                        <div class="p-col-12">
+                                            <input kendoTextBox [disabled]="!filter.producedPieceId.isEnabled"
+                                                [(ngModel)]="filter.producedPieceId.value"
+                                                [ngModelOptions]="modelOptions" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-col-2">
+                                    <div class="p-grid">
+                                        <div class="p-col-12">
+                                            <input type="checkbox" id="filterInputSlabNo" class="k-checkbox"
+                                                [(ngModel)]="filter.inputSlabNumber.isEnabled"
+                                                [ngModelOptions]="modelOptions" />
+                                            <label class="k-checkbox-label" for="filterInputSlabNo">Input Slab
+                                                N°</label>
+                                        </div>
+                                        <div class="p-col-12">
+                                            <input kendoTextBox [disabled]="!filter.inputSlabNumber.isEnabled"
+                                                [(ngModel)]="filter.inputSlabNumber.value"
+                                                [ngModelOptions]="modelOptions">
+                                        </div>
+                                        <div class="p-col-12">
+                                            <input type="checkbox" id="filterHeatNumber" class="k-checkbox"
+                                                [(ngModel)]="filter.heatNumber.isEnabled"
+                                                [ngModelOptions]="modelOptions" />
+                                            <label class="k-checkbox-label" for="filterHeatNumber">Heat N°</label>
+                                        </div>
+                                        <div class="p-col-12">
+                                            <input kendoTextBox [disabled]="!filter.heatNumber.isEnabled"
+                                                [(ngModel)]="filter.heatNumber.value" [ngModelOptions]="modelOptions">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-col-2">
+                                    <div class="p-grid">
+                                        <div class="p-col-12">
+                                            <input type="checkbox" id="filterCoilStatus" class="k-checkbox"
+                                                [(ngModel)]="filter.coilStatus.isEnabled"
+                                                [ngModelOptions]="modelOptions" />
+                                            <label class="k-checkbox-label" for="filterCoilStatus">Coil Status</label>
+                                        </div>
+                                        <div class="p-col-12">
+                                            <kendo-combobox [data]="producedCoilStatusList" [textField]="'label'"
+                                                [valueField]="'value'" [disabled]="!filter.coilStatus.isEnabled"
+                                                [(ngModel)]="producedCoilStatusValue" [ngModelOptions]="modelOptions">
+                                            </kendo-combobox>
+                                        </div>
+                                        <div class="p-col-12">
+                                            <div kendoTooltip style="text-align: center; padding-top: 10px;">
+                                                <button kendoButton type="button" title="Apply filter(s)"><i
+                                                        class="k-icon k-i-filter"
+                                                        (click)="applyFilters($event)"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </fieldset>
+                </kendo-splitter-pane>
+                <!--  Produced Coils List  -->
+                <kendo-splitter-pane style = "overflow-x:hidden;" [resizable]="true" [scrollable]="true" min="300px">
+                    <fieldset>
+                        <legend>Produced Coils</legend>
+                        <div class="p-grid">
+                            <div class="p-col-12">
+                                <app-action-toolbar newVisible="true" (newClicked)="producedCoilNew($event)"
+                                    removeVisible="true" (removeClicked)="producedCoilRemove($event)"
+                                    [removeDisabled]="!producedCoilSelection.isSelected" editVisible="true"
+                                    (editClicked)="producedCoilEdit($event)"
+                                    [editDisabled]="!producedCoilSelection.isSelected" copyVisible="true"
+                                    (copyClicked)="producedCoilCopy($event)"
+                                    [copyDisabled]="!producedCoilSelection.isSelected" refreshVisible="true"
+                                    [newVisible] = "newButtonVisible"
+                                    [removeVisible] = "removeButtonVisible"
+                                    [editVisible] = "updateButtonVisible"
+                                    [copyVisible] = "copyButtonVisible"
+                                    (refreshClicked)="producedCoilListRefresh($event)">
+                                </app-action-toolbar>
+                            </div>
+                            <div class="p-col-12">
+                                <app-produced-coil-list [filters]="filters" [row]="producedCoilSelection"
+                                    (edit)="producedCoilEditEntity($event)">
+                                </app-produced-coil-list>
+                            </div>
+                        </div>
+                    </fieldset>
+                </kendo-splitter-pane>
+                <!--  Used Setup + Exit Saddles  -->
+                <kendo-splitter-pane [resizable]="true" [scrollable]="false" min="64px">
+                    <kendo-splitter orientation="horizontal">
+                        <!--  Used Setup  -->
+                        <kendo-splitter-pane [resizable]="true" [scrollable]="false" size="70%" min="64px">
+                            <fieldset>
+                                <legend>Used Setup</legend>
+                                <div class="p-grid">
+                                    <div class="p-col-12">
+                                        <app-action-toolbar viewVisible="true" (viewClicked)="usedSetupView($event)"
+                                            [viewDisabled]="!usedSetupSelection.isSelected" saveVisible="true"
+                                            (saveClicked)="usedSetupSave($event)"
+                                            [saveDisabled]="!usedSetupSelection.isSelected">
+                                        </app-action-toolbar>
+                                    </div>
+                                    <div class="p-col-12">
+                                        <app-used-setup-list [master]="producedCoilSelection" [row]="usedSetupSelection"
+                                            (edit)="usedSetupViewEntity($event)">
+                                        </app-used-setup-list>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </kendo-splitter-pane>
+                        <!-- Exit Saddles -->
+                        <kendo-splitter-pane [resizable]="true" [scrollable]="false">
+                            <fieldset>
+                                <legend>Exit Saddles</legend>
+                                <app-exit-saddle-list></app-exit-saddle-list>
+                            </fieldset>
+                        </kendo-splitter-pane>
+                    </kendo-splitter>
+                </kendo-splitter-pane>
+            </kendo-splitter>
+        </ng-template>
+
+        <ng-template kendoTabContent *ngSwitchCase="'ProducedCoilDetail'">
+            <app-produced-coil-detail [parentTab]="tab"></app-produced-coil-detail>
+        </ng-template>
+
+        <ng-template kendoTabContent *ngSwitchCase="'UsedSetupDetail'">
+            <app-used-setup-detail [parentTab]="tab"></app-used-setup-detail>
+        </ng-template>
+
+        <ng-template kendoTabContent *ngSwitchDefault>
+            <p>Unsupported entity detail!</p>
+            <button kendoButton (click)="tab.close()">Close</button>
+        </ng-template>
+
+    </kendo-tabstrip-tab>
+
+</kendo-tabstrip>
+
+<div kendoDialogContainer></div>

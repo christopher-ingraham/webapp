@@ -1,0 +1,119 @@
+body {
+    font-family: "DejaVu Sans", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    background-color: #252525;
+    color: white
+}
+
+@font-face {
+    font-family: "DejaVu Sans";
+    src: url("assets/fonts/DejaVu/DejaVuSans.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "DejaVu Sans";
+    font-weight: bold;
+    src: url("assets/fonts/DejaVu/DejaVuSans-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "DejaVu Sans";
+    font-style: italic;
+    src: url("assets/fonts/DejaVu/DejaVuSans-Oblique.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "DejaVu Sans";
+    font-weight: bold;
+    font-style: italic;
+    src: url("assets/fonts/DejaVu/DejaVuSans-Oblique.ttf") format("truetype");
+}
+
+app-sidebar {
+    min-width: 200px;
+}
+
+input {
+    background-color: rgb(10, 10, 10);
+}
+
+app-header .k-toolbar:before {
+    content: none;
+}
+
+app-header kendo-toolbar-renderer {
+    width: 100%;
+}
+
+app-header .app-header-logo img {
+    max-height: 50px;
+}
+
+.fx-fill {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.fx-container {
+    position: relative;
+}
+
+.k-grid-header {
+    padding-right: 0 !important;
+}
+
+.k-grid-content {
+    overflow-y: hidden !important;
+}
+
+.tends-grid .k-grid-content{
+    overflow-y: scroll !important;
+}
+
+.fx-full-height {
+    height: 100%;
+}
+
+/* necessary for kendo ui grids on IE 11 to avoid super long width */
+.fx-full-width {
+    width: 100%;
+}
+
+.fx-full-height-grid-container {
+    display: flex;
+}
+
+#hamburger {
+    margin: 15px;
+}
+
+div#content {
+    padding: 5px;
+}
+
+.abs-centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+div.placeholder {
+    height: 100%;
+    padding: 1px;
+    width: 100%;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #333;
+}
+
+div .grid-cell-button-container {
+    flex: 1 1 0%;
+    box-sizing: border-box;
+}

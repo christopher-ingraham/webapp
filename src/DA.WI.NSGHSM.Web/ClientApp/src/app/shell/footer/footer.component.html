@@ -1,0 +1,14 @@
+<kendo-toolbar *ngIf="isPresent">
+
+    <app-toolbar-item>
+        <div style="min-width: 10em">
+            <span class="k-icon"
+                [ngClass]="{'k-i-check-outline k-text-success': isReady, 'k-i-loading': isBusy}"></span>
+            &nbsp;
+            HSM – HOT STRIP MILL - Web Application
+        </div>
+    </app-toolbar-item>
+
+    <kendo-toolbar-separator></kendo-toolbar-separator>
+
+</kendo-toolbar>

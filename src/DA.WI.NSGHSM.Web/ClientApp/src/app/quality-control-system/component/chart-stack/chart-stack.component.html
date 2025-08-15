@@ -1,0 +1,110 @@
+<kendo-splitter orientation="horizontal">
+    <kendo-splitter-pane size="15%" [resizable]="false" *ngIf="isWidthFull">
+        <kendo-splitter orientation="vertical" style="height: 100%;" fxFlex>
+            <kendo-splitter-pane size="40%" [resizable]="false">
+                <fieldset>
+                    <legend>Selected Coil</legend>
+                    <div class="p-grid p-nogutter">
+                        <div class="p-col-12">
+                            <kendo-textbox-container floatingLabel="{{'Produced Coil ID' | translate }}" fxFlex>
+                                <input kendoTextBox [ngModel]="producedCoilId" [disabled]="true">
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-12">
+                            <kendo-textbox-container floatingLabel="{{'Input Slab No' | translate }}" fxFlex>
+                                <input kendoTextBox [ngModel]="inputCoilId" [disabled]="true">
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-12">
+                            <kendo-textbox-container floatingLabel="{{'Heat No' | translate }}" fxFlex>
+                                <input kendoTextBox [ngModel]="heatNo" [disabled]="true">
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-12">
+                            <kendo-textbox-container floatingLabel="{{'Customer Order No' | translate }}" fxFlex>
+                                <input kendoTextBox [ngModel]="customerOrderNo" [disabled]="true">
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-12">
+                            <kendo-textbox-container floatingLabel="{{'Customer Line No' | translate }}" fxFlex>
+                                <input kendoTextBox [ngModel]="customerLineNo" [disabled]="true">
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-12">
+                            <kendo-textbox-container floatingLabel="{{'Steel Grade ID' | translate }}" fxFlex>
+                                <input kendoTextBox [ngModel]="steelGradeId" [disabled]="true">
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-12">
+                            <kendo-textbox-container floatingLabel="{{'Width [mm]' | translate | uomLabel:'mm':'in' }}" fxFlex>
+                                <input kendoTextBox [ngModel]="coilWidth" [disabled]="true">
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-12">
+                            <kendo-textbox-container floatingLabel="{{'Thickness [mm]' | translate | uomLabel:'mm':'in' }}" fxFlex>
+                                <input kendoTextBox [ngModel]="coilThickness" [disabled]="true">
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-12">
+                            <kendo-textbox-container floatingLabel="{{'Weight [kg]' | translate | uomLabel:'kg':'lb' }}" fxFlex>
+                                <input kendoTextBox [ngModel]="coilWeigth" [disabled]="true">
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-12">
+                            <kendo-textbox-container floatingLabel="{{'External Diameter [mm]' | translate | uomLabel:'mm':'in' }}" fxFlex>
+                                <input kendoTextBox [ngModel]="externalDiameter" [disabled]="true">
+                            </kendo-textbox-container>
+                        </div>
+                    </div>
+                </fieldset>
+            </kendo-splitter-pane>
+            <kendo-splitter-pane [resizable]="false"></kendo-splitter-pane>
+            <kendo-splitter-pane size="20%" [resizable]="false">
+                <fieldset>
+                    <legend>Print Selection</legend>
+                    <div class="p-grid">
+                        <div class="p-col-12">
+                            <input type="radio" name="group" id="radio1" class="k-radio" [value]="0"
+                                [(ngModel)]="selectedChartToPrint" [disabled]="!graph[0].visible" />
+                            <label class="k-radio-label" for="radio1">Chart 1</label>
+                        </div>
+                        <div class="p-col-12">
+                            <input type="radio" name="group" id="radio2" class="k-radio" [value]="1"
+                                [(ngModel)]="selectedChartToPrint" [disabled]="!graph[1].visible" />
+                            <label class="k-radio-label" for="radio2">Chart 2</label>
+                        </div>
+                        <div class="p-col-12">
+                            <input type="radio" name="group" class="k-radio" id="radio3" [value]="2"
+                                [(ngModel)]="selectedChartToPrint" [disabled]="!graph[2].visible" />
+                            <label class="k-radio-label" for="radio3">Chart 3</label>
+                        </div>
+                        <div class="p-col-12">
+                            <button kendoButton [icon]="'printer'" (click)="printChart($event)"
+                                [disabled]="printDisabled" style="width: 100%;">Print Chart</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </kendo-splitter-pane>
+        </kendo-splitter>
+    </kendo-splitter-pane>
+    <kendo-splitter-pane>
+        <kendo-splitter orientation="vertical" style="height: 100%;" fxFlex>
+            <kendo-splitter-pane size="33%" [resizable]="false" [scrollable]="false">
+                <plotly-plot *ngIf="graph[0].visible" [data]="graph[0].data" [layout]="graph[0].layout" [updateOnlyWithRevision]="true" [revision]="revision"
+                    [useResizeHandler]="true" [style]="{position: 'relative', width: '100%', height: '100%'}"
+                    (doubleClick)="graphDoubleClicked($event)">
+                </plotly-plot>
+            </kendo-splitter-pane>
+            <kendo-splitter-pane size="33%" [resizable]="false" [scrollable]="false">
+                <plotly-plot *ngIf="graph[1].visible" [data]="graph[1].data" [layout]="graph[1].layout" [updateOnlyWithRevision]="true" [revision]="revision"
+                    [useResizeHandler]="true" [style]="{position: 'relative', width: '100%', height: '100%'}"
+                    (doubleClick)="graphDoubleClicked($event)"></plotly-plot>
+            </kendo-splitter-pane>
+            <kendo-splitter-pane [resizable]="false" [scrollable]="false">
+                <plotly-plot *ngIf="graph[2].visible" [data]="graph[2].data" [layout]="graph[2].layout" [updateOnlyWithRevision]="true" [revision]="revision"
+                    [useResizeHandler]="true" [style]="{position: 'relative', width: '100%', height: '100%'}"
+                    (doubleClick)="graphDoubleClicked($event)"></plotly-plot>
+            </kendo-splitter-pane>
+        </kendo-splitter>
+    </kendo-splitter-pane>
+</kendo-splitter>

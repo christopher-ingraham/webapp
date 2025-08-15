@@ -1,0 +1,1374 @@
+<div *ngIf="form">
+    <form class="k-form" [formGroup]="form">
+        <div class="p-grid">
+            <div class="p-col-12">
+                <h3 translate>{{title}}</h3>
+            </div>
+            <div class="p-col-12">
+                <app-audit-info operatorLabel="{{'Operator' | translate }}" [operator]="auditOperator"
+                    revisionLabel="{{'Revision' | translate }}" [revision]="auditRevision"></app-audit-info>
+            </div>
+            <div class="p-col-12">
+                <fieldset>
+                    <legend>Produced Coil Data</legend>
+                    <div class="p-grid">
+                        <!-- row-1 -->
+                        <div class="p-col-4">
+                            <kendo-textbox-container floatingLabel="{{'Produced Coil ID' | translate }}" fxFlex>
+                                <input kendoTextBox formControlName="outPieceId">
+                                <span *ngIf="isInError('outPieceId')"
+                                    class="k-text-error">{{getErrors('outPieceId')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-2">
+                            <div class="k-textbox-container k-state-empty" style="flex: 1 1 0%; box-sizing: border-box;"
+                                fxFlex>
+                                <button kendoButton (click)="onGenerateIdClicked($event)">Generate ID</button>
+                            </div>
+                        </div>
+
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Coil Status' | translate }}" fxFlex>
+                                <kendo-combobox [data]="coilStatusList | async" [textField]="'label'"
+                                    [valueField]="'value'" [valuePrimitive]="true" [allowCustom]="false"
+                                    formControlName="status">
+                                </kendo-combobox>
+                                <span *ngIf="isInError('status')" class="k-text-error">{{getErrors('status')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <!-- row-2 -->
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Input Slab ID' | translate }}" fxFlex>
+                                <kendo-combobox [data]="inputSlabList | async" [textField]="'label'"
+                                    [valueField]="'label'" [valuePrimitive]="true" [allowCustom]="false"
+                                    formControlName="inPieceId">
+                                </kendo-combobox>
+                                <span *ngIf="isInError('inPieceId')"
+                                    class="k-text-error">{{getErrors('inPieceId')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'String No' | translate }}" fxFlex>
+                                <input kendoTextBox [readonly]="true" formControlName="jobId">
+                                <span *ngIf="isInError('jobId')" class="k-text-error">{{getErrors('jobId')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <!-- row-3 -->
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Coil Sequence' | translate }}" fxFlex>
+                                <kendo-numerictextbox id="field-id-outPieceSeq" formControlName="outPieceSeq">
+                                </kendo-numerictextbox>
+                                <span *ngIf="isInError('outPieceSeq')"
+                                    class="k-text-error">{{getErrors('outPieceSeq')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Heat No' | translate }}" fxFlex>
+                                <input kendoTextBox [readonly]="true" id="field-id-heatId" formControlName="heatId">
+                                <span *ngIf="isInError('heatId')" class="k-text-error">{{getErrors('heatId')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <!-- row-4 -->
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Start Production Time' | translate }}" fxFlex>
+                                <kendo-datepicker kendoTextBox id="field-id-productionStartDate"
+                                    formControlName="productionStartDate" [format]="'dd/MM/yyyy'">
+                                </kendo-datepicker>
+                                <span *ngIf="isInError('productionStartDate')"
+                                    class="k-text-error">{{getErrors('productionStartDate')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Production Shift' | translate }}" fxFlex>
+                                <kendo-combobox [data]="shiftIdList | async" [textField]="'label'"
+                                    [valueField]="'value'" [valuePrimitive]="true" [allowCustom]="false"
+                                    formControlName="shiftId">
+                                </kendo-combobox>
+                                <span *ngIf="isInError('shiftId')" class="k-text-error">{{getErrors('shiftId')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <!-- row-5 -->
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Stop Production Time' | translate }}" fxFlex>
+                                <kendo-datepicker kendoTextBox id="field-id-productionStopDate"
+                                    formControlName="productionStopDate" [format]="'dd/MM/yyyy'">
+                                </kendo-datepicker>
+                                <span *ngIf="isInError('productionStopDate')"
+                                    class="k-text-error">{{getErrors('productionStopDate')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Production Crew' | translate }}" fxFlex>
+                                <kendo-combobox [data]="crewIdList | async" [textField]="'label'" [valueField]="'value'"
+                                    [valuePrimitive]="true" [allowCustom]="false" formControlName="crewId">
+                                </kendo-combobox>
+                                <span *ngIf="isInError('crewId')" class="k-text-error">{{getErrors('crewId')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <!-- row-6 -->
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Customer ID' | translate }}" fxFlex>
+                                <input kendoTextBox [readonly]="true" id="field-id-customerId"
+                                    formControlName="customerId">
+                                <span *ngIf="isInError('customerId')"
+                                    class="k-text-error">{{getErrors('customerId')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Customer Order No' | translate }}" fxFlex>
+                                <input kendoTextBox [readonly]="true" id="field-id-orderNumber"
+                                    formControlName="orderNumber">
+                                <span *ngIf="isInError('orderNumber')"
+                                    class="k-text-error">{{getErrors('orderNumber')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <!-- row-7 -->
+                        <div class="p-col-6">
+                            <div class="k-form-field">
+                                <input type="checkbox" id="field-id-testCut" formControlName="testCut"
+                                    class="k-checkbox">
+                                <label class="k-checkbox-label"
+                                    for="field-id-testCut">{{'Test Cut' | translate }}</label>
+                                <span *ngIf="isInError('testCut')" class="k-text-error">{{getErrors('testCut')}}</span>
+                            </div>
+                        </div>
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'OrderPosition' | translate }}" fxFlex>
+                                <input kendoTextBox [readonly]="true" id="field-id-orderPosition"
+                                    formControlName="orderPosition">
+                                <span *ngIf="isInError('orderPosition')"
+                                    class="k-text-error">{{getErrors('orderPosition')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <!-- row-8 -->
+                        <div class="p-col-6">
+                            <div class="k-form-field">
+                                <input type="checkbox" id="field-id-endOfInGotFlag" formControlName="endOfInGotFlag"
+                                    class="k-checkbox">
+                                <label class="k-checkbox-label"
+                                    for="field-id-endOfInGotFlag">{{'EndOfInGotFlag' | translate }}</label>
+                                <span *ngIf="isInError('endOfInGotFlag')"
+                                    class="k-text-error">{{getErrors('endOfInGotFlag')}}</span>
+                            </div>
+                        </div>
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Line Piece No' | translate }}" fxFlex>
+                                <input kendoTextBox [readonly]="true" id="field-id-jobPieceSeq"
+                                    formControlName="jobPieceSeq">
+                                <span *ngIf="isInError('jobPieceSeq')"
+                                    class="k-text-error">{{getErrors('jobPieceSeq')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="p-col-12">
+                <kendo-tabstrip>
+                    <kendo-tabstrip-tab title="General Data" [selected]="true">
+                        <ng-template kendoTabContent>
+                            <div class="p-grid">
+
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Material Grade Id' | translate }}"
+                                        fxFlex>
+                                        <input kendoTextBox id="field-id-materialGradeId"
+                                            formControlName="materialGradeId">
+                                        <span *ngIf="isInError('materialGradeId')"
+                                            class="k-text-error">{{getErrors('materialGradeId')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Grade Group ID' | translate }}" fxFlex>
+                                        <input kendoTextBox [readonly]="true" id="field-id-gradeGroupId"
+                                            formControlName="gradeGroupId">
+                                        <span *ngIf="isInError('gradeGroupId')"
+                                            class="k-text-error">{{getErrors('gradeGroupId')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+
+                                <div class="p-col-6">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-usedDefaultChemComp"
+                                            formControlName="usedDefaultChemComp" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-usedDefaultChemComp">{{'Default Chemistry Used' | translate }}</label>
+                                        <span *ngIf="isInError('usedDefaultChemComp')"
+                                            class="k-text-error">{{getErrors('usedDefaultChemComp')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-6">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-trialFlag" formControlName="trialFlag"
+                                            class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-trialFlag">{{'Trial Coil' | translate }}</label>
+                                        <span *ngIf="isInError('trialFlag')"
+                                            class="k-text-error">{{getErrors('trialFlag')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Entry Head Thickness [mm]' | translate | uomLabel:'mm':'in'}}"
+                                        fxFlex>
+                                        <kendo-numerictextbox [readonly]="true" [spinners]="false"
+                                            id="field-id-entryHeadThickness" formControlName="entryHeadThickness">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('entryHeadThickness')"
+                                            class="k-text-error">{{getErrors('entryHeadThickness')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Entry Head Width [mm]' | translate | uomLabel:'mm':'in'}}" fxFlex>
+                                        <kendo-numerictextbox [readonly]="true" [spinners]="false"
+                                            id="field-id-entryHeadWidth" formControlName="entryHeadWidth">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('entryHeadWidth')"
+                                            class="k-text-error">{{getErrors('entryHeadWidth')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Exit Thickness [mm]' | translate | uomLabel:'mm':'in'}}"
+                                        fxFlex>
+                                        <kendo-numerictextbox id="field-id-exitThk" formControlName="exitThk">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('exitThk')"
+                                            class="k-text-error">{{getErrors('exitThk')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Exit Width [mm]' | translate | uomLabel:'mm':'in'}}" fxFlex>
+                                        <kendo-numerictextbox id="field-id-exitWidth" formControlName="exitWidth">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('exitWidth')"
+                                            class="k-text-error">{{getErrors('exitWidth')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Target Thickness [mm]' | translate | uomLabel:'mm':'in'}}"
+                                        fxFlex>
+                                        <kendo-numerictextbox [readonly]="true" [spinners]="false"
+                                            id="field-id-targetThickness" formControlName="targetThickness">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetThickness')"
+                                            class="k-text-error">{{getErrors('targetThickness')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Target Width [mm]' | translate | uomLabel:'mm':'in'}}" fxFlex>
+                                        <kendo-numerictextbox [readonly]="true" [spinners]="false"
+                                            id="field-id-targetWidth" formControlName="targetWidth">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('targetWidth')"
+                                            class="k-text-error">{{getErrors('targetWidth')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Total Reduction [%]' | translate }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox [readonly]="true" [spinners]="false"
+                                            id="field-id-totalReduction" formControlName="totalReduction">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('totalReduction')"
+                                            class="k-text-error">{{getErrors('totalReduction')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+
+                                <div class="p-col-6">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Entry Length [m]' | translate | uomLabel:'m':'ft'}}" fxFlex>
+                                        <kendo-numerictextbox [readonly]="true" [spinners]="false"
+                                            id="field-id-entryLength" formControlName="entryLength">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('entryLength')"
+                                            class="k-text-error">{{getErrors('entryLength')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Internal Diameter [mm]' | translate | uomLabel:'mm':'in'}}"
+                                        fxFlex>
+                                        <kendo-combobox [data]="innerDiameterList | async" [textField]="'label'"
+                                            [valueField]="'value'" [valuePrimitive]="true" [allowCustom]="false"
+                                            formControlName="innerDiameter">
+                                        </kendo-combobox>
+                                        <span *ngIf="isInError('innerDiameter')"
+                                            class="k-text-error">{{getErrors('innerDiameter')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Exit Length [m]' | translate | uomLabel:'m':'ft'}}" fxFlex>
+                                        <kendo-numerictextbox id="field-id-length" formControlName="length">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('length')"
+                                            class="k-text-error">{{getErrors('length')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-2">
+                                    <div class="k-textbox-container k-state-empty"
+                                        style="flex: 1 1 0%; box-sizing: border-box;" fxFlex>
+                                        <button kendoButton>Calc</button>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <kendo-textbox-container floatingLabel="{{'External Diameter [mm]' | translate | uomLabel:'mm':'in'}}" fxFlex>
+                                        <kendo-numerictextbox id="field-id-outerDiameter"
+                                            formControlName="outerDiameter">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('outerDiameter')"
+                                            class="k-text-error">{{getErrors('outerDiameter')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-2">
+                                    <div class="k-textbox-container k-state-empty"
+                                        style="flex: 1 1 0%; box-sizing: border-box;" fxFlex>
+                                        <button kendoButton>Calc</button>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Soak Time [min]' | translate }}" fxFlex>
+                                        <kendo-numerictextbox id="field-id-soakTime" formControlName="soakTime">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('soakTime')"
+                                            class="k-text-error">{{getErrors('soakTime')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <kendo-textbox-container
+                                        floatingLabel="{{'Calculated Weight [kg]' | translate | uomLabel:'kg':'lb'}}"
+                                        fxFlex>
+                                        <kendo-numerictextbox id="field-id-calculatedWeight"
+                                            formControlName="calculatedWeight">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('calculatedWeight')"
+                                            class="k-text-error">{{getErrors('calculatedWeight')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                                <div class="p-col-2">
+                                    <div class="k-textbox-container k-state-empty"
+                                        style="flex: 1 1 0%; box-sizing: border-box;" fxFlex>
+                                        <button kendoButton>Calc</button>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Gap Time [min]' | translate }}" fxFlex>
+                                        <kendo-numerictextbox id="field-id-gapTime" formControlName="gapTime">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('gapTime')"
+                                            class="k-text-error">{{getErrors('gapTime')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Measured Weight [kg]' | translate | uomLabel:'kg':'lb'}}" fxFlex>
+                                        <kendo-numerictextbox id="field-id-measuredWeight"
+                                            formControlName="measuredWeight">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('measuredWeight')"
+                                            class="k-text-error">{{getErrors('measuredWeight')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+
+                                <div class="p-col-6">
+                                    <kendo-textbox-container floatingLabel="{{'Rolling Time [min]' | translate }}"
+                                        fxFlex>
+                                        <kendo-numerictextbox id="field-id-rollingTime" formControlName="rollingTime">
+                                        </kendo-numerictextbox>
+                                        <span *ngIf="isInError('rollingTime')"
+                                            class="k-text-error">{{getErrors('rollingTime')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+
+                                <div class="p-col-12">
+                                    <kendo-textbox-container floatingLabel="{{'Note' | translate }}" fxFlex>
+                                        <input kendoTextBox id="field-id-note" formControlName="remark">
+                                        <span *ngIf="isInError('remark')"
+                                            class="k-text-error">{{getErrors('note')}}</span>
+                                    </kendo-textbox-container>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </kendo-tabstrip-tab>
+
+                    <kendo-tabstrip-tab title="Disposition Data">
+
+                        <ng-template kendoTabContent>
+                            <div class="p-grid">
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-BiteSprayPressureTooLowInF1"
+                                            formControlName="biteSprayPressureTooLowInF1" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-BiteSprayPressureTooLowInF1">{{'Bite Spray Pressure Too Low In F1' | translate }}</label>
+                                        <span *ngIf="isInError('BiteSprayPressureTooLowInF1')"
+                                            class="k-text-error">{{getErrors('BiteSprayPressureTooLowInF1')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-GradeChanged" formControlName="gradeChanged"
+                                            class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-GradeChanged">{{'Grade Changed' | translate }}</label>
+                                        <span *ngIf="isInError('GradeChanged')"
+                                            class="k-text-error">{{getErrors('GradeChanged')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-ProcessorWidthChanged"
+                                            formControlName="processorWidthChanged" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-ProcessorWidthChanged">{{'Processor Width Changed' | translate }}</label>
+                                        <span *ngIf="isInError('ProcessorWidthChanged')"
+                                            class="k-text-error">{{getErrors('ProcessorWidthChanged')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-AimGaugeChanged"
+                                            formControlName="aimGaugeChanged" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-AimGaugeChanged">{{'Aim Gauge Changed' | translate }}</label>
+                                        <span *ngIf="isInError('AimGaugeChanged')"
+                                            class="k-text-error">{{getErrors('AimGaugeChanged')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-CoilHeadTooHot"
+                                            formControlName="coilHeadTooHot" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-CoilHeadTooHot">{{'Coil Head Too Hot' | translate }}</label>
+                                        <span *ngIf="isInError('CoilHeadTooHot')"
+                                            class="k-text-error">{{getErrors('CoilHeadTooHot')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-CoilSlippedInF1"
+                                            formControlName="coilSlippedInF1" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-CoilSlippedInF1">{{'Coil Slipped In F1' | translate }}</label>
+                                        <span *ngIf="isInError('CoilSlippedInF1')"
+                                            class="k-text-error">{{getErrors('CoilSlippedInF1')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-Cobble" formControlName="cobble"
+                                            class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-Cobble">{{'Cobble' | translate }}</label>
+                                        <span *ngIf="isInError('Cobble')"
+                                            class="k-text-error">{{getErrors('Cobble')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-DescaleHighPressureNotOk"
+                                            formControlName="descaleHighPressureNotOk" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-DescaleHighPressureNotOk">{{'Descale High Pressure Not Ok' | translate }}</label>
+                                        <span *ngIf="isInError('DescaleHighPressureNotOk')"
+                                            class="k-text-error">{{getErrors('DescaleHighPressureNotOk')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-SlipPrevention"
+                                            formControlName="slipPrevention" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-SlipPrevention">{{'Slip Prevention' | translate }}</label>
+                                        <span *ngIf="isInError('SlipPrevention')"
+                                            class="k-text-error">{{getErrors('SlipPrevention')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-CobblePrevention"
+                                            formControlName="cobblePrevention" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-CobblePrevention">{{'Cobble Prevention' | translate }}</label>
+                                        <span *ngIf="isInError('CobblePrevention')"
+                                            class="k-text-error">{{getErrors('CobblePrevention')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-HeatRidge" formControlName="heatRidge"
+                                            class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-HeatRidge">{{'Heat Ridge' | translate }}</label>
+                                        <span *ngIf="isInError('HeatRidge')"
+                                            class="k-text-error">{{getErrors('HeatRidge')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-CoilingTemperatureChanged"
+                                            formControlName="coilingTemperatureChanged" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-CoilingTemperatureChanged">{{'Coiling Temperature Changed' | translate }}</label>
+                                        <span *ngIf="isInError('CoilingTemperatureChanged')"
+                                            class="k-text-error">{{getErrors('CoilingTemperatureChanged')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-CoilingTempOutsideCustomer"
+                                            formControlName="coilingTempOutsideCustomer" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-CoilingTempOutsideCustomer">{{'Coiling Temp Outside Customer' | translate }}</label>
+                                        <span *ngIf="isInError('CoilingTempOutsideCustomer')"
+                                            class="k-text-error">{{getErrors('CoilingTempOutsideCustomer')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-CoilingPyrometerNotWorking"
+                                            formControlName="coilingPyrometerNotWorking" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-CoilingPyrometerNotWorking">{{'Coiling Pyrometer Not Working' | translate }}</label>
+                                        <span *ngIf="isInError('CoilingPyrometerNotWorking')"
+                                            class="k-text-error">{{getErrors('CoilingPyrometerNotWorking')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-SlabInTunnelFurnaceTooLong"
+                                            formControlName="slabInTunnelFurnaceTooLong" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-SlabInTunnelFurnaceTooLong">{{'Slab In Tunnel Furnace TooLong' | translate }}</label>
+                                        <span *ngIf="isInError('SlabInTunnelFurnaceTooLong')"
+                                            class="k-text-error">{{getErrors('SlabInTunnelFurnaceTooLong')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-CasterWedgeNotOk"
+                                            formControlName="casterWedgeNotOk" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-CasterWedgeNotOk">{{'Caster Wedge Not Ok' | translate }}</label>
+                                        <span *ngIf="isInError('CasterWedgeNotOk')"
+                                            class="k-text-error">{{getErrors('CasterWedgeNotOk')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-FinishingPyrometerNotWorking"
+                                            formControlName="finishingPyrometerNotWorking" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-FinishingPyrometerNotWorking">{{'Finishing Pyrometer Not Working' | translate }}</label>
+                                        <span *ngIf="isInError('FinishingPyrometerNotWorking')"
+                                            class="k-text-error">{{getErrors('FinishingPyrometerNotWorking')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-TransitionWidth"
+                                            formControlName="transitionWidth" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-TransitionWidth">{{'Transition Width' | translate }}</label>
+                                        <span *ngIf="isInError('TransitionWidth')"
+                                            class="k-text-error">{{getErrors('TransitionWidth')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-DamagedTail" formControlName="damagedTail"
+                                            class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-DamagedTail">{{'Damaged Tail' | translate }}</label>
+                                        <span *ngIf="isInError('DamagedTail')"
+                                            class="k-text-error">{{getErrors('DamagedTail')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-WidthGaugeNotWorking"
+                                            formControlName="widthGaugeNotWorking" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-WidthGaugeNotWorking">{{'Width Gauge Not Working' | translate }}</label>
+                                        <span *ngIf="isInError('WidthGaugeNotWorking')"
+                                            class="k-text-error">{{getErrors('WidthGaugeNotWorking')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-WidthDips" formControlName="widthDips"
+                                            class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-WidthDips">{{'Width Dips' | translate }}</label>
+                                        <span *ngIf="isInError('WidthDips')"
+                                            class="k-text-error">{{getErrors('WidthDips')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-FoldedHead" formControlName="foldedHead"
+                                            class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-FoldedHead">{{'Folded Head' | translate }}</label>
+                                        <span *ngIf="isInError('FoldedHead')"
+                                            class="k-text-error">{{getErrors('FoldedHead')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-ThicknessGaugeNotWorking"
+                                            formControlName="thicknessGaugeNotWorking" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-ThicknessGaugeNotWorking">{{'Thickness Gauge Not Working' | translate }}</label>
+                                        <span *ngIf="isInError('ThicknessGaugeNotWorking')"
+                                            class="k-text-error">{{getErrors('ThicknessGaugeNotWorking')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-WidthOutsideCustomerTol"
+                                            formControlName="widthOutsideCustomerTol" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-WidthOutsideCustomerTol">{{'Width Outside Customer Tol' | translate }}</label>
+                                        <span *ngIf="isInError('WidthOutsideCustomerTol')"
+                                            class="k-text-error">{{getErrors('WidthOutsideCustomerTol')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-FinishingTempOutsideCustomer"
+                                            formControlName="finishingTempOutsideCustomer" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-FinishingTempOutsideCustomer">{{'Finishing Temp Outside Customer' | translate }}</label>
+                                        <span *ngIf="isInError('FinishingTempOutsideCustomer')"
+                                            class="k-text-error">{{getErrors('FinishingTempOutsideCustomer')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-OrderNumberChanged"
+                                            formControlName="orderNumberChanged" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-OrderNumberChanged">{{'Order Number Changed' | translate }}</label>
+                                        <span *ngIf="isInError('OrderNumberChanged')"
+                                            class="k-text-error">{{getErrors('OrderNumberChanged')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-CoilWeightOutsideCustomerTol"
+                                            formControlName="coilWeightOutsideCustomerTol" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-CoilWeightOutsideCustomerTol">{{'Coil Weight Outside Customer Tol' | translate }}</label>
+                                        <span *ngIf="isInError('CoilWeightOutsideCustomerTol')"
+                                            class="k-text-error">{{getErrors('CoilWeightOutsideCustomerTol')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-ThicknessOutsideCustomerTol"
+                                            formControlName="thicknessOutsideCustomerTol" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-ThicknessOutsideCustomerTol">{{'Thickness Outside Customer Tol' | translate }}</label>
+                                        <span *ngIf="isInError('ThicknessOutsideCustomerTol')"
+                                            class="k-text-error">{{getErrors('ThicknessOutsideCustomerTol')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-EdgeThicknessBelowCustomer"
+                                            formControlName="edgeThicknessBelowCustomer" class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-EdgeThicknessBelowCustomer">{{'Edge Thickness Below Customer' | translate }}</label>
+                                        <span *ngIf="isInError('EdgeThicknessBelowCustomer')"
+                                            class="k-text-error">{{getErrors('EdgeThicknessBelowCustomer')}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-col-4">
+                                    <div class="k-form-field">
+                                        <input type="checkbox" id="field-id-WidthWarning" formControlName="widthWarning"
+                                            class="k-checkbox">
+                                        <label class="k-checkbox-label"
+                                            for="field-id-WidthWarning">{{'Width Warning' | translate }}</label>
+                                        <span *ngIf="isInError('WidthWarning')"
+                                            class="k-text-error">{{getErrors('WidthWarning')}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+
+                    </kendo-tabstrip-tab>
+
+                    <kendo-tabstrip-tab title="Measured Data">
+                        <ng-template kendoTabContent>
+                            <div class="p-grid">
+                                <div class="p-grid p-nogutter">
+                                    <div class="p-col-12">
+                                        <table style="width: 100%">
+                                            <thead>
+                                                <tr>
+                                                    <th class="p-col-3" scope="col">&nbsp;</th>
+                                                    <th scope="col">Target</th>
+                                                    <th scope="col">Min</th>
+                                                    <th scope="col">Max</th>
+                                                    <th scope="col">In Tol [%]</th>
+                                                    <th scope="col">In Tolerance</th>
+                                                    <th scope="col">Avg</th>
+                                                    <th scope="col">Min</th>
+                                                    <th scope="col">Max</th>
+                                                    <th scope="col">Std</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="width: 20%">
+                                                        {{'Exit Width [mm]' | translate | uomLabel:'mm':'in'}}</td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="targetWidthMeas"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="targetWidthPtol"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="targetWidthNtol"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="stripCrownTolPerc"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <div class="k-form-field">
+                                                            <input type="checkbox" id="tol"
+                                                                formControlName="stripCrownIntolFlag" class="checkbox">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="exitWdtAvg">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="exitWdtMin">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="exitWdtMax">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="exitWdtStd">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 20%">
+                                                        {{'Exit Thickness [mm]' | translate | uomLabel:'mm':'in'}}</td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="targetThicknessMeas">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="targetThicknessPtol">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="targetThicknessNtol">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="exitThkTolPerc"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <div class="k-form-field">
+                                                            <input type="checkbox" id="tol"
+                                                                formControlName="exitThkIntolFlag" class="checkbox">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="exitThkAvg">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="exitThkMin">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="exitThkMax">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="exitThkStd">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 20%">
+                                                        {{'Finishing Temperature [°C]' | translate | uomLabel:'!C':'F'}}
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="targetTempFmMeas"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="targetTempFmPtol"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="targetTempFmNtol"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="exitWidthTolPerc"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <div class="k-form-field">
+                                                            <input type="checkbox" id="tol"
+                                                                formControlName="exitWidthIntolFlag" class="checkbox">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="exitStripTempAvg"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="exitStripTempMin"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="exitStripTempMax"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="exitStripTempStd"></kendo-numerictextbox>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 20%">
+                                                        {{'Coiling Temperature [°C]' | translate | uomLabel:'!C':'F'}}
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="targetTempDcMeas"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="targetTempDcPtol"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="targetTempDcNtol"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="exitTempTolPerc"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <div class="k-form-field">
+                                                            <input type="checkbox" id="tol"
+                                                                formControlName="exitTempIntolFlag" class="checkbox">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="downcoilTempAvg"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="downcoilTempMin"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="downcoilTempMax"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="downcoilTempStd"></kendo-numerictextbox>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 20%">
+                                                        {{'Strip Profile [mm]' | translate | uomLabel:'mm':'in'}}</td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="targetProfileMeas"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="targetProfilePtol"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="targetProfileNtol"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="downcoilTempTolPerc">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <div class="k-form-field">
+                                                            <input type="checkbox" id="tol"
+                                                                formControlName="downcoilTempIntolFlag"
+                                                                class="checkbox">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="profileAvg">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="profileMin">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="profileMax">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="profileStd">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 20%">
+                                                        {{'Strip Edge Flatness [I-Units]' | translate }}</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="stripEdgeDropAvg"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="stripEdgeDropMin"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="stripEdgeDropMax"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="stripEdgeDropStd"></kendo-numerictextbox>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 20%">
+                                                        {{'Strip QTR Flatness [I-Units]' | translate }}</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="stripQbFlatnessAvg"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="stripQbFlatnessMin"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="stripQbFlatnessMax"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="stripQbFlatnessStd"></kendo-numerictextbox>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 20%">
+                                                        {{'Intermediate temperature [°C]' | translate | uomLabel:'!C':'F'}}
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="targetTempInterm">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="targetTempIntermLoTol"></kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="targetTempIntermUpTol">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="intermediateTempAvg">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="intermediateTempMin">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="intermediateTempMax">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                    <td>
+                                                        <kendo-numerictextbox style="width: 10em" [readonly]="true"
+                                                            [format]="'n3'" [spinners]="false"
+                                                            formControlName="intermediateTempStd">
+                                                        </kendo-numerictextbox>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+
+                    </kendo-tabstrip-tab>
+
+                    <kendo-tabstrip-tab title="Rolls Data">
+
+                        <ng-template kendoTabContent>
+                            <div class="p-grid">
+                                <div class="p-grid p-nogutter">
+                                    <div class="p-col-12">
+                                        <table style="width: 100%">
+                                            <thead>
+                                                <tr>
+                                                    <th class="p-col-3" scope="col">&nbsp;</th>
+                                                    <th scope="col">F1</th>
+                                                    <th scope="col">F2</th>
+                                                    <th scope="col">F3</th>
+                                                    <th scope="col">F4</th>
+                                                    <th scope="col">F5</th>
+                                                    <th scope="col">F6</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <tr>
+                                                    <td style="width: 100%">{{'BUR Top Roll ID' | translate }}</td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="brUpIdF1">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="brUpIdF2">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="brUpIdF3">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="brUpIdF4">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="brUpIdF5">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="brUpIdF6">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 20%">{{'WR Top Roll ID' | translate }}</td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="wrUpIdF1">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="wrUpIdF2">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="wrUpIdF3">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="wrUpIdF4">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="wrUpIdF5">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="wrUpIdF6">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 20%">{{'WR Bottom Roll' | translate }}</td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="wrLoIdF1">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="wrLoIdF2">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="wrLoIdF3">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="wrLoIdF4">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="wrLoIdF5">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="wrLoIdF6">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 20%">{{ 'BUR Bottom Roll' | translate }}</td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="brLoIdF1">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="brLoIdF2">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="brLoIdF3">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="brLoIdF4">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="brLoIdF5">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="brLoIdF6">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 20%">
+                                                        {{ 'Rolled Length [m]' | translate | uomLabel:'m':'ft' }}</td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="wrUpRolledLenF1">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="wrUpRolledLenF2">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="wrUpRolledLenF3">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="wrUpRolledLenF4">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="wrUpRolledLenF5">
+                                                    </td>
+                                                    <td>
+                                                        <input kendoTextBox style="width: 10em"
+                                                            formControlName="wrUpRolledLenF6">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table>
+                                            <tr>
+                                                <td style="width: 20%; padding: 0 7px;"><span
+                                                        style="margin-right: 5em">{{ 'Interstand cooling' | translate }}</span>
+                                                </td>
+                                                <td>
+                                                    <kendo-combobox style="width: 10em; margin: 0 7px"
+                                                        [data]="interstandCoolingBitmaskList" [textField]="'label'"
+                                                        [valueField]="'value'" [valuePrimitive]="true"
+                                                        [allowCustom]="false"
+                                                        formControlName="interstandCoolingBitmaskF1F2"></kendo-combobox>
+                                                </td>
+                                                <td>
+                                                    <kendo-combobox style="width: 10em; margin: 0 7px"
+                                                        [data]="interstandCoolingBitmaskList" [textField]="'label'"
+                                                        [valueField]="'value'" [valuePrimitive]="true"
+                                                        [allowCustom]="false"
+                                                        formControlName="interstandCoolingBitmaskF2F3"></kendo-combobox>
+                                                </td>
+                                                <td>
+                                                    <kendo-combobox style="width: 10em; margin: 0 7px"
+                                                        [data]="interstandCoolingBitmaskList" [textField]="'label'"
+                                                        [valueField]="'value'" [valuePrimitive]="true"
+                                                        [allowCustom]="false"
+                                                        formControlName="interstandCoolingBitmaskF3F4"></kendo-combobox>
+                                                </td>
+                                                <td>
+                                                    <kendo-combobox style="width: 10em; margin: 0 7px"
+                                                        [data]="interstandCoolingBitmaskList" [textField]="'label'"
+                                                        [valueField]="'value'" [valuePrimitive]="true"
+                                                        [allowCustom]="false"
+                                                        formControlName="interstandCoolingBitmaskF4F5"></kendo-combobox>
+                                                </td>
+                                                <td>
+                                                    <kendo-combobox style="width: 10em; margin: 0 7px"
+                                                        [data]="interstandCoolingBitmaskList" [textField]="'label'"
+                                                        [valueField]="'value'" [valuePrimitive]="true"
+                                                        [allowCustom]="false"
+                                                        formControlName="interstandCoolingBitmaskF5F6"></kendo-combobox>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+
+                    </kendo-tabstrip-tab>
+                </kendo-tabstrip>
+            </div>
+            <div class="p-col-12">
+                <app-detail-action-bar [isNew]="isNew" [isReadOnly]="isReadOnly"
+                    (savePressed)="onSaveClick()" saveLabel="{{'EXAMPLE.SAVE|Save'|translate}}"
+                    (deletePressed)="onDeleteClick()" deleteLabel="{{'Delete'|translate}}"
+                    (cancelPressed)="onCancelClick()" cancelLabel="{{cancelBackButton|translate}}">
+                </app-detail-action-bar>
+            </div>
+        </div>
+    </form>
+</div>
+<div kendoDialogContainer></div>

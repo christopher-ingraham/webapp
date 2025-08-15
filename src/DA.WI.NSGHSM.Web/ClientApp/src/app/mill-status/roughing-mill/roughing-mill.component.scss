@@ -1,0 +1,178 @@
+table, td {
+    padding:0;
+    margin:0;
+    vertical-align: top;
+}
+td {
+    position: relative;
+    min-width:1px;
+}
+td.descaler {
+    width: 20%;
+}
+td.stand {
+    width: 20%;
+}
+td.edger {
+    width: 20%;
+}
+td.intensive {
+    width: 10%;
+}
+td.label {
+    width: 9%;
+}
+td.vuoto {
+    width: 0.4%;
+    padding:0 !important;
+}
+td.sopra {
+    width: 13.28571%;
+}
+td.actual {
+    width: 6.65%;
+}
+img.icona {
+    position: absolute;
+}
+img.icona.term {
+    top:20%;
+    width:12.9%;
+    height: auto;
+}
+img.icona.raggi {
+    bottom:22%;
+    width:17.4%;
+    height: auto;
+}
+img.icona.term.before {
+    left:0;
+}
+img.icona.term.after {
+    right:0;
+}
+img.icona.raggi.before {
+    left:-2.2%;
+}
+img.icona.raggi.after {
+    right:-2.2%;
+}
+table.dati-macchina {
+    margin-top: 10px;
+    margin-left: 25%;
+}
+
+table.dati-macchina tr:nth-child(even) td {
+    background-color: #333333;
+}
+table.dati-macchina tr:nth-child(odd) td {
+    background-color: #222222;
+}
+table.dati-macchina tr.tb-head td {
+    background-color: #555555;
+}
+table.dati-macchina tr.topid td {
+    background-color: #666666;
+}
+table.dati-macchina tr td {
+    border-bottom:1px solid #444444;
+    border-left:1px solid #444444;
+    padding:6px;
+    font-size: 11px;
+}
+table.dati-macchina tr.topid td.label,
+table.dati-macchina tr.topid td.unit,
+table.dati-macchina tr.topid td.actual {
+    border-left:0;
+}
+table.dati-macchina tr td.setup,
+table.dati-macchina tr td.actual,
+table.dati-macchina tr td.unit,
+table.dati-macchina tr td.sopra {
+    text-align: center;
+}
+table.dati-macchina tr td.sopra,
+table.dati-macchina tr td.unit,
+table.dati-macchina tr td.actual {
+    border-right:1px solid #444444;
+}
+table.dati-macchina tr td.vuoto {
+    border:none !important;
+    background: none !important;
+}
+table.dati-macchina.ingresso {
+    float:left;
+    width: 32%;
+    margin: 0;
+    margin-right: 2%;
+}
+table.dati-macchina td.vuoto {
+    width: 0.1%;
+}
+table.dati-macchina td.unit {
+    width: 4%;
+}
+table.dati-macchina td.label {
+    width: 4%;
+}
+
+table.dati-macchina.ingresso td.vuoto {
+    width: 0.5%;
+}
+table.dati-macchina.ingresso td.label {
+    width: 35%;
+}
+table.dati-macchina.ingresso td.unit {
+    width: 13.5%;
+}
+table.dati-macchina.ingresso td.actual {
+    width: 26.6%;
+}
+table.dati-macchina.mezzo {
+    margin: 0;
+    width: 32%;
+    float: left;
+    display: block;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+table.dati-macchina.mezzo td.vuoto {
+    width: 0.1%;
+}
+table.dati-macchina.mezzo td.label {
+    width: 7%;
+}
+table.dati-macchina.mezzo td.pieceId {
+    width: 8%;
+    text-align: center;
+}
+table.dati-macchina.mezzo td.furnaceTime {
+    width: 7%;
+    text-align: center;
+}
+table.dati-macchina.uscita {
+    float:right;
+    width: 32%;
+    margin: 0;
+}
+table.dati-macchina.uscita td.vuoto {
+    width: 0.5%;
+}
+table.dati-macchina.uscita td.label {
+    width: 28.9%;
+}
+table.dati-macchina.uscita td.unit {
+    width: 13.5%;
+}
+table.dati-macchina.uscita td.actual {
+    width: 26.6%;
+}
+.tb-sep {
+    float: left;
+    width: 1px;
+    height: 100%;
+    min-height: 200px;
+    background-color: #444444;
+    margin: 10px 0.98% 0 0.98%;
+}

@@ -1,0 +1,18 @@
+<div class="k-block">
+    <button *ngIf="printVisible" kendoButton [look]="look" [icon]="'k-icon k-i-print'"
+        (click)="printClicked.emit($event)" [disabled]="printDisabled">Print</button>
+    <button *ngIf="newVisible" kendoButton [look]="look" [icon]="'k-icon k-i-plus'" (click)="newClicked.emit($event)"
+        [disabled]="newDisabled">New</button>
+    <button *ngIf="removeVisible" kendoButton [look]="look" [icon]="'k-icon k-i-minus'"
+        (click)="removeClicked.emit($event)" [disabled]="removeDisabled">Remove</button>
+    <button *ngIf="editVisible" kendoButton [look]="look" [icon]="'k-icon k-i-edit'" (click)="editClicked.emit($event)"
+        [disabled]="editDisabled">Edit</button>
+    <button *ngIf="copyVisible" kendoButton [look]="look" [icon]="'k-icon k-i-copy'" (click)="copyClicked.emit($event)"
+        [disabled]="copyDisabled">Copy</button>
+    <button *ngIf="viewVisible" kendoButton [look]="look" [icon]="'k-icon k-i-search'"
+        (click)="viewClicked.emit($event)" [disabled]="viewDisabled">View</button>
+    <button *ngIf="refreshVisible" kendoButton [look]="look" [icon]="'k-icon k-i-refresh'"
+        (click)="refreshClicked.emit($event)" [disabled]="refreshDisabled">Refresh</button>
+    <button *ngIf="saveVisible" kendoButton [look]="look" [icon]="'k-icon k-i-save'" (click)="saveClicked.emit($event)"
+        [disabled]="saveDisabled">Save</button>
+</div>

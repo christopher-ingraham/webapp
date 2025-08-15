@@ -1,0 +1,85 @@
+<form class="k-form" [formGroup]="form">
+
+    <div class="p-grid">
+
+        <div class="p-col-12">
+            <h3 translate>{{title}}</h3>
+        </div>
+
+        <div class="p-sm-12 p-md-6 p-lg-4 p-xl-2">
+            <kendo-textbox-container floatingLabel="{{'EXAMPLE.MEASUREMENT.FIELDS.CITYNAME|City' | translate}}" fxFlex>
+                <div fxLayout="row">
+                    <kendo-autocomplete formControlName="cityName" [data]="cities" [valueField]="'name'"
+                        [value]="selectedCityName" [filterable]="true" (filterChange)="onCityFilterChange($event)"
+                        fxFlex [readonly]="cityId">
+                    </kendo-autocomplete>
+                </div>
+                <span *ngIf="isInError('cityName')" class="k-text-error">{{getErrors('cityName')}}</span>
+            </kendo-textbox-container>
+        </div>
+
+        <div class="p-sm-12 p-md-6 p-lg-4 p-xl-2">
+            <kendo-textbox-container
+                floatingLabel="{{'EXAMPLE.MEASUREMENT.FIELDS.MEASUREDAT|Measured At' | translate}}" fxFlex>
+                <kendo-datetimepicker formControlName="measuredAt" fxFlex></kendo-datetimepicker>
+                <span *ngIf="isInError('measuredAt')" class="k-text-error">{{getErrors('measuredAt')}}</span>
+            </kendo-textbox-container>
+        </div>
+
+        <div class="p-sm-12 p-md-6 p-lg-4 p-xl-2">
+            <kendo-textbox-container floatingLabel="{{'EXAMPLE.MEASUREMENT.FIELDS.WEATHER|Weather' | translate }}" fxFlex>
+                <div fxLayout="row">
+                    <kendo-dropdownlist formControlName="weather" [data]="weatherTypes" [textField]="'text'"
+                        [valueField]="'value'" [valuePrimitive]="true" fxFlex>
+                        <ng-template kendoDropDownListItemTemplate let-dataItem>
+                            <img *ngIf="dataItem.value !== null" height="16"
+                                [src]="'assets/example/' + dataItem.text.toLowerCase() + '.png'" />
+                            &nbsp;
+                            {{ dataItem.text }}
+                        </ng-template>
+                        <ng-template kendoDropDownListValueTemplate let-dataItem>
+                            <img *ngIf="dataItem?.value !== null" height="16"
+                                [src]="'assets/example/' + dataItem.text.toLowerCase() + '.png'" />
+                            &nbsp;
+                            {{ dataItem?.text }}
+                        </ng-template>
+                    </kendo-dropdownlist>
+                </div>
+                <span *ngIf="isInError('weather')" class="k-text-error">{{getErrors('weather')}}</span>
+            </kendo-textbox-container>
+        </div>
+
+        <div class="p-sm-12 p-md-6 p-lg-4 p-xl-2">
+            <kendo-textbox-container
+                floatingLabel="{{'EXAMPLE.MEASUREMENT.FIELDS.TEMPERATUREC|Temperature (C)' | translate}}" fxFlex>
+                <kendo-numerictextbox formControlName="temperatureC" format="n">
+                </kendo-numerictextbox>
+                <span *ngIf="isInError('temperatureC')" class="k-text-error">{{getErrors('temperatureC')}}</span>
+            </kendo-textbox-container>
+        </div>
+
+        <div class="p-sm-12 p-md-6 p-lg-4 p-xl-2">
+            <kendo-textbox-container
+                floatingLabel="{{'EXAMPLE.MEASUREMENT.FIELDS.PRESSUREMB|Pressure (mbar)' | translate}}" fxFlex>
+                <kendo-numerictextbox formControlName="pressureMB" format="n">
+                </kendo-numerictextbox>
+                <span *ngIf="isInError('pressureMB')" class="k-text-error">{{getErrors('pressureMB')}}</span>
+            </kendo-textbox-container>
+        </div>
+
+        <div class="p-col-12">
+            <hr />
+
+            <div fxLayout="row" [fxLayoutAlign]="isNew ? 'flex-end' : 'space-between'">
+                <button *ngIf="!isNew" kendoButton (click)="onDeleteClick()" translate>EXAMPLE.DELETE|Delete</button>
+                <div>
+                    <button kendoButton [primary]="true" [disabled]="!form.valid" (click)="onSaveClick()"
+                        translate>EXAMPLE.SAVE|Save</button>
+                    &nbsp;<button kendoButton (click)="onCancelClick()" translate>EXAMPLE.CANCEL|Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- p-grid -->
+
+</form>

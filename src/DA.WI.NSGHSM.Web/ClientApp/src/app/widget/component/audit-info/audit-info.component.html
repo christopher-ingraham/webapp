@@ -1,0 +1,16 @@
+<fieldset class="k-form-inline">
+    <legend (click)="visible=!visible;">{{title}}</legend>
+    <div class="p-grid p-nogutter" *ngIf="visible">
+        <div class="p-col-6">
+            <kendo-textbox-container [floatingLabel]="operatorLabel" fxFlex>
+                <input kendoTextBox [value]="operator" [disabled]="disabled">
+            </kendo-textbox-container>
+        </div>
+        <div class="p-col-6">
+            <kendo-textbox-container [floatingLabel]="revisionLabel" fxFlex>
+                <kendo-datepicker [(value)]="revision" [format]="'dd/MM/yyyy hh:MM:ss'" [disabled]="disabled">
+                </kendo-datepicker>
+            </kendo-textbox-container>
+        </div>
+    </div>
+</fieldset>

@@ -1,0 +1,37 @@
+{
+	"folders": [
+		{
+			"path": "DA.WI.NSGHSM.IdentityServer"
+		},
+		{
+			"path": "DA.WI.NSGHSM.Api"
+		},
+		{
+			"path": "DA.WI.NSGHSM.Web/ClientApp"
+		},
+		{
+			"path": "DA.WI.NSGHSM.Core"
+		},
+		{
+			"path": "DA.WI.NSGHSM.Dto"
+		},
+		{
+			"path": "DA.WI.NSGHSM.IRepo"
+		},
+		{
+			"path": "DA.WI.NSGHSM.Logic"
+		},
+		{
+			"path": "DA.WI.NSGHSM.Repo"
+		},
+		{
+			"path": "DA.WI.NSGHSM.Web"
+		},
+		{
+			"path": "DummyRepCreator"
+		}
+	],
+    "settings": {
+        "explorer.compactFolders": false
+    }
+}

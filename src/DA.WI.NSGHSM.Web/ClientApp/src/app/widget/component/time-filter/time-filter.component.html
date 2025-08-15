@@ -1,0 +1,87 @@
+<fieldset>
+    <legend>Set Time</legend>
+    <div class="p-grid">
+
+        <div class="p-col-6">
+            <div class="p-grid">
+                <div class="p-col-2">
+                    From
+                </div>
+                <div class="p-col-10">
+                    <kendo-datetimepicker [format]="format" [(value)]="value1"
+                        [disabled]="disabled && !isManualEditingEnabled">
+                    </kendo-datetimepicker>
+                </div>
+                <div class="p-col-2">
+                    To
+                </div>
+                <div class="p-col-10">
+                    <kendo-datetimepicker [format]="format" [(value)]="value2"
+                        [disabled]="disabled && !isManualEditingEnabled">
+                    </kendo-datetimepicker>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-2">
+            <div class="p-grid">
+                <div class="p-col-12">
+                    <input type="radio" name="group" id="radio1" class="k-radio" (click)="onTodaySelect($event)" checked
+                        [disabled]="disabled" />
+                    <label class="k-radio-label" for="radio1">Today</label>
+                </div>
+                <div class="p-col-12">
+                    <input type="radio" name="group" id="radio2" class="k-radio" (click)="onThisWeekSelect($event)"
+                        [disabled]="disabled" />
+                    <label class="k-radio-label" for="radio2">This Week</label>
+                </div>
+                <div class="p-col-12">
+                    <input type="radio" name="group" class="k-radio" id="radio3" (click)="onThisMonthSelect($event)"
+                        [disabled]="disabled" />
+                    <label class="k-radio-label" for="radio3">This Month</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-2">
+            <div class="p-grid">
+                <div class="p-col-12">
+                    <input type="radio" name="group" id="radio4" class="k-radio" (click)="onYesterdaySelect($event)"
+                        [disabled]="disabled" />
+                    <label class="k-radio-label" for="radio4">Last Day</label>
+                </div>
+                <div class="p-col-12">
+                    <input type="radio" name="group" id="radio5" class="k-radio" (click)="onLastWeekSelect($event)"
+                        [disabled]="disabled" />
+                    <label class="k-radio-label" for="radio5">Last Week</label>
+                </div>
+                <div class="p-col-12">
+                    <input type="radio" name="group" class="k-radio" id="radio6" (click)="onLastMonthSelect($event)"
+                        [disabled]="disabled" />
+                    <label class="k-radio-label" for="radio6">Last Month</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-2">
+            <div class="p-grid">
+                <div class="p-col-12">
+                    <input type="radio" name="group" id="radio7" class="k-radio" (click)="onLastShiftSelect($event)"
+                        [disabled]="isLastShiftDisabled" />
+                    <label class="k-radio-label" for="radio7">Last Shift</label>
+                </div>
+                <div class="p-col-12">
+                    <input type="radio" name="group" id="radio8" class="k-radio" (click)="onThisShiftSelect($event)"
+                        [disabled]="isThisShiftDisabled" />
+                    <label class="k-radio-label" for="radio8">This Shift</label>
+                </div>
+                <div class="p-col-12">
+                    <input type="radio" name="group" class="k-radio" id="radio9" (change)="onManualSelect($event)"
+                        [disabled]="disabled" />
+                    <label class="k-radio-label" for="radio9">Set Manually</label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</fieldset>

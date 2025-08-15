@@ -1,0 +1,221 @@
+<form class="k-form" [formGroup]="formGroup">
+
+    <div class="p-grid">
+
+        <div class="p-col-12">
+            <h3 translate>{{title}}</h3>
+        </div>
+
+        <div class="p-col-12">
+
+            <kendo-tabstrip>
+
+                <kendo-tabstrip-tab title="Identification" [selected]="true">
+
+                    <ng-template kendoTabContent>
+                        <div class="p-grid">
+
+                            <div class="p-col-6">
+
+
+                                <kendo-textbox-container floatingLabel="{{'Output Coil ID' | translate }}" fxFlex>
+                                    <input kendoTextBox id="field-id-outputCoil" formControlName="outputCoil">
+                                </kendo-textbox-container>
+
+
+
+
+
+
+
+
+
+
+                            </div>
+
+                            <div class="p-col-6">
+
+
+
+
+                                <kendo-textbox-container floatingLabel="{{'Input Coil ID' | translate }}" fxFlex>
+                                    <input kendoTextBox id="field-id-inputCoil" formControlName="inputCoil">
+                                </kendo-textbox-container>
+
+
+
+
+
+
+
+
+
+
+                            </div>
+
+                            <div class="p-col-6">
+
+
+                                <kendo-textbox-container floatingLabel="{{'Production Date' | translate }}" fxFlex>
+                                    <input kendoTextBox id="field-id-data" formControlName="data">
+                                </kendo-textbox-container>
+
+
+
+
+
+
+
+
+
+
+                            </div>
+
+                            <div class="p-col-6">
+
+
+                                <kendo-textbox-container floatingLabel="{{'Material Grade ID' | translate }}" fxFlex>
+                                    <input kendoTextBox id="field-id-materialGradeId" formControlName="materialGradeId">
+                                </kendo-textbox-container>
+
+
+
+
+
+
+
+
+
+
+                            </div>
+
+                            <div class="p-col-4">
+
+
+
+
+                                <kendo-textbox-container floatingLabel="{{'Width [mm]' | translate | uomLabel:'mm':'in' }}" fxFlex>
+                                    <kendo-numerictextbox id="field-id-width" formControlName="width">
+                                    </kendo-numerictextbox>
+                                </kendo-textbox-container>
+
+
+
+
+
+
+
+
+                            </div>
+
+                            <div class="p-col-4">
+
+
+
+
+                                <kendo-textbox-container floatingLabel="{{'Thickness [mm]' | translate | uomLabel:'mm':'in' }}" fxFlex>
+                                    <kendo-numerictextbox id="field-id-thickness" formControlName="thickness">
+                                    </kendo-numerictextbox>
+                                </kendo-textbox-container>
+
+
+
+
+
+
+
+
+                            </div>
+
+                            <div class="p-col-4">
+
+
+
+
+                                <kendo-textbox-container floatingLabel="{{'Weight [kg]' | translate | uomLabel:'kg':'lb' }}" fxFlex>
+                                    <kendo-numerictextbox id="field-id-weight" formControlName="weight">
+                                    </kendo-numerictextbox>
+                                </kendo-textbox-container>
+
+
+
+
+
+
+
+
+                            </div>
+
+                            <div class="p-col-4">
+
+
+
+
+                                <kendo-textbox-container floatingLabel="{{'Pass No' | translate }}" fxFlex>
+                                    <kendo-numerictextbox id="field-id-passNo" formControlName="passNo">
+                                    </kendo-numerictextbox>
+                                </kendo-textbox-container>
+
+                            </div>
+
+                            <div class="p-col-4">
+
+
+
+
+                                <kendo-textbox-container floatingLabel="{{'Out Piece No' | translate }}" fxFlex>
+                                    <kendo-numerictextbox id="field-id-outPieceNo" formControlName="outPieceNo">
+                                    </kendo-numerictextbox>
+                                </kendo-textbox-container>
+
+
+
+
+
+
+
+
+                            </div>
+
+                            <div class="p-col-4">
+
+
+
+
+                                <kendo-textbox-container floatingLabel="{{'Out Piece Area' | translate }}" fxFlex>
+                                    <kendo-numerictextbox id="field-id-outPieceArea" formControlName="outPieceArea">
+                                    </kendo-numerictextbox>
+                                </kendo-textbox-container>
+
+
+
+
+
+
+
+
+                            </div>
+
+                        </div>
+                    </ng-template>
+
+                </kendo-tabstrip-tab>
+
+            </kendo-tabstrip>
+
+        </div>
+
+        <div class="p-col-12">
+            <hr />
+            <div fxLayout="row" [fxLayoutAlign]="isNew ? 'flex-end' : 'space-between'">
+                <button *ngIf="!isNew && !isReadOnly" kendoButton (click)="onDeleteClick()">Delete</button>
+                <div>
+                    <button kendoButton [primary]="true" [disabled]="!form.valid" (click)="onSaveClick()"
+                        *ngIf="!isReadOnly" translate>EXAMPLE.SAVE|Save</button>
+                    <button kendoButton (click)="onCancelClick()">{{cancelBackButton | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

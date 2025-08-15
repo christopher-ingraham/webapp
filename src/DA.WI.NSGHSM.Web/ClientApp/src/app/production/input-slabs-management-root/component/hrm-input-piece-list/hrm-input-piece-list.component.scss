@@ -1,0 +1,16 @@
+.ui-inputtext {
+    width: 90%;
+}
+
+::ng-deep .k-grid tbody tr {
+    height: 40px;
+}
+
+::ng-deep .k-grid tbody tr td {
+    overflow: hidden;
+}
+
+kendo-grid{
+    font-size: 10px;
+}
+

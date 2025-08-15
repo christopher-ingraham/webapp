@@ -1,0 +1,116 @@
+{
+    "$schema": "../src/crud-module/schema.json",
+    "api": {
+        "url": "report/RepHmPieceStatController",
+        "list": "list"
+    },
+    "entity": "repHmPieceStat",
+    "fields": [{
+            "name": "signalId",
+            "label": "Signal ID",
+            "type": "string",
+            "isId": true,
+            "readonly": true
+        },
+        {
+            "name": "description",
+            "label": "Description",
+            "type": "string"
+        },
+        {
+            "name": "measUnit",
+            "label": "Meas Unit",
+            "type": "string"
+        },
+        {
+            "name": "outPieceNo",
+            "label": "Out Piece N°",
+            "type": "number"
+        },
+        {
+            "name": "outPieceArea",
+            "label": "Out Piece Area",
+            "type": "number"
+        },
+        {
+            "name": "passNo",
+            "label": "Pass N°",
+            "type": "number"
+        },
+        {
+            "name": "sampleData",
+            "label": "Sample Data",
+            "type": "string"
+        },
+        {
+            "name": "chartData",
+            "label": "Chart Data",
+            "type": "number[]"
+        }
+    ],
+    "filter": [
+        "description"
+    ],
+    "grid": [{
+        "label": "Default",
+        "name": "default",
+        "columns": [{
+                "field": "signalId",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "description",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            },
+            {
+                "field": "measUnit",
+                "sortable": true,
+                "filter": {
+                    "enabled": true
+                }
+            }
+        ]
+    }],
+    "tabs": [{
+        "label": "Identification",
+        "rows": [{
+                "field": "signalId",
+                "columns": 6,
+                "controlType": "inputText"
+            },
+            {
+                "field": "description",
+                "columns": 6,
+                "controlType": "inputText"
+            },
+            {
+                "field": "measUnit",
+                "columns": 6,
+                "controlType": "inputText"
+            },
+            {
+                "field": "outPieceNo",
+                "columns": 4,
+                "controlType": "inputNumber"
+            },
+            {
+                "field": "outPieceArea",
+                "columns": 4,
+                "controlType": "inputNumber"
+            },
+            {
+                "field": "passNo",
+                "columns": 4,
+                "controlType": "inputNumber"
+            }
+        ]
+    }],
+    "title": "RepHmPieceStat",
+    "widgetSet": "kendo-ui"
+}

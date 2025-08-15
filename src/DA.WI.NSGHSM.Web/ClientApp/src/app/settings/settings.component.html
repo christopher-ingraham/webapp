@@ -1,0 +1,19 @@
+<h2 translate>SETTINGS.TITLE</h2>
+<hr />
+<kendo-panelbar>
+  <kendo-panelbar-item [title]="'SETTINGS.USER.TITLE' | translate" [expanded]="true">
+    <ng-template kendoPanelBarContent>
+      <app-user></app-user>
+    </ng-template>
+  </kendo-panelbar-item>
+  <kendo-panelbar-item [title]="'SETTINGS.ABOUT.TITLE' | translate" [expanded]="true">
+    <ng-template kendoPanelBarContent>
+      <app-about></app-about>
+    </ng-template>
+  </kendo-panelbar-item>  
+  <kendo-panelbar-item [title]="'SETTINGS.ABOUT.LOCALE' | translate" [expanded]="true">
+    <ng-template kendoPanelBarContent>
+      <app-locale></app-locale>
+    </ng-template>
+  </kendo-panelbar-item>    
+</kendo-panelbar>

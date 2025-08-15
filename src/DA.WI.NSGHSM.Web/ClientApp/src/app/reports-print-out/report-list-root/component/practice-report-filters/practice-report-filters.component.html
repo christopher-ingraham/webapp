@@ -1,0 +1,112 @@
+<form>
+    <div class="p-grid p-nogutter">
+
+        <div class="p-col-2 p-col-nogutter">
+            <div class="p-grid p-nogutter">
+                <!-- Center ID -->
+                <div class="p-col-12 p-col-nogutter">
+                    <input type="checkbox" id="filterCenterId" class="k-checkbox"
+                        [(ngModel)]="filter.centerId.isEnabled" [ngModelOptions]="modelOptions" />
+                    <label class="k-checkbox-label" for="filterCenterId">Center ID</label>
+                </div>
+                <div class="p-col-12 p-col-nogutter">
+                    <input kendoTextBox [disabled]="!filter.centerId.isEnabled" [(ngModel)]="filter.centerId.value"
+                        [ngModelOptions]="modelOptions" />
+                </div>
+                <!-- Practice ID -->
+                <div class="p-col-12 p-col-nogutter">
+                    <input type="checkbox" id="filterPracticeId" class="k-checkbox"
+                        [(ngModel)]="filter.practiceId.isEnabled" [ngModelOptions]="modelOptions" />
+                    <label class="k-checkbox-label" for="filterPracticeId">Practice ID</label>
+                </div>
+                <div class="p-col-12 p-col-nogutter">
+                    <input kendoTextBox [disabled]="!filter.practiceId.isEnabled" [(ngModel)]="filter.practiceId.value"
+                        [ngModelOptions]="modelOptions" />
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-2 p-col-nogutter">
+            <div class="p-grid p-nogutter">
+                <!-- Mill Mode -->
+                <div class="p-col-12 p-col-nogutter">
+                    <input type="checkbox" id="filterMillMode" class="k-checkbox"
+                        [(ngModel)]="filter.millMode.isEnabled" [ngModelOptions]="modelOptions" />
+                    <label class="k-checkbox-label" for="filterMillMode">Mill Mode</label>
+                </div>
+                <div class="p-col-12 p-col-nogutter">
+                    <kendo-dropdownlist [data]="millModeList" [textField]="'label'" [valueField]="'value'"
+                        [disabled]="!filter.millMode.isEnabled" [(ngModel)]="filter.millMode.value"
+                        [ngModelOptions]="modelOptions" [valuePrimitive]="true">
+                    </kendo-dropdownlist>
+                </div>
+                <!-- Material Grade ID -->
+                <div class="p-col-12 p-col-nogutter">
+                    <input type="checkbox" id="filterMaterialGradeId" class="k-checkbox"
+                        [(ngModel)]="filter.materialGradeId.isEnabled" [ngModelOptions]="modelOptions" />
+                    <label class="k-checkbox-label" for="filterMaterialGradeId">Material Grade ID</label>
+                </div>
+                <div class="p-col-12 p-col-nogutter">
+                    <kendo-dropdownlist [data]="materialGradeIdList" [textField]="'label'" [valueField]="'value'"
+                        [disabled]="!filter.materialGradeId.isEnabled" [(ngModel)]="filter.materialGradeId.value"
+                        [ngModelOptions]="modelOptions" [valuePrimitive]="true">
+                    </kendo-dropdownlist>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-2 p-col-nogutter">
+            <div class="p-gid p-nogutter">
+                <!-- Entry Thickness -->
+                <div class="p-col-12 p-col-nogutter">
+                    <input type="checkbox" id="filterEntryThickness" class="k-checkbox"
+                        [(ngModel)]="filter.entryThickness.isEnabled" [ngModelOptions]="modelOptions" />
+                    <label class="k-checkbox-label"
+                        for="filterEntryThickness">{{ 'Entry Thickness [mm]' | translate | uomLabel:'mm':'in' }}</label>
+                </div>
+                <div class="p-col-12">
+                    <div class="p-grid p-nogutter">
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'From' | translate }}" fxFlex>
+                                <kendo-numerictextbox [(ngModel)]="filter.entryThickness.value.from"
+                                    [ngModelOptions]="modelOptions" [disabled]="!filter.entryThickness.isEnabled"
+                                    [format]="numberFormatOptions"></kendo-numerictextbox>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'To' | translate }}" fxFlex>
+                                <kendo-numerictextbox [(ngModel)]="filter.entryThickness.value.to"
+                                    [ngModelOptions]="modelOptions" [disabled]="!filter.entryThickness.isEnabled"
+                                    [format]="numberFormatOptions"></kendo-numerictextbox>
+                            </kendo-textbox-container>
+                        </div>
+                    </div>
+                </div>
+                <!-- apply button -->
+                <div class="p-col-12 p-col-nogutter">
+                    <div kendoTooltip style="text-align: center; padding-top: 10px;">
+                        <button kendoButton type="button" title="Apply filter(s)"><i class="k-icon k-i-filter"
+                                (click)="applyFilters($event)"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-6 p-col-nogutter">
+            <div class="p-grid p-nogutter">
+                <!-- Date Time -->
+                <div class="p-col-12 p-col-nogutter">
+                    <input type="checkbox" id="filterDateTime" class="k-checkbox"
+                        [(ngModel)]="filter.revisionDate.isEnabled" [ngModelOptions]="modelOptions" />
+                    <label class=" k-checkbox-label" for="filterDateTime">Date Time</label>
+                </div>
+                <div class="p-col-12 p-col-nogutter">
+                    <app-time-filter [disabled]="!filter.revisionDate.isEnabled"
+                        [(dateTimeFrom)]="filter.revisionDate.value.from" [(dateTimeTo)]="filter.revisionDate.value.to">
+                    </app-time-filter>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>

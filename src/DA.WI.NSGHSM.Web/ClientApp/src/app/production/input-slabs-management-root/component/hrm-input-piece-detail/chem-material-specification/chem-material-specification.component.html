@@ -1,0 +1,54 @@
+<form [formGroup]="form">
+    <fieldset>
+        <legend>Material Specification</legend>
+        <table style="width: 100%">
+            <thead>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">Analysis</th>
+                <th scope="col">Min</th>
+                <th scope="col">Max</th>
+                <th scope="col" colspan="2">&nbsp;</th>
+                <th scope="col">Analysis</th>
+                <th scope="col">Min</th>
+                <th scope="col">Max</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of items">
+                    <th scope="row">{{item.left.label | translate}}</th>
+                    <td>
+                        <kendo-numerictextbox [readonly]="true" [format]="'n3'" [spinners]="false"
+                            [value]="item.left.analysis">
+                        </kendo-numerictextbox>
+                    </td>
+                    <td>
+                        <kendo-numerictextbox [readonly]="true" [format]="'n3'" [spinners]="false"
+                            [value]="item.left.min">
+                        </kendo-numerictextbox>
+                    </td>
+                    <td>
+                        <kendo-numerictextbox [readonly]="true" [format]="'n3'" [spinners]="false"
+                            [value]="item.left.max">
+                        </kendo-numerictextbox>
+                    </td>
+                    <td>&nbsp;</td>
+                    <th scope="row">{{item.right.label | translate}}</th>
+                    <td>
+                        <kendo-numerictextbox [readonly]="true" [format]="'n3'" [spinners]="false"
+                            [value]="item.right.analysis">
+                        </kendo-numerictextbox>
+                    </td>
+                    <td>
+                        <kendo-numerictextbox [readonly]="true" [format]="'n3'" [spinners]="false"
+                            [value]="item.right.min">
+                        </kendo-numerictextbox>
+                    </td>
+                    <td>
+                        <kendo-numerictextbox [readonly]="true" [format]="'n3'" [spinners]="false"
+                            [value]="item.right.max">
+                        </kendo-numerictextbox>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+</form>

@@ -1,0 +1,73 @@
+<div *ngIf="form">
+    <form class="k-form" [formGroup]="form">
+        <div class="p-grid p-nogutter">
+            <div class="p-col-12">
+                <h3 translate>{{title}}</h3>
+            </div>
+            <div class="p-col-12">
+                <app-audit-info operatorLabel="{{'Operator' | translate }}" [operator]="auditOperator"
+                    revisionLabel="{{'Revision' | translate }}" [revision]="auditRevision"></app-audit-info>
+            </div>
+            <div class="p-col-12">
+                <fieldset>
+                    <legend translate>Schedule Data</legend>
+                    <div class="p-grid p-nogutter">
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'String N°' | translate }}" fxFlex>
+                                <input kendoTextBox formControlName="jobId">
+                                <span *ngIf="isInError('jobId')" class="k-text-error">{{getErrors('jobId')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Status' | translate }}" fxFlex>
+                                <div fxLayout="row">
+                                    <kendo-dropdownlist formControlName="status" [data]="statusJobList | async"
+                                        [textField]="'label'" [valueField]="'value'" [valuePrimitive]="true" fxFlex>
+                                    </kendo-dropdownlist>
+                                </div>
+                                <span *ngIf="isInError('status')" class="k-text-error">{{getErrors('status')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'String Sequence' | translate }}" fxFlex>
+                                <kendo-numerictextbox formControlName="jobSeq" [format]="intFormatOptions">
+                                </kendo-numerictextbox>
+                                <span *ngIf="isInError('jobSeq')" class="k-text-error">{{getErrors('jobSeq')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Total number of' | translate }}" fxFlex>
+                                <kendo-numerictextbox formControlName="totalNumberOf" [format]="intFormatOptions">
+                                </kendo-numerictextbox>
+                                <span *ngIf="isInError('totalNumberOf')"
+                                    class="k-text-error">{{getErrors('totalNumberOf')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-6">
+                            <kendo-textbox-container floatingLabel="{{'Planned Production Date' | translate }}" fxFlex>
+                                <kendo-datepicker formControlName="orderStartDate" [format]="'dd/MM/yyyy'">
+                                </kendo-datepicker>
+                                <span *ngIf="isInError('orderStartDate')"
+                                    class="k-text-error">{{getErrors('orderStartDate')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                        <div class="p-col-12">
+                            <kendo-textbox-container floatingLabel="{{'Description' | translate }}" fxFlex>
+                                <textarea class="k-textarea" formControlName="remark"></textarea>
+                                <span *ngIf="isInError('remark')" class="k-text-error">{{getErrors('remark')}}</span>
+                            </kendo-textbox-container>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="p-col-12">
+                <app-detail-action-bar [isNew]="isNew" [isReadOnly]="isReadOnly" [disabled]="!form.valid"
+                    (savePressed)="onSaveClick()" saveLabel="{{'EXAMPLE.SAVE|Save'|translate}}"
+                    (deletePressed)="onDeleteClick()" deleteLabel="{{'Delete'|translate}}"
+                    (cancelPressed)="onCancelClick()" cancelLabel="{{cancelBackButton|translate}}">
+                </app-detail-action-bar>
+            </div>
+        </div>
+    </form>
+</div>
+<div kendoDialogContainer></div>

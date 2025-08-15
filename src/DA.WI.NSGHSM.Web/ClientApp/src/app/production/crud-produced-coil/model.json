@@ -1,0 +1,937 @@
+{
+    "$schema": "../../../../node_modules/crud-schematics/src/crud-module/schema.json",
+    "api": {
+        "url": "production/ProducedCoils",
+        "list": "list"
+    },
+    "entity": "producedCoil",
+    "fields": [
+        {
+            "name": "calculatedWeight",
+            "label": "Calculated Weight [Kg]",
+            "type": "number"
+        },
+        {
+            "name": "customerId",
+            "label": "Customer ID",
+            "type": "string"
+        },
+        {
+            "name": "exitTemp",
+            "label": "Finishing Temperature [^C]",
+            "type": "number"
+        },
+        {
+            "name": "exitThk",
+            "label": "Exit Thickness [mm]",
+            "type": "number"
+        },
+        {
+            "name": "exitWidth",
+            "label": "Exit Width [mm]",
+            "type": "number"
+        },
+        {
+            "name": "gradeGroupId",
+            "label": "Grade Group ID",
+            "type": "number"
+        },
+        {
+            "name": "gradeGroupLabel",
+            "label": "gradeGroupLabel",
+            "type": "string"
+        },
+        {
+            "name": "heatId",
+            "label": "Heat No",
+            "type": "string"
+        },
+        {
+            "name": "inPieceId",
+            "label": "Input Slab ID",
+            "type": "string"
+        },
+        {
+            "name": "inPieceNo",
+            "label": "inPieceNo",
+            "type": "number"
+        },
+        {
+            "name": "innerDiameter",
+            "label": "Internal Diameter",
+            "type": "number"
+        },
+        {
+            "name": "materialGradeId",
+            "label": "Material Grade Id",
+            "type": "string"
+        },
+        {
+            "name": "measuredWeight",
+            "label": "Measured Weight",
+            "type": "number"
+        },
+        {
+            "name": "operator",
+            "label": "Operator",
+            "type": "string"
+        },
+        {
+            "name": "outPieceId",
+            "label": "Produced Coil ID",
+            "type": "string"
+        },
+        {
+            "name": "outPieceNo",
+            "label": "outPieceNo",
+            "type": "number"
+        },
+        {
+            "name": "outerDiameter",
+            "label": "outerDiameter",
+            "type": "number"
+        },
+        {
+            "name": "productionStartDate",
+            "label": "Start Production Time",
+            "type": "Date"
+        },
+        {
+            "name": "productionStopDate",
+            "label": "Stop Production Time",
+            "type": "Date"
+        },
+        {
+            "name": "revision",
+            "label": "Revision",
+            "type": "Date"
+        },
+        {
+            "name": "status",
+            "label": "Coil Status",
+            "type": "number"
+        },
+        {
+            "name": "statusLabel",
+            "label": "Status",
+            "type": "string"
+        },
+        {
+            "name": "targetColdThk",
+            "label": "Target Cold Thickness [mm]",
+            "type": "number"
+        },
+        {
+            "name": "targetColdWidth",
+            "label": "Target Cold Width [mm]",
+            "type": "number"
+        },
+
+        {
+            "name": "outPieceCnt",
+            "label": "OutPieceCnt",
+            "type": "number"
+        },
+        {
+            "name": "outPieceSeq",
+            "label": "Coil Sequence",
+            "type": "number"
+        },
+        {
+            "name": "jobId",
+            "label": "String No",
+            "type": "string"
+        },
+        {
+            "name": "targetWidth",
+            "label": "Target Width [mm]",
+            "type": "number"
+        },
+        {
+            "name": "targetThickness",
+            "label": "Target Thickness [mm]",
+            "type": "number"
+        },
+        {
+            "name": "endOfInGotFlag",
+            "label": "EndOfInGotFlag",
+            "type": "number"
+        },
+        {
+            "name": "testCut",
+            "label": "Test Cut",
+            "type": "number"
+        },
+        {
+            "name": "crewId",
+            "label": "Production Crew",
+            "type": "string"
+        },
+        {
+            "name": "shiftId",
+            "label": "Production Shift",
+            "type": "number"
+        },
+        {
+            "name": "remark",
+            "label": "Remark",
+            "type": "string"
+        },
+        {
+            "name": "soakTime",
+            "label": "Soak Time [min]",
+            "type": "number"
+        },
+        {
+            "name": "gapTime",
+            "label": "Gap Time [min]",
+            "type": "number"
+        },
+        {
+            "name": "rollingTime",
+            "label": "Rolling Time [min]",
+            "type": "number"
+        },
+        {
+            "name": "stripCrownIntolFlag",
+            "label": "StripCrownIntolFlag",
+            "type": "number"
+        },
+        {
+            "name": "exitThkIntolFlag",
+            "label": "ExitThkIntolFlag",
+            "type": "number"
+        },
+        {
+            "name": "exitWidthIntolFlag",
+            "label": "ExitWidthIntolFlag",
+            "type": "number"
+        },
+        {
+            "name": "exitTempIntolFlag",
+            "label": "ExitTempIntolFlag",
+            "type": "number"
+        },
+        {
+            "name": "downcoilTempIntolFlag",
+            "label": "DowncoilTempIntolFlag",
+            "type": "number"
+        },
+        {
+            "name": "interstandCoolingBitmask",
+            "label": "InterstandCoolingBitmask",
+            "type": "number"
+        },
+        {
+            "name": "stripCrownTolPerc",
+            "label": "StripCrownTolPerc",
+            "type": "number"
+        },
+        {
+            "name": "exitThkTolPerc",
+            "label": "ExitThkTolPerc",
+            "type": "number"
+        },
+        {
+            "name": "exitWidthTolPerc",
+            "label": "ExitWidthTolPerc",
+            "type": "number"
+        },
+        {
+            "name": "exitTempTolPerc",
+            "label": "ExitTempTolPerc",
+            "type": "number"
+        },
+        {
+            "name": "downcoilTempTolPerc",
+            "label": "DowncoilTempTolPerc",
+            "type": "number"
+        },
+
+        {
+            "name": "jobPieceSeq",
+            "label": "JobPieceSeq",
+            "type": "string"
+        },
+        {
+            "name": "entryThickness",
+            "label": "EntryThickness",
+            "type": "number"
+        },
+        {
+            "name": "orderNumber",
+            "label": "Customer Order No",
+            "type": "string"
+        },
+        {
+            "name": "orderPosition",
+            "label": "OrderPosition",
+            "type": "string"
+        },
+        {
+            "name": "outPieceArea",
+            "label": "OutPieceArea",
+            "type": "string"
+        },
+        {
+            "name": "destCodeId",
+            "label": "DestCodeId",
+            "type": "number"
+        },
+        {
+            "name": "combinationNumber",
+            "label": "CombinationNumber",
+            "type": "number"
+        },
+
+        {
+            "name": "productionshift",
+            "label": "Production Shift",
+            "type": "number"
+        },
+        {
+            "name": "usedDefaultChemComp",
+            "label": "Default Chemistry Used",
+            "type": "number"
+        },
+        {
+            "name": "trialFlag",
+            "label": "Trial Coil",
+            "type": "number"
+        },
+        {
+            "name": "entryHeadThickness",
+            "label": "Entry Head Thickness",
+            "type": "number"
+        },
+        {
+            "name": "entryHeadWidth",
+            "label": "Entry Head Width",
+            "type": "number"
+        },
+        {
+            "name": "totalReduction",
+            "label": "Total Reduction [%]",
+            "type": "number"
+        },
+        {
+            "name": "entryLength",
+            "label": "Entry Length [m]",
+            "type": "number"
+        },
+        {
+            "name": "length",
+            "label": "Exit Length [m]",
+            "type": "number"
+        },
+        {
+            "name": "note",
+            "label": "Note",
+            "type": "string"
+        },
+
+
+        {
+            "name": "biteSprayPressureTooLowInF1",
+            "label": "Bite Spray Pressure Too Low In F1",
+            "type": "number"
+        },
+        {
+            "name": "aimGaugeChanged",
+            "label": "Aim Gauge Changed",
+            "type": "number"
+        },
+        {
+            "name": "cobble",
+            "label": "Cobble",
+            "type": "number"
+        },
+        {
+            "name": "cobblePrevention",
+            "label": "Cobble Prevention",
+            "type": "number"
+        },
+        {
+            "name": "coilingTempOutsideCustomer",
+            "label": "Coiling Temp Outside Customer",
+            "type": "number"
+        },
+        {
+            "name": "casterWedgeNotOk",
+            "label": "Caster Wedge Not Ok",
+            "type": "number"
+        },
+        {
+            "name": "damagedTail",
+            "label": "Damaged Tail",
+            "type": "number"
+        },
+        {
+            "name": "foldedHead",
+            "label": "Folded Head",
+            "type": "number"
+        },
+        {
+            "name": "finishingTempOutsideCustomer",
+            "label": "Finishing Temp Outside Customer",
+            "type": "number"
+        },
+        {
+            "name": "thicknessOutsideCustomerTol",
+            "label": "Thickness Outside Customer Tol",
+            "type": "number"
+        },
+        {
+            "name": "gradeChanged",
+            "label": "Grade Changed",
+            "type": "number"
+        },
+        {
+            "name": "coilHeadTooHot",
+            "label": "Coil Head Too Hot",
+            "type": "number"
+        },
+        {
+            "name": "descaleHighPressureNotOk",
+            "label": "Descale High Pressure Not Ok",
+            "type": "number"
+        },
+        {
+            "name": "heatRidge",
+            "label": "Heat Ridge",
+            "type": "number"
+        },
+        {
+            "name": "coilingPyrometerNotWorking",
+            "label": "Coiling Pyrometer Not Working",
+            "type": "number"
+        },
+        {
+            "name": "finishingPyrometerNotWorking",
+            "label": "Finishing Pyrometer Not Working",
+            "type": "number"
+        },
+        {
+            "name": "widthGaugeNotWorking",
+            "label": "Width Gauge Not Working",
+            "type": "number"
+        },
+        {
+            "name": "thicknessGaugeNotWorking",
+            "label": "Thickness Gauge Not Working",
+            "type": "number"
+        },
+        {
+            "name": "orderNumberChanged",
+            "label": "Order Number Changed",
+            "type": "number"
+        },
+        {
+            "name": "edgeThicknessBelowCustomer",
+            "label": "Edge Thickness Below Customer",
+            "type": "number"
+        },
+        {
+            "name": "processorWidthChanged",
+            "label": "Processor Width Changed",
+            "type": "number"
+        },
+        {
+            "name": "coilSlippedInF1",
+            "label": "Coil Slipped In F1",
+            "type": "number"
+        },
+        {
+            "name": "slipPrevention",
+            "label": "Slip Prevention",
+            "type": "number"
+        },
+        {
+            "name": "coilingTemperatureChanged",
+            "label": "Coiling Temperature Changed",
+            "type": "number"
+        },
+        {
+            "name": "slabInTunnelFurnaceTooLong",
+            "label": "Slab In Tunnel Furnace TooLong",
+            "type": "number"
+        },
+        {
+            "name": "transitionWidth",
+            "label": "Transition Width",
+            "type": "number"
+        },
+        {
+            "name": "widthDips",
+            "label": "Width Dips",
+            "type": "number"
+        },
+        {
+            "name": "widthOutsideCustomerTol",
+            "label": "Width Outside Customer Tol",
+            "type": "number"
+        },
+        {
+            "name": "coilWeightOutsideCustomerTol",
+            "label": "Coil Weight Outside Customer Tol",
+            "type": "number"
+        },
+        {
+            "name": "widthWarning",
+            "label": "Width Warning",
+            "type": "number"
+        }
+    ],
+    "filter": ["statusLabel", "remark"],
+    "grid": [],
+    "tabs": [{
+            "label": "[TOP]",
+            "rows": [
+            {
+                "field": "operator",
+                "columns": 6,
+                "controlType": "inputText"
+            },
+            {
+                "field": "revision",
+                "columns": 6,
+                "controlType": "inputDate"
+            }
+        ]
+        },
+        {
+            "label": "[HEAD]",
+            "rows": [
+                {
+                    "field": "outPieceId",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "status",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "inPieceId",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "jobId",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "outPieceSeq",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "heatId",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "productionStartDate",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "shiftId",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "productionStopDate",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "crewId",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "customerId",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "orderNumber",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "testCut",
+                    "columns": 6,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "orderPosition",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "endOfInGotFlag",
+                    "columns": 6,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "jobPieceSeq",
+                    "columns": 6,
+                    "controlType": "inputText"
+                }
+            ]
+        },{
+            "label": "General Data",
+            "rows": [
+                {
+                    "field": "materialGradeId",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "gradeGroupId",
+                    "columns": 6,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "usedDefaultChemComp",
+                    "columns": 6,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "trialFlag",
+                    "columns": 6,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "entryHeadThickness",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "entryHeadWidth",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "exitThk",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "exitWidth",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "targetThickness",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "targetWidth",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "totalReduction",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "entryLength",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "innerDiameter",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "length",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "outerDiameter",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "soakTime",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "calculatedWeight",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "gapTime",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "measuredWeight",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "rollingTime",
+                    "columns": 6,
+                    "controlType": "inputNumber"
+                },
+                {
+                    "field": "note",
+                    "columns": 12,
+                    "controlType": "inputText"
+                }
+            ]
+        }, {
+            "label": "Disposition Data",
+            "rows": [
+                {
+                    "field": "biteSprayPressureTooLowInF1",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "gradeChanged",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "processorWidthChanged",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "aimGaugeChanged",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "coilHeadTooHot",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "coilSlippedInF1",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "cobble",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "descaleHighPressureNotOk",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "slipPrevention",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "cobblePrevention",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "heatRidge",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "coilingTemperatureChanged",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "coilingTempOutsideCustomer",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "coilingPyrometerNotWorking",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "slabInTunnelFurnaceTooLong",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "casterWedgeNotOk",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "finishingPyrometerNotWorking",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "transitionWidth",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "damagedTail",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "widthGaugeNotWorking",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "widthDips",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "foldedHead",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "thicknessGaugeNotWorking",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "widthOutsideCustomerTol",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "finishingTempOutsideCustomer",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "orderNumberChanged",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "coilWeightOutsideCustomerTol",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "thicknessOutsideCustomerTol",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "edgeThicknessBelowCustomer",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                },
+                {
+                    "field": "widthWarning",
+                    "columns": 4,
+                    "controlType": "inputCheck"
+                }
+            ]
+        },
+        {
+            "label": "Measured Data",
+            "rows": [
+                {
+                    "field": "operator",
+                    "columns": 12,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 12,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "operator",
+                    "columns": 12,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 12,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "operator",
+                    "columns": 12,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 12,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 12,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 12,
+                    "controlType": "inputText"
+                }
+            ]
+        },
+        {
+            "label": "Rolls Data",
+            "rows": [
+                {
+                    "field": "operator",
+                    "columns": 12,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 12,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "operator",
+                    "columns": 12,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 12,
+                    "controlType": "inputText"
+                },
+
+                {
+                    "field": "operator",
+                    "columns": 12,
+                    "controlType": "inputText"
+                },
+                {
+                    "field": "operator",
+                    "columns": 12,
+                    "controlType": "inputText"
+                }
+            ]
+        }
+    ],
+    "title": "ProducedCoil",
+    "widgetSet": "kendo-ui"
+}

@@ -1,0 +1,43 @@
+<kendo-splitter orientation="horizontal" style="height: 100%;">
+    <!--  LEFT PANE  -->
+    <kendo-splitter-pane size="50%" [collapsible]="true" [scrollable]="true"
+        (collapsedChange)="leftPaneCollapsed.next($event)">
+        <kendo-splitter orientation="vertical">
+            <!-- filters -->
+            <kendo-splitter-pane size="240px" max="20%" [resizable]="true" [collapsible]="true" [scrollable]="false">
+                <app-main-signals-root-filters [filters]="filters"></app-main-signals-root-filters>
+            </kendo-splitter-pane>
+            <!-- rep-hm-piece-list -->
+            <kendo-splitter-pane size="600px" max="20%" [resizable]="true" [scrollable]="true">
+                <fieldset>
+                    <legend>Coils</legend>
+                    <div class="p-grid p-nogutter">
+                        <div class="p-col-12">
+                            <app-action-toolbar refreshVisible="true" (refreshClicked)="repHmPieceListRefresh($event)">
+                            </app-action-toolbar>
+                        </div>
+                        <div class="p-col-12">
+                            <app-rep-hm-piece-list [filters]="filters" [row]="repHmPieceSelection">
+                            </app-rep-hm-piece-list>
+                        </div>
+                    </div>
+                </fieldset>
+            </kendo-splitter-pane>
+            <!-- rep-hm-piece-trend-list -->
+            <kendo-splitter-pane [resizable]="true">
+                <fieldset>
+                    <legend>Trend Variables</legend>
+                    <app-rep-hm-piece-trend-list [coil]="repHmPieceSelection" [trends]="repHmPieceTrendListSelection">
+                    </app-rep-hm-piece-trend-list>
+                </fieldset>
+            </kendo-splitter-pane>
+        </kendo-splitter>
+
+    </kendo-splitter-pane>
+    <!--  RIGHT PANE  -->
+    <kendo-splitter-pane>
+        <app-chart-stack [coil]="repHmPieceSelection" [trends]="repHmPieceTrendListSelection"
+            [expanded]="leftPaneCollapsed">
+        </app-chart-stack>
+    </kendo-splitter-pane>
+</kendo-splitter>
