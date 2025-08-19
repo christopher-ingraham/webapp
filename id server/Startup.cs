@@ -7,13 +7,6 @@ using DA.WI.NSGHSM.Core.Helpers;
 using DA.WI.NSGHSM.IdentityServer.Services;
 using DA.WI.NSGHSM.Repo;
 
-using IdentityServer4.Configuration;
-using IdentityServer4.Models;
-using IdentityServer4.Quickstart.UI;
-using IdentityServer4;
-
-using Joonasw.AspNetCore.SecurityHeaders;
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

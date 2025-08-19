@@ -1,41 +1,52 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
-  <PropertyGroup>
-    <PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
-  </PropertyGroup>
-  <ItemGroup>
-    <None Remove="identityserver4_log.txt" />
+
+  <!-- Option 1: Duende IdentityServer (Commercial but more feature-rich) -->
+  <ItemGroup Condition="'$(IDENTITY_SERVER_TYPE)' == 'Duende'">
+    <PackageReference Include="Duende.IdentityServer" Version="7.0.8" />
+    <PackageReference Include="Duende.IdentityServer.EntityFramework" Version="7.0.8" />
   </ItemGroup>
+
+  <!-- Option 2: ASP.NET Core Identity with JWT (Free, simpler) -->
+  <ItemGroup Condition="'$(IDENTITY_SERVER_TYPE)' != 'Duende'">
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.0.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.0" />
+  </ItemGroup>
+
+  <!-- Common packages -->
   <ItemGroup>
-    <PackageReference Include="Joonasw.AspNetCore.SecurityHeaders" Version="6.0.0" />
-    <PackageReference Include="IdentityServer4" Version="2.3.2" />
-    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="23.9.1" />
-    <PackageReference Include="Serilog" Version="4.3.0" />
-    <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.0" />
+    <PackageReference Include="Oracle.EntityFrameworkCore" Version="8.21.121" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
     <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
-    <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
-    <PackageReference Include="SharpZipLib" Version="1.4.2" />
+    <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.0" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\DA.WI.NSGHSM.Core\DA.WI.NSGHSM.Core.csproj" />
     <ProjectReference Include="..\DA.WI.NSGHSM.Dto\DA.WI.NSGHSM.Dto.csproj" />
     <ProjectReference Include="..\DA.WI.NSGHSM.Repo\DA.WI.NSGHSM.Repo.csproj" />
     <ProjectReference Include="..\DA.WI.DirectoryServices\DA.WI.DirectoryServices.csproj" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Update="Keys\New-SigninCertificate.ps1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Keys\_readme.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Folder Include="wwwroot\" />
+    <Folder Include="logs\" />
+    <Folder Include="Keys\" />
   </ItemGroup>
-  <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties appsettings_1json__JSONSchema="" />
-    </VisualStudio>
-  </ProjectExtensions>
+
 </Project>
